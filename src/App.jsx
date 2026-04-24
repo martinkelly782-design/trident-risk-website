@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
+const Button = ({ children, ...props }) => <button {...props}>{children}</button>;
+const Card = ({ children }) => <div>{children}</div>;
+const CardContent = ({ children }) => <div>{children}</div>;
+const Badge = ({ children }) => <span>{children}</span>;
 const email = "intelligence@tridentrisk.org";
 const emailHref = `mailto:${email}`;
 

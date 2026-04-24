@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const Button = ({ children, ...props }) => <button {...props}>{children}</button>;
-const Card = ({ children }) => <div>{children}</div>;
-const CardContent = ({ children }) => <div>{children}</div>;
-const Badge = ({ children }) => <span>{children}</span>;
+const Button = ({ children, asChild, ...props }) => <button {...props}>{children}</button>;
+const Card = ({ children, ...props }) => <div {...props}>{children}</div>;
+const CardContent = ({ children, ...props }) => <div {...props}>{children}</div>;
+const Badge = ({ children, ...props }) => <span {...props}>{children}</span>;
 const email = "intelligence@tridentrisk.org";
 const emailHref = `mailto:${email}`;
 

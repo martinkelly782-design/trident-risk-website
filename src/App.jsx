@@ -289,16 +289,9 @@ function HomePage({ onOpenPage }) {
   return (
     <main>
       <section className="relative h-[85vh] w-full overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" function HomePage({ onOpenPage }) {
-  return (
-    <main>
-      <section className="relative h-[85vh] w-full overflow-hidden">
-        {/* UPDATED BACKGROUND IMAGE */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/ship.jpg')",
-          }}
+          style={{ backgroundImage: "url('/ship.jpg')" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/75 to-transparent" />
 
@@ -334,16 +327,17 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      {/* REST OF YOUR PAGE UNCHANGED */}
       <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           <div>
             <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">
               Global Monitoring Centre
             </h2>
+
             <p className="mt-8 text-lg leading-8 text-slate-700">
               Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel movements, geopolitical developments and emerging threats. The centre supports real time decision making, incident response and crisis management across maritime and corporate operations.
             </p>
+
             <div className="mt-10 space-y-4 text-slate-700">
               <p>• 24/7 vessel tracking and alerting</p>
               <p>• Real time incident monitoring and escalation</p>
@@ -362,55 +356,28 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      {pillars.map((pillar) => (
-        <HomeServiceSection key={pillar.id} pillar={pillar} onOpenPage={onOpenPage} />
-      ))}
-    </main>
-  );
-} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/75 to-transparent" />
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
-          <div className="max-w-3xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-slate-200">Trident Risk & Advisory</div>
-            <h1 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">Intelligence led advisory for maritime, geopolitical and legal risk.</h1>
-            <p className="mt-6 text-base leading-8 text-slate-200 md:text-lg">Supporting shipping, insurance, corporate and legal clients with clear, defensible analysis in complex and high risk environments.</p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button asChild size="lg" className="rounded-2xl bg-[#d6b25e] text-[#0b2234] hover:bg-[#c19d4a]"><a href={emailHref}>Ask an Analyst</a></Button>
-              <Button size="lg" variant="outline" onClick={() => onOpenPage("maritime-intelligence")} className="rounded-2xl border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">Explore Services</Button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">Global Monitoring Centre</h2>
-            <p className="mt-8 text-lg leading-8 text-slate-700">Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel movements, geopolitical developments and emerging threats. The centre supports real time decision making, incident response and crisis management across maritime and corporate operations.</p>
-            <div className="mt-10 space-y-4 text-slate-700">
-              <p>• 24/7 vessel tracking and alerting</p>
-              <p>• Real time incident monitoring and escalation</p>
-              <p>• Direct analyst support during crises and disruptions</p>
-              <p>• Integration with client operations and security teams</p>
-            </div>
-          </div>
-          <div className="relative h-[420px] overflow-hidden rounded-[2rem] border border-slate-400/50">
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageBank.map})` }} />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b2234]/60 to-transparent" />
-          </div>
-        </div>
-      </section>
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-8 border-t border-slate-300/60 mt-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
           <div>
-            <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">Built for decision makers operating under uncertainty.</h2>
-            <p className="mt-8 text-lg leading-8 text-slate-700">Trident operates where commercial decisions intersect with geopolitical risk, maritime exposure and legal consequence. The advisory is structured to provide clarity before commitment, movement or dispute.</p>
+            <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">
+              Built for decision makers operating under uncertainty.
+            </h2>
+
+            <p className="mt-8 text-lg leading-8 text-slate-700">
+              Trident operates where commercial decisions intersect with geopolitical risk, maritime exposure and legal consequence. The advisory is structured to provide clarity before commitment, movement or dispute.
+            </p>
           </div>
+
           <div className="relative h-[420px] overflow-hidden rounded-[2rem] border border-slate-400/50">
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageBank.ship})` }} />
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${imageBank.ship})` }}
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0b2234]/60 to-transparent" />
           </div>
         </div>
       </section>
+
       {pillars.map((pillar) => (
         <HomeServiceSection key={pillar.id} pillar={pillar} onOpenPage={onOpenPage} />
       ))}

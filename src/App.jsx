@@ -205,7 +205,7 @@ function RequestPage({ service, onBack }) {
           <button type="button" onClick={onBack} className="mb-8 text-sm text-white/80 hover:text-white">Back</button>
           <div className="max-w-4xl text-white">
             <div className="text-xs uppercase tracking-[0.35em] text-slate-200">Request Support</div>
-            <h1 className="mt-5 text-4xl font-light tracking-tight md:text-6xl">Request: {service}</h1>
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">Request: {service}</h1>
             <p className="mt-6 max-w-3xl leading-8 text-slate-100">Submit the outline below and Trident will review the requirement, identify the correct analyst support and respond with the proposed next step.</p>
           </div>
         </div>
@@ -230,7 +230,7 @@ function RequestPage({ service, onBack }) {
                 <p className="mt-4 leading-7 text-slate-700">This prototype has captured the request locally. In the live build, connect this form to Wix Forms, HubSpot, Zapier or secure email.</p>
               </div>
             ) : (
-              <form className="grid gap-4" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
+              <form className="grid gap-3" onSubmit={(event) => { event.preventDefault(); setSubmitted(true); }}>
                 <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Name" />
                 <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Company" />
                 <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Email" />
@@ -290,14 +290,14 @@ function HomePage({ onOpenPage }) {
     <main>
       <section className="relative h-[85vh] w-full overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${imageBank.vessel})` }} />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/85 via-[#0b2234]/55 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/75 to-transparent" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
           <div className="max-w-3xl text-white">
             <div className="text-xs uppercase tracking-[0.35em] text-slate-200">Trident Risk & Advisory</div>
             <h1 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">Intelligence led advisory for maritime, geopolitical and legal risk.</h1>
             <p className="mt-6 text-base leading-8 text-slate-200 md:text-lg">Supporting shipping, insurance, corporate and legal clients with clear, defensible analysis in complex and high risk environments.</p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Button asChild size="lg" className="rounded-2xl bg-white text-slate-900 hover:bg-slate-200"><a href={emailHref}>Ask an Analyst</a></Button>
+              <Button asChild size="lg" className="rounded-2xl bg-[#d6b25e] text-[#0b2234] hover:bg-[#c19d4a]"><a href={emailHref}>Ask an Analyst</a></Button>
               <Button size="lg" variant="outline" onClick={() => onOpenPage("maritime-intelligence")} className="rounded-2xl border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">Explore Services</Button>
             </div>
           </div>
@@ -363,7 +363,7 @@ export default function TridentWebsitePreview() {
 
   return (
     <div className="min-h-screen bg-[#eef3f4] text-slate-900">
-      <header className="sticky top-0 z-50 border-b border-slate-400/50 bg-[#eef3f4]/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-slate-400/50 bg-white backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <button type="button" onClick={() => openPage("home")} className="flex items-center gap-3 text-left">
 <img src="/logo.svg" alt="Trident Logo" className="h-11 w-11 object-contain" />            <div>

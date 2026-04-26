@@ -366,7 +366,7 @@ export default function TridentWebsitePreview() {
       <header className="sticky top-0 z-50 border-b border-slate-400/50 bg-white backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <button type="button" onClick={() => openPage("home")} className="flex items-center gap-3 text-left">
-<img src="/logo.svg" alt="Trident Logo" className="h-11 w-11 object-contain" />            <div>
+<<img src="/logo.png" alt="Trident Risk" className="h-16 w-auto" />>            <div>
               <div className="text-lg uppercase tracking-[0.25em] text-slate-900">Trident</div>
               <div className="text-[11px] uppercase tracking-[0.3em] text-slate-600">Risk & Advisory</div>
             </div>

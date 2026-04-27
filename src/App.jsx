@@ -367,27 +367,68 @@ function HomePage({ onOpenPage }) {
 
 </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-28 lg:px-8 border-t border-slate-300/60 mt-12">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">
-              Built for decision makers operating under uncertainty.
-            </h2>
+      <section className="relative overflow-hidden bg-[#071926] px-6 py-28 lg:px-8">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(214,178,94,0.18),transparent_28%),radial-gradient(circle_at_80%_30%,rgba(56,189,248,0.14),transparent_30%)]" />
 
-            <p className="mt-8 text-lg leading-8 text-slate-700">
-              Trident operates where commercial decisions intersect with geopolitical risk, maritime exposure and legal consequence. The advisory is structured to provide clarity before commitment, movement or dispute.
-            </p>
+  <div className="relative mx-auto max-w-7xl">
+    <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="text-white">
+        <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+          Decision Support
+        </div>
+
+        <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
+          Built for decision makers operating under uncertainty.
+        </h2>
+
+        <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+          Trident supports commercial, legal and operational decisions where maritime exposure, geopolitical instability and reputational risk intersect.
+        </p>
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">01</div>
+            <p className="mt-3 text-lg text-white">Clarity before commitment</p>
           </div>
 
-          <div className="relative h-[420px] overflow-hidden rounded-[2rem] border border-slate-400/50">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${imageBank.ship})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b2234]/60 to-transparent" />
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">02</div>
+            <p className="mt-3 text-lg text-white">Real time risk context</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">03</div>
+            <p className="mt-3 text-lg text-white">Operationally grounded advice</p>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
+            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">04</div>
+            <p className="mt-3 text-lg text-white">Defensible reporting</p>
           </div>
         </div>
-      </section>
+      </div>
+
+      <div className="relative h-[520px] overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl shadow-black/40">
+        <div
+          className="absolute inset-0 scale-105 bg-cover bg-center transition-transform duration-[8000ms] hover:scale-110"
+          style={{ backgroundImage: `url(${imageBank.ship})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071926]/90 via-[#071926]/35 to-transparent" />
+
+        <div className="absolute bottom-0 left-0 right-0 p-8">
+          <div className="rounded-2xl border border-white/10 bg-[#071926]/75 p-6 text-white backdrop-blur-md">
+            <div className="text-xs uppercase tracking-[0.3em] text-[#d6b25e]">
+              Advisory Output
+            </div>
+            <p className="mt-3 text-2xl font-light">
+              Clear judgement. Practical options. Timely escalation.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {pillars.map((pillar) => (
         <HomeServiceSection key={pillar.id} pillar={pillar} onOpenPage={onOpenPage} />

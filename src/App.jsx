@@ -328,21 +328,18 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section className="relative w-full h-[600px] overflow-hidden">
+<section className="relative w-full h-[600px] overflow-hidden">
 
   {/* Background image */}
   <div
     className="absolute inset-0 bg-cover bg-center"
-<div
-  className="absolute inset-0 bg-cover bg-center"
-  style={{ backgroundImage: "url('/opr2.png')" }}
-/>
+    style={{ backgroundImage: "url('/opr2.png')" }}
+  />
 
-<div className="absolute inset-0 bg-black/30" />
+  {/* Darken image slightly */}
+  <div className="absolute inset-0 bg-black/30" />
 
-<div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/80 to-transparent" />
-  {/* Dark gradient overlay (THIS is what makes text readable) */}
-  <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/80 to-transparent" />
+  {/* Left gradient for readability */}
 
   {/* Content */}
   <div className="relative z-10 max-w-7xl h-full flex items-center px-6 lg:px-8">

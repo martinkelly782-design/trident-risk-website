@@ -287,15 +287,17 @@ function HomeServiceSection({ pillar, onOpenPage }) {
 function HomePage({ onOpenPage }) {
   return (
     <main>
-      <section className="relative h-[85vh] w-full overflow-hidden">
+      {/* HERO */}
+      <section className="relative h-[88vh] w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/ship.jpg')" }}
-        />
-<div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/100 via-[#0b2234]/90 to-transparent" />
+style={{ backgroundImage: "url('/ship.png')" }}        />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071926]/95 via-[#071926]/75 to-transparent" />
+
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
           <div className="max-w-3xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-slate-200">
+            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
               Trident Risk & Advisory
             </div>
 
@@ -303,183 +305,136 @@ function HomePage({ onOpenPage }) {
               Intelligence led advisory for maritime, geopolitical and legal risk.
             </h1>
 
-            <p className="mt-6 text-base leading-8 text-slate-200 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200 md:text-lg">
               Supporting shipping, insurance, corporate and legal clients with clear, defensible analysis in complex and high risk environments.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-  <Button
-    asChild
-    className="rounded-2xl bg-[#d6b25e] text-[#0b2234] hover:bg-[#c19d4a] px-6 py-3 text-base whitespace-nowrap"
-  >
-    <a href={emailHref}>Ask an Analyst</a>
-  </Button>
+              <Button
+                asChild
+                className="rounded-2xl bg-[#d6b25e] px-8 py-4 text-base font-semibold text-[#071926] hover:bg-[#c19d4a] whitespace-nowrap"
+              >
+                <a href={emailHref}>Ask an Analyst</a>
+              </Button>
 
-  <Button
-    onClick={() => onOpenPage("maritime-intelligence")}
-    className="rounded-2xl border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 px-6 py-3 text-base whitespace-nowrap"
-  >
-    Explore Services
-  </Button>
-</div>
+              <Button
+                onClick={() => onOpenPage("maritime-intelligence")}
+                className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20 whitespace-nowrap"
+              >
+                Explore Services
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-<section className="relative w-full h-[600px] overflow-hidden">
-
-  {/* Background image */}
-  <div
-    className="absolute inset-0 bg-cover bg-center"
-    style={{ backgroundImage: "url('/opr2.png')" }}
-  />
-
-  {/* Darken image slightly */}
-<div className="absolute inset-0 bg-black/70" />  {/* Left gradient for readability */}
-
-  {/* Content */}
-  <div className="relative z-10 max-w-7xl h-full flex items-center px-6 lg:px-8">
-    <div className="max-w-2xl text-white">
-
-      <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e] mb-4">
-        Global Monitoring Centre
-      </div>
-
-      <h2 className="text-4xl md:text-5xl font-light leading-tight">
-        24/7 oversight.<br />
-        Real time insight.<br />
-        Confident decisions.
-      </h2>
-
-      <p className="mt-6 text-base md:text-lg text-slate-200">
-        Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel activity, geopolitical developments and emerging threats.
-      </p>
-
-      <div className="mt-8 space-y-3 text-slate-200 text-sm">
-        <p>• 24/7 vessel tracking and alerting</p>
-        <p>• Real time incident monitoring and escalation</p>
-        <p>• Direct analyst support during crises</p>
-        <p>• Integration with client operations</p>
-      </div>
-
-    </div>
-  </div>
-
-</section>
-
-      <section className="relative overflow-hidden bg-[#071926] px-6 py-28 lg:px-8">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(214,178,94,0.18),transparent_28%),radial-gradient(circle_at_80%_30%,rgba(56,189,248,0.14),transparent_30%)]" />
-
-  <div className="relative mx-auto max-w-7xl">
-    <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-      <div className="text-white">
-        <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-          Decision Support
-        </div>
-
-        <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-          Built for decision makers operating under uncertainty.
-        </h2>
-
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-          Trident supports commercial, legal and operational decisions where maritime exposure, geopolitical instability and reputational risk intersect.
-        </p>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">01</div>
-            <p className="mt-3 text-lg text-white">Clarity before commitment</p>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">02</div>
-            <p className="mt-3 text-lg text-white">Real time risk context</p>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">03</div>
-            <p className="mt-3 text-lg text-white">Operationally grounded advice</p>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm">
-            <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">04</div>
-            <p className="mt-3 text-lg text-white">Defensible reporting</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative h-[520px] overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl shadow-black/40">
-        <div
-          className="absolute inset-0 scale-105 bg-cover bg-center transition-transform duration-[8000ms] hover:scale-110"
-          style={{ backgroundImage: `url(${imageBank.ship})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#071926]/90 via-[#071926]/35 to-transparent" />
-
-        <div className="absolute bottom-0 left-0 right-0 p-8">
-          <div className="rounded-2xl border border-white/10 bg-[#071926]/75 p-6 text-white backdrop-blur-md">
-            <div className="text-xs uppercase tracking-[0.3em] text-[#d6b25e]">
-              Advisory Output
+      {/* CREDIBILITY STRIP */}
+      <section className="bg-[#eef3f4] px-6 py-20 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 md:grid-cols-3">
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-[#8a6b22]">01</div>
+              <h3 className="mt-3 text-2xl font-light text-slate-900">Operationally grounded</h3>
+              <p className="mt-4 text-slate-700 leading-7">
+                Advice shaped by real maritime security, military and crisis response experience.
+              </p>
             </div>
-            <p className="mt-3 text-2xl font-light">
-              Clear judgement. Practical options. Timely escalation.
-            </p>
+
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-[#8a6b22]">02</div>
+              <h3 className="mt-3 text-2xl font-light text-slate-900">Commercially focused</h3>
+              <p className="mt-4 text-slate-700 leading-7">
+                Reporting structured for owners, insurers, operators, legal teams and decision makers.
+              </p>
+            </div>
+
+            <div>
+              <div className="text-xs uppercase tracking-[0.3em] text-[#8a6b22]">03</div>
+              <h3 className="mt-3 text-2xl font-light text-slate-900">Defensible output</h3>
+              <p className="mt-4 text-slate-700 leading-7">
+                Clear judgement, concise rationale and practical options before movement, commitment or dispute.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
+      {/* GLOBAL MONITORING CENTRE */}
+      <section className="relative h-[650px] w-full overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/opr2.png')" }}
+        />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071926]/100 via-[#071926]/90 to-transparent" />
+
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 lg:px-8">
+          <div className="max-w-2xl text-white">
+            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+              Global Monitoring Centre
+            </div>
+
+            <h2 className="mt-6 text-4xl font-light leading-tight md:text-6xl">
+              24/7 oversight.<br />
+              Real time insight.<br />
+              Confident decisions.
+            </h2>
+
+            <p className="mt-8 text-lg leading-8 text-slate-200">
+              Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel activity, geopolitical developments and emerging threats.
+            </p>
+
+            <div className="mt-10 grid gap-4 text-sm text-slate-200 sm:grid-cols-2">
+              <p>• 24/7 vessel tracking and alerting</p>
+              <p>• Real time incident monitoring</p>
+              <p>• Direct analyst support</p>
+              <p>• Client operations integration</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* DECISION SUPPORT */}
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#071926_0%,#0b2234_100%)] px-6 py-28 lg:px-8">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(214,178,94,0.16),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_28%)]" />
+
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="text-white">
+              <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+                Decision Support
+              </div>
+
+              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
+                Built for decision makers operating under uncertainty.
+              </h2>
+
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+                Trident supports commercial, legal and operational decisions where maritime exposure, geopolitical instability and reputational risk intersect.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                ["01", "Clarity before commitment"],
+                ["02", "Real time risk context"],
+                ["03", "Operationally grounded advice"],
+                ["04", "Defensible reporting"],
+              ].map(([num, text]) => (
+                <div key={num} className="rounded-3xl border border-white/10 bg-white/5 p-7 text-white backdrop-blur-sm shadow-xl shadow-black/20">
+                  <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">{num}</div>
+                  <p className="mt-5 text-2xl font-light">{text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
       {pillars.map((pillar) => (
         <HomeServiceSection key={pillar.id} pillar={pillar} onOpenPage={onOpenPage} />
       ))}
     </main>
-  );
-}
-
-export default function TridentWebsitePreview() {
-  const [activePage, setActivePage] = useState("home");
-  const [requestService, setRequestService] = useState(null);
-
-  function openPage(pageId, anchorId) {
-    setActivePage(pageId);
-    setRequestService(null);
-    setTimeout(() => {
-      if (anchorId) document.getElementById(anchorId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      else window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 50);
-  }
-
-  function openRequest(service) {
-    setRequestService(service);
-    setActivePage("request");
-    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 50);
-  }
-
-  const activePillar = pillars.find((pillar) => pillar.id === activePage);
-
-  return (
-    <div className="min-h-screen bg-[#eef3f4] text-slate-900">
-      <header className="sticky top-0 z-50 border-b border-slate-400/50 bg-white backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <button type="button" onClick={() => openPage("home")} className="flex items-center gap-3 text-left">
-           <button type="button" onClick={() => openPage("home")} className="flex items-center gap-3 text-left">
-  <img src="/logo.png" alt="Trident Risk" className="h-16 w-auto" />
-</button>
-          </button>
-          <nav className="hidden items-center gap-5 lg:flex">
-            <button type="button" onClick={() => openPage("home")} className="text-sm text-slate-800 hover:text-slate-950">Home</button>
-            {pillars.map((pillar) => <NavDropdown key={pillar.id} pillar={pillar} onOpenPage={openPage} />)}
-          </nav>
-        </div>
-      </header>
-      {activePage === "request" ? (
-        <RequestPage service={requestService} onBack={() => openPage("home")} />
-      ) : activePillar ? (
-        <PillarPage pillar={activePillar} onHome={() => openPage("home")} onRequest={openRequest} />
-      ) : (
-        <HomePage onOpenPage={openPage} />
-      )}
-    </div>
   );
 }

@@ -328,34 +328,51 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">
-              Global Monitoring Centre
-            </h2>
+      <section className="relative w-full h-[600px] overflow-hidden">
 
-            <p className="mt-8 text-lg leading-8 text-slate-700">
-              Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel movements, geopolitical developments and emerging threats. The centre supports real time decision making, incident response and crisis management across maritime and corporate operations.
-            </p>
+  {/* Background image */}
+  <div
+    className="absolute inset-0 bg-cover bg-center"
+<div
+  className="absolute inset-0 bg-cover bg-center"
+  style={{ backgroundImage: "url('/opr2.png')" }}
+/>
 
-            <div className="mt-10 space-y-4 text-slate-700">
-              <p>• 24/7 vessel tracking and alerting</p>
-              <p>• Real time incident monitoring and escalation</p>
-              <p>• Direct analyst support during crises and disruptions</p>
-              <p>• Integration with client operations and security teams</p>
-            </div>
-          </div>
+<div className="absolute inset-0 bg-black/30" />
 
-          <div className="relative h-[420px] overflow-hidden rounded-[2rem] border border-slate-400/50">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${imageBank.map})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0b2234]/60 to-transparent" />
-          </div>
-        </div>
-      </section>
+<div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/80 to-transparent" />
+  {/* Dark gradient overlay (THIS is what makes text readable) */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/80 to-transparent" />
+
+  {/* Content */}
+  <div className="relative z-10 max-w-7xl h-full flex items-center px-6 lg:px-8">
+    <div className="max-w-2xl text-white">
+
+      <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e] mb-4">
+        Global Monitoring Centre
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-light leading-tight">
+        24/7 oversight.<br />
+        Real time insight.<br />
+        Confident decisions.
+      </h2>
+
+      <p className="mt-6 text-base md:text-lg text-slate-200">
+        Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel activity, geopolitical developments and emerging threats.
+      </p>
+
+      <div className="mt-8 space-y-3 text-slate-200 text-sm">
+        <p>• 24/7 vessel tracking and alerting</p>
+        <p>• Real time incident monitoring and escalation</p>
+        <p>• Direct analyst support during crises</p>
+        <p>• Integration with client operations</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
 
       <section className="mx-auto max-w-7xl px-6 py-28 lg:px-8 border-t border-slate-300/60 mt-12">
         <div className="grid gap-16 lg:grid-cols-2 lg:items-center">

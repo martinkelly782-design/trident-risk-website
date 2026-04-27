@@ -256,8 +256,7 @@ function HomeServiceSection({ pillar, onOpenPage }) {
   return (
     <section className="relative overflow-hidden border-t border-slate-300/60 py-24">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${pillar.hero})` }} />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/85 via-[#0b2234]/65 to-[#0b2234]/85" />
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+<div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/100 via-[#0b2234]/90 to-transparent" />      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl text-white">
             <div className="text-xs uppercase tracking-[0.35em] text-slate-200">Service Type</div>
@@ -293,8 +292,7 @@ function HomePage({ onOpenPage }) {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/ship.jpg')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/95 via-[#0b2234]/75 to-transparent" />
-
+<div className="absolute inset-0 bg-gradient-to-r from-[#0b2234]/100 via-[#0b2234]/90 to-transparent" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
           <div className="max-w-3xl text-white">
             <div className="text-xs uppercase tracking-[0.35em] text-slate-200">
@@ -337,9 +335,7 @@ function HomePage({ onOpenPage }) {
   />
 
   {/* Darken image slightly */}
-  <div className="absolute inset-0 bg-black/30" />
-
-  {/* Left gradient for readability */}
+<div className="absolute inset-0 bg-black/70" />  {/* Left gradient for readability */}
 
   {/* Content */}
   <div className="relative z-10 max-w-7xl h-full flex items-center px-6 lg:px-8">

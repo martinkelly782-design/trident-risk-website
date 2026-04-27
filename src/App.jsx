@@ -438,3 +438,4 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
     </main>
   );
 }
+export default TridentWebsitePreview;

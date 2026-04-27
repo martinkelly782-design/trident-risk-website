@@ -357,7 +357,9 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
             </div>
           </div>
         </div>
-      </section>
+      
+      {/* DECISION SUPPORT */}
+     </section>
 
       {/* GLOBAL MONITORING CENTRE */}
       <section className="relative h-[650px] w-full overflow-hidden">
@@ -389,43 +391,6 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
               <p>• Real time incident monitoring</p>
               <p>• Direct analyst support</p>
               <p>• Client operations integration</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* DECISION SUPPORT */}
-      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#071926_0%,#0b2234_100%)] px-6 py-28 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(214,178,94,0.16),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_28%)]" />
-
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div className="text-white">
-              <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-                Decision Support
-              </div>
-
-              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-                Built for decision makers operating under uncertainty.
-              </h2>
-
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-                Trident supports commercial, legal and operational decisions where maritime exposure, geopolitical instability and reputational risk intersect.
-              </p>
-            </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                ["01", "Clarity before commitment"],
-                ["02", "Real time risk context"],
-                ["03", "Operationally grounded advice"],
-                ["04", "Defensible reporting"],
-              ].map(([num, text]) => (
-                <div key={num} className="rounded-3xl border border-white/10 bg-white/5 p-7 text-white backdrop-blur-sm shadow-xl shadow-black/20">
-                  <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">{num}</div>
-                  <p className="mt-5 text-2xl font-light">{text}</p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

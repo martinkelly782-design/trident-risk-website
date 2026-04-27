@@ -310,19 +310,20 @@ function HomePage({ onOpenPage }) {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <Button asChild size="lg" className="rounded-2xl bg-[#d6b25e] text-[#0b2234] hover:bg-[#c19d4a]">
-                <a href={emailHref}>Ask an Analyst</a>
-              </Button>
+  <Button
+    asChild
+    className="rounded-2xl bg-[#d6b25e] text-[#0b2234] hover:bg-[#c19d4a] px-6 py-3 text-base whitespace-nowrap"
+  >
+    <a href={emailHref}>Ask an Analyst</a>
+  </Button>
 
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => onOpenPage("maritime-intelligence")}
-                className="rounded-2xl border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
-              >
-                Explore Services
-              </Button>
-            </div>
+  <Button
+    onClick={() => onOpenPage("maritime-intelligence")}
+    className="rounded-2xl border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 px-6 py-3 text-base whitespace-nowrap"
+  >
+    Explore Services
+  </Button>
+</div>
           </div>
         </div>
       </section>

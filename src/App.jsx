@@ -169,8 +169,8 @@ function PillarPage({ pillar, onHome, onRequest }) {
   return (
     <main>
       <section className="relative overflow-hidden border-b border-slate-400/50">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `linear-gradient(90deg, rgba(11,34,52,0.84), rgba(11,34,52,0.5), rgba(11,34,52,0.88)), url(${pillar.hero})` }} />
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+        <div className="absolute inset-0 bg-black/55" />
+<div className="absolute inset-0 bg-gradient-to-r from-[#071926]/100 via-[#071926]/85 to-transparent" />
           <Button type="button" variant="outline" onClick={onHome} className="mb-8 rounded-2xl bg-white/90 text-slate-900 hover:bg-white">
             Back to Home
           </Button>

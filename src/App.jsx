@@ -287,12 +287,14 @@ function HomeServiceSection({ pillar, onOpenPage }) {
 function HomePage({ onOpenPage }) {
   return (
     <main>
+
       {/* HERO */}
       <section className="relative h-[88vh] w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-style={{ backgroundImage: "url('/ship.png')" }}        />
-        <div className="absolute inset-0 bg-black/30" />
+          style={{ backgroundImage: "url('/ship.png')" }}
+        />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#071926]/95 via-[#071926]/75 to-transparent" />
 
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
@@ -312,14 +314,14 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
             <div className="mt-10 flex flex-wrap gap-4">
               <Button
                 asChild
-                className="rounded-2xl bg-[#d6b25e] px-8 py-4 text-base font-semibold text-[#071926] hover:bg-[#c19d4a] whitespace-nowrap"
+                className="rounded-2xl bg-[#d6b25e] px-8 py-4 text-base font-semibold text-[#071926] hover:bg-[#c19d4a]"
               >
                 <a href={emailHref}>Ask an Analyst</a>
               </Button>
 
               <Button
                 onClick={() => onOpenPage("maritime-intelligence")}
-                className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20 whitespace-nowrap"
+                className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
               >
                 Explore Services
               </Button>
@@ -328,38 +330,44 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
         </div>
       </section>
 
-      {/* CREDIBILITY STRIP */}
-      <section className="bg-[#eef3f4] px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 md:grid-cols-3">
-            <div>
-              <div className="text-xs uppercase tracking-[0.3em] text-[#8a6b22]">01</div>
-              <h3 className="mt-3 text-2xl font-light text-slate-900">Operationally grounded</h3>
-              <p className="mt-4 text-slate-700 leading-7">
-                Advice shaped by real maritime security, military and crisis response experience.
+      {/* DECISION MAKERS */}
+      <section className="relative overflow-hidden bg-[linear-gradient(180deg,#071926_0%,#0b2234_100%)] px-6 py-28 lg:px-8">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(214,178,94,0.16),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_28%)]" />
+
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+
+            <div className="text-white">
+              <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+                Decision Support
+              </div>
+
+              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
+                Built for decision makers operating under uncertainty.
+              </h2>
+
+              <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
+                Trident supports commercial, legal and operational decisions where maritime exposure, geopolitical instability and reputational risk intersect.
               </p>
             </div>
 
-            <div>
-              <div className="text-xs uppercase tracking-[0.3em] text-[#8a6b22]">02</div>
-              <h3 className="mt-3 text-2xl font-light text-slate-900">Commercially focused</h3>
-              <p className="mt-4 text-slate-700 leading-7">
-                Reporting structured for owners, insurers, operators, legal teams and decision makers.
-              </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                ["01", "Clarity before commitment"],
+                ["02", "Real time risk context"],
+                ["03", "Operationally grounded advice"],
+                ["04", "Defensible reporting"],
+              ].map(([num, text]) => (
+                <div key={num} className="rounded-3xl border border-white/10 bg-white/5 p-7 text-white backdrop-blur-sm shadow-xl shadow-black/20">
+                  <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">{num}</div>
+                  <p className="mt-5 text-2xl font-light">{text}</p>
+                </div>
+              ))}
             </div>
 
-            <div>
-              <div className="text-xs uppercase tracking-[0.3em] text-[#8a6b22]">03</div>
-              <h3 className="mt-3 text-2xl font-light text-slate-900">Defensible output</h3>
-              <p className="mt-4 text-slate-700 leading-7">
-                Clear judgement, concise rationale and practical options before movement, commitment or dispute.
-              </p>
-            </div>
           </div>
         </div>
-      
-      {/* DECISION SUPPORT */}
-     </section>
+      </section>
 
       {/* GLOBAL MONITORING CENTRE */}
       <section className="relative h-[650px] w-full overflow-hidden">
@@ -372,6 +380,7 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
 
         <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 lg:px-8">
           <div className="max-w-2xl text-white">
+
             <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
               Global Monitoring Centre
             </div>
@@ -387,11 +396,12 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
             </p>
 
             <div className="mt-10 grid gap-4 text-sm text-slate-200 sm:grid-cols-2">
-              <p>• 24/7 vessel tracking and alerting</p>
+              <p>• 24/7 vessel tracking</p>
               <p>• Real time incident monitoring</p>
               <p>• Direct analyst support</p>
-              <p>• Client operations integration</p>
+              <p>• Crisis response capability</p>
             </div>
+
           </div>
         </div>
       </section>
@@ -400,11 +410,8 @@ style={{ backgroundImage: "url('/ship.png')" }}        />
       {pillars.map((pillar) => (
         <HomeServiceSection key={pillar.id} pillar={pillar} onOpenPage={onOpenPage} />
       ))}
+
     </main>
   );
-}
-    </main>
-function TridentWebsitePreview() {
-...
 }
 export default TridentWebsitePreview;

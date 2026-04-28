@@ -183,20 +183,19 @@ function PillarPage({ pillar, onHome, onRequest }) {
 </section>
 
 <section className="mx-auto max-w-7xl rounded-t-[2rem] bg-[#eef3f4] px-6 py-16 lg:px-8">
-     
-      <section className="mx-auto max-w-7xl rounded-t-[2rem] bg-[linear-gradient(180deg,#e5eef0_0%,#d5e1e4_100%)] px-6 py-16 lg:px-8">
-        <div className="max-w-3xl space-y-3">
-          <div className="text-xs uppercase tracking-[0.35em] text-slate-500">Services</div>
-          <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">Explore {pillar.title}</h2>
-          <p className="text-sm leading-7 text-slate-800 md:text-base">{pillar.intro}</p>
-        </div>
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {pillar.services.map((service) => (
-            <ServiceCard key={service[0]} service={service} pillarId={pillar.id} onRequest={onRequest} />
-          ))}
-        </div>
-      </section>
-    </main>
+  <div className="max-w-3xl space-y-3">
+    <div className="text-xs uppercase tracking-[0.35em] text-slate-500">Services</div>
+    <h2 className="text-3xl font-light tracking-tight text-slate-900 md:text-5xl">Explore {pillar.title}</h2>
+    <p className="text-sm leading-7 text-slate-800 md:text-base">{pillar.intro}</p>
+  </div>
+
+  <div className="mt-10 grid gap-5 lg:grid-cols-2">
+    {pillar.services.map((service) => (
+      <ServiceCard key={service[0]} service={service} pillarId={pillar.id} onRequest={onRequest} />
+    ))}
+  </div>
+</section>     
+        </main>
   );
 }
 

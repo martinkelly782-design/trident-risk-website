@@ -168,17 +168,22 @@ function NavDropdown({ pillar, onOpenPage }) {
 function PillarPage({ pillar, onHome, onRequest }) {
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-slate-400/50">
-        <div className="absolute inset-0 bg-black/55" />
-<div className="absolute inset-0 bg-gradient-to-r from-[#071926]/100 via-[#071926]/85 to-transparent" />
-          <Button type="button" variant="outline" onClick={onHome} className="mb-8 rounded-2xl bg-white/90 text-slate-900 hover:bg-white">
-            Back to Home
-          </Button>
-          <Badge className="mb-6 rounded-full border border-white/30 bg-white/15 px-4 py-1 text-white backdrop-blur-sm">{pillar.title}</Badge>
-          <h1 className="text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">{pillar.title}</h1>
-          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-100 md:text-lg">{pillar.intro}</p>
-        </div>
-      </section>
+<section className="relative overflow-hidden border-b border-slate-400/50">
+  <div className="absolute inset-0 bg-black/55" />
+  <div className="absolute inset-0 bg-gradient-to-r from-[#071926]/100 via-[#071926]/85 to-transparent" />
+
+  <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+    <Button type="button" variant="outline" onClick={onHome} className="mb-8 rounded-2xl bg-white/90 text-slate-900 hover:bg-white">
+      Back to Home
+    </Button>
+    <Badge className="mb-6 rounded-full border border-white/30 bg-white/15 px-4 py-1 text-white backdrop-blur-sm">{pillar.title}</Badge>
+    <h1 className="text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">{pillar.title}</h1>
+    <p className="mt-6 max-w-3xl text-base leading-8 text-slate-100 md:text-lg">{pillar.intro}</p>
+  </div>
+</section>
+
+<section className="mx-auto max-w-7xl rounded-t-[2rem] bg-[#eef3f4] px-6 py-16 lg:px-8">
+     
       <section className="mx-auto max-w-7xl rounded-t-[2rem] bg-[linear-gradient(180deg,#e5eef0_0%,#d5e1e4_100%)] px-6 py-16 lg:px-8">
         <div className="max-w-3xl space-y-3">
           <div className="text-xs uppercase tracking-[0.35em] text-slate-500">Services</div>

@@ -334,44 +334,7 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-          {/* GLOBAL MONITORING CENTRE */}
-      <section className="relative h-[650px] w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/opr2.png')" }}
-        />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#071926]/100 via-[#071926]/90 to-transparent" />
-
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 lg:px-8">
-          <div className="max-w-2xl text-white">
-
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Global Monitoring Centre
-            </div>
-
-            <h2 className="mt-6 text-4xl font-light leading-tight md:text-6xl">
-              24/7 oversight.<br />
-              Real time insight.<br />
-              Confident decisions.
-            </h2>
-
-            <p className="mt-8 text-lg leading-8 text-slate-200">
-              Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel activity, geopolitical developments and emerging threats.
-            </p>
-
-            <div className="mt-10 grid gap-4 text-sm text-slate-200 sm:grid-cols-2">
-              <p>• 24/7 vessel tracking</p>
-              <p>• Real time incident monitoring</p>
-              <p>• Direct analyst support</p>
-              <p>• Crisis response capability</p>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-        {/* DECISION MAKERS */}
+      {/* DECISION MAKERS */}
       <section className="relative overflow-hidden bg-[linear-gradient(180deg,#071926_0%,#0b2234_100%)] px-6 py-28 lg:px-8">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(214,178,94,0.16),transparent_30%),radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.12),transparent_28%)]" />
 
@@ -410,6 +373,42 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
+      {/* GLOBAL MONITORING CENTRE */}
+      <section className="relative h-[650px] w-full overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/opr2.png')" }}
+        />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071926]/100 via-[#071926]/90 to-transparent" />
+
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6 lg:px-8">
+          <div className="max-w-2xl text-white">
+
+            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+              Global Monitoring Centre
+            </div>
+
+            <h2 className="mt-6 text-4xl font-light leading-tight md:text-6xl">
+              24/7 oversight.<br />
+              Real time insight.<br />
+              Confident decisions.
+            </h2>
+
+            <p className="mt-8 text-lg leading-8 text-slate-200">
+              Trident operates a 24/7 Global Monitoring Centre providing continuous oversight of vessel activity, geopolitical developments and emerging threats.
+            </p>
+
+            <div className="mt-10 grid gap-4 text-sm text-slate-200 sm:grid-cols-2">
+              <p>• 24/7 vessel tracking</p>
+              <p>• Real time incident monitoring</p>
+              <p>• Direct analyst support</p>
+              <p>• Crisis response capability</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* SERVICES */}
       {pillars.map((pillar) => (

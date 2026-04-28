@@ -418,4 +418,4 @@ function HomePage({ onOpenPage }) {
     </main>
   );
 }
-export default App;
+export default TridentWebsitePreview;

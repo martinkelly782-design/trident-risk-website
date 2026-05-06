@@ -734,38 +734,96 @@ function HomePage({ onOpenPage }) {
                 Decision Support
               </div>
 
-              <h2 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-                Built for decision makers operating under uncertainty.
-              </h2>
+              <<section className="relative overflow-hidden bg-[#f5f3ee] px-6 py-28 lg:px-8">
+  <div className="absolute inset-0 opacity-[0.22]">
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${imageBank.map})` }}
+    />
+    <div className="absolute inset-0 bg-[#f5f3ee]/85" />
+  </div>
 
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-300">
-                Trident supports commercial, legal and operational decisions
-                where maritime exposure, geopolitical instability and
-                reputational risk intersect.
+  <div className="relative mx-auto max-w-7xl">
+    <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+      <div>
+        <div className="text-xs uppercase tracking-[0.35em] text-[#b5893d]">
+          Decision Support
+        </div>
+
+        <div className="mt-6 h-px w-24 bg-[#b5893d]" />
+
+        <h2 className="mt-10 max-w-3xl text-4xl font-semibold uppercase leading-tight tracking-tight text-[#0f172a] md:text-6xl">
+          Built for decision makers operating under uncertainty.
+        </h2>
+
+        <div className="mt-8 h-px w-16 bg-[#b5893d]" />
+
+        <p className="mt-8 max-w-xl text-base leading-8 text-slate-700 md:text-lg">
+          Trident supports commercial, legal and operational decisions where
+          maritime exposure, geopolitical instability and reputational risk
+          intersect.
+        </p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {[
+          [
+            "01",
+            "Clarity before commitment",
+            "Understand the full picture before committing assets or exposure.",
+            imageBank.map,
+          ],
+          [
+            "02",
+            "Real time risk context",
+            "Continuous monitoring of maritime, geopolitical and regulatory risk.",
+            imageBank.port,
+          ],
+          [
+            "03",
+            "Operationally grounded advice",
+            "Advice shaped by real world experience and practical operational insight.",
+            imageBank.cyber,
+          ],
+          [
+            "04",
+            "Defensible reporting",
+            "Clear, evidence based reporting for high stakes decisions.",
+            imageBank.legal,
+          ],
+        ].map(([num, title, text, image]) => (
+          <div
+            key={num}
+            className="group overflow-hidden rounded-[1.5rem] bg-white shadow-xl shadow-slate-500/15 ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
+          >
+            <div
+              className="h-44 bg-cover bg-center"
+              style={{
+                backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.05), rgba(15,23,42,0.25)), url(${image})`,
+              }}
+            />
+
+            <div className="p-7">
+              <div className="text-3xl font-semibold tracking-widest text-[#b5893d]">
+                {num}
+              </div>
+
+              <div className="mt-2 h-px w-10 bg-[#b5893d]" />
+
+              <h3 className="mt-6 text-2xl font-semibold uppercase leading-tight tracking-tight text-[#0f172a]">
+                {title}
+              </h3>
+
+              <p className="mt-5 text-sm leading-7 text-slate-700">
+                {text}
               </p>
             </div>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                ["01", "Clarity before commitment"],
-                ["02", "Real time risk context"],
-                ["03", "Operationally grounded advice"],
-                ["04", "Defensible reporting"],
-              ].map(([num, text]) => (
-                <div
-                  key={num}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-7 text-white shadow-xl shadow-black/20 backdrop-blur-sm"
-                >
-                  <div className="text-sm uppercase tracking-[0.25em] text-[#d6b25e]">
-                    {num}
-                  </div>
-                  <p className="mt-5 text-2xl font-light">{text}</p>
-                </div>
-              ))}
-            </div>
           </div>
-        </div>
-      </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
       <section className="relative h-[650px] w-full overflow-hidden">
         <div

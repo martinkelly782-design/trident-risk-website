@@ -724,7 +724,8 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(181,137,61,0.06),transparent_28%)]" />
+      <section className="relative overflow-hidden bg-[#f7f5f1] px-6 py-28 lg:px-8">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(181,137,61,0.06),transparent_28%)]" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">

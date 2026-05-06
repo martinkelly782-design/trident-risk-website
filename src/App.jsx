@@ -685,8 +685,8 @@ function HomePage({ onOpenPage }) {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/ship.png')" }}
         />
-    <div className="absolute inset-0 bg-black/15" />
-<div className="absolute inset-0 bg-gradient-to-r from-[#111827]/70 via-[#111827]/35 to-transparent" />
+    <div className="absolute inset-0 bg-black/10" />
+<div className="absolute inset-0 bg-gradient-to-r from-[#111827]/60 via-[#111827]/25 to-transparent" />
 
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
           <div className="max-w-3xl text-white">

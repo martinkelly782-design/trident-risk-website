@@ -734,7 +734,7 @@ function HomePage({ onOpenPage }) {
                 Decision Support
               </div>
 
-              <<section className="relative overflow-hidden bg-[#f5f3ee] px-6 py-28 lg:px-8">
+              <section className="relative overflow-hidden bg-[#f5f3ee] px-6 py-28 lg:px-8">
   <div className="absolute inset-0 opacity-[0.22]">
     <div
       className="absolute inset-0 bg-cover bg-center"

@@ -725,7 +725,7 @@ function HomePage({ onOpenPage }) {
       </section>
 
       <section className="relative overflow-hidden bg-[#f7f5f1] px-6 py-28 lg:px-8">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(181,137,61,0.06),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(181,137,61,0.06),transparent_28%)]" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
@@ -809,34 +809,79 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#f7f5f1] px-6 py-28 lg:px-8">
-      
-        <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-  <div className="max-w-2xl text-slate-950">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Global Monitoring Centre
+      <section className="relative overflow-hidden bg-[#f7f5f1]">
+        <div className="mx-auto max-w-[1700px]">
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="relative flex items-center bg-[#f7f5f1] px-8 py-24 lg:px-16">
+              <div className="max-w-xl">
+                <div className="text-xs uppercase tracking-[0.35em] text-[#b5893d]">
+                  Global Monitoring Centre
+                </div>
+
+                <div className="mt-6 h-px w-24 bg-[#b5893d]" />
+
+                <h2 className="mt-10 text-5xl font-semibold uppercase leading-[1.05] tracking-tight text-[#0f172a] md:text-7xl">
+                  24/7 oversight.
+                  <br />
+                  Real time insight.
+                  <br />
+                  Confident decisions.
+                </h2>
+
+                <div className="mt-10 h-px w-16 bg-[#b5893d]" />
+
+                <p className="mt-10 text-lg leading-9 text-slate-700">
+                  Trident operates a 24/7 Global Monitoring Centre providing
+                  continuous oversight of vessel activity, geopolitical
+                  developments and emerging threats.
+                </p>
+              </div>
+
+              <div className="absolute right-0 top-0 hidden h-full w-40 bg-gradient-to-r from-[#f7f5f1] to-transparent lg:block" />
             </div>
 
-            <h2 className="mt-6 text-4xl font-light leading-tight md:text-6xl">
-              24/7 oversight.
-              <br />
-              Real time insight.
-              <br />
-              Confident decisions.
-            </h2>
-
-            <p className="mt-8 text-lg leading-8 text-slate-700">
-              Trident operates a 24/7 Global Monitoring Centre providing
-              continuous oversight of vessel activity, geopolitical developments
-              and emerging threats.
-            </p>
-
-            <div className="mt-10 grid gap-4 text-sm text-slate-700 sm:grid-cols-2">
-              <p>24/7 vessel tracking</p>
-              <p>Real time incident monitoring</p>
-              <p>Direct analyst support</p>
-              <p>Crisis response capability</p>
+            <div className="relative min-h-[650px]">
+              <img
+                src="/opr2.png"
+                alt="Global Monitoring Centre operations room"
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-black/10" />
             </div>
+          </div>
+
+          <div className="grid border-t border-slate-200 bg-white lg:grid-cols-4">
+            {[
+              [
+                "24/7 Vessel Tracking",
+                "Continuous monitoring of global vessel movements, routing and behavioural indicators.",
+              ],
+              [
+                "Real Time Incident Monitoring",
+                "Live monitoring of geopolitical escalation, maritime incidents and emerging threats.",
+              ],
+              [
+                "Direct Analyst Support",
+                "Immediate access to experienced analysts during operational or crisis situations.",
+              ],
+              [
+                "Crisis Response Capability",
+                "Support during rapidly evolving incidents affecting vessels, personnel or operations.",
+              ],
+            ].map(([title, text]) => (
+              <div
+                key={title}
+                className="border-b border-slate-200 px-8 py-10 lg:border-b-0 lg:border-r last:border-r-0"
+              >
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
+                  {title}
+                </div>
+
+                <p className="mt-5 text-sm leading-7 text-slate-700">
+                  {text}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -913,7 +958,10 @@ export default function App() {
             </div>
           </div>
 
-          <a href={emailHref} className="text-sm text-slate-300 hover:text-white">
+          <a
+            href={emailHref}
+            className="text-sm text-slate-300 hover:text-white"
+          >
             {email}
           </a>
         </div>

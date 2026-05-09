@@ -724,90 +724,15 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#f7f5f1] px-6 py-28 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(181,137,61,0.06),transparent_28%)]" />
+      // In HomePage, replace the existing Decision Support section with this:
 
-        <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-16 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
-            <div>
-              <div className="text-xs uppercase tracking-[0.35em] text-[#b5893d]">
-                Decision Support
-              </div>
-
-              <div className="mt-6 h-px w-24 bg-[#b5893d]" />
-
-              <h2 className="mt-10 max-w-3xl text-4xl font-semibold uppercase leading-tight tracking-tight text-[#0f172a] md:text-6xl">
-                Built for decision makers operating under uncertainty.
-              </h2>
-
-              <div className="mt-8 h-px w-16 bg-[#b5893d]" />
-
-              <p className="mt-8 max-w-xl text-base leading-8 text-slate-700 md:text-lg">
-                Trident supports commercial, legal and operational decisions
-                where maritime exposure, geopolitical instability and
-                reputational risk intersect.
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              {[
-                [
-                  "01",
-                  "Clarity before commitment",
-                  "Understand the full picture before committing assets or exposure.",
-                  imageBank.map,
-                ],
-                [
-                  "02",
-                  "Real time risk context",
-                  "Continuous monitoring of maritime, geopolitical and regulatory risk.",
-                  imageBank.port,
-                ],
-                [
-                  "03",
-                  "Operationally grounded advice",
-                  "Advice shaped by real world experience and practical operational insight.",
-                  imageBank.cyber,
-                ],
-                [
-                  "04",
-                  "Defensible reporting",
-                  "Clear, evidence based reporting for high stakes decisions.",
-                  imageBank.legal,
-                ],
-              ].map(([num, title, text, image]) => (
-                <div
-                  key={num}
-                  className="group overflow-hidden rounded-[1.5rem] bg-white shadow-xl shadow-slate-500/15 ring-1 ring-slate-200 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
-                >
-                  <div
-                    className="h-44 bg-cover bg-center"
-                    style={{
-                      backgroundImage: `linear-gradient(180deg, rgba(255,255,255,0.05), rgba(15,23,42,0.25)), url(${image})`,
-                    }}
-                  />
-
-                  <div className="p-7">
-                    <div className="text-3xl font-semibold tracking-widest text-[#b5893d]">
-                      {num}
-                    </div>
-
-                    <div className="mt-2 h-px w-10 bg-[#b5893d]" />
-
-                    <h3 className="mt-6 text-2xl font-semibold uppercase leading-tight tracking-tight text-[#0f172a]">
-                      {title}
-                    </h3>
-
-                    <p className="mt-5 text-sm leading-7 text-slate-700">
-                      {text}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+<section className="py-14 md:py-18 bg-[#f7f5f1]">
+  <div className="max-w-4xl mx-auto px-6">
+    <h2 className="text-center text-3xl md:text-4xl font-light text-[#0f172a] leading-snug">
+      Built for decision makers operating under uncertainty.
+    </h2>
+  </div>
+</section>
 
       <section className="relative overflow-hidden bg-[#f7f5f1]">
         <div className="mx-auto max-w-[1700px]">

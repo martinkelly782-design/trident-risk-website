@@ -634,6 +634,9 @@ function RequestPage({ service, onBack }) {
 }
 
 function HomeServiceSection({ pillar, onOpenPage }) {
+  const [hoveredService, setHoveredService] = useState(null);
+  const isMaritimeIntelligence = pillar.id === "maritime-intelligence";
+
   return (
     <section className="relative overflow-hidden border-t border-slate-200 py-24">
       <div
@@ -648,9 +651,11 @@ function HomeServiceSection({ pillar, onOpenPage }) {
             <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
               Service Type
             </div>
+
             <h2 className="mt-3 text-3xl font-light tracking-tight md:text-5xl">
               {pillar.title}
             </h2>
+
             <p className="mt-4 text-sm leading-7 text-slate-200 md:text-base">
               {pillar.intro}
             </p>
@@ -665,29 +670,69 @@ function HomeServiceSection({ pillar, onOpenPage }) {
           </Button>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pillar.services.map((service) => {
-            const showHoverSummary = pillar.id === "maritime-intelligence";
-
-            return (
+        <div
+          className={
+            isMaritimeIntelligence
+              ? "grid gap-6 lg:grid-cols-[1.15fr_0.85fr]"
+              : ""
+          }
+        >
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {pillar.services.map((service) => (
               <button
                 key={service[0]}
                 type="button"
+                onMouseEnter={() => setHoveredService(service)}
+                onMouseLeave={() => setHoveredService(null)}
                 onClick={() =>
                   onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
                 }
-                className="group relative overflow-hidden rounded-2xl border border-white/30 bg-white/95 px-5 py-5 text-left font-semibold text-slate-950 shadow-lg transition hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
+                className="group rounded-2xl border border-white/20 bg-white/90 px-5 py-5 text-left shadow-lg backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
               >
-                <span>{service[0]}</span>
+                <div className="text-sm font-semibold uppercase tracking-[0.12em] text-[#9b7a2f]">
+                  {pillar.title}
+                </div>
 
-                {showHoverSummary && (
-                  <div className="mt-3 max-h-0 overflow-hidden text-sm font-normal leading-6 text-slate-700 opacity-0 transition-all duration-300 group-hover:max-h-44 group-hover:opacity-100">
-                    {service[2]}
+                <div className="mt-3 text-lg font-semibold leading-snug text-slate-950">
+                  {service[0]}
+                </div>
+
+                {isMaritimeIntelligence && (
+                  <div className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                    Hover for summary
                   </div>
                 )}
               </button>
-            );
-          })}
+            ))}
+          </div>
+
+          {isMaritimeIntelligence && (
+            <div className="hidden lg:block">
+              <div className="sticky top-32 rounded-[2rem] border border-white/25 bg-[#0f172a]/88 p-8 text-white shadow-2xl backdrop-blur-xl">
+                <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+                  Intelligence Summary
+                </div>
+
+                <h3 className="mt-6 text-3xl font-light leading-tight">
+                  {hoveredService
+                    ? hoveredService[0]
+                    : "Hover over a service"}
+                </h3>
+
+                <p className="mt-6 text-sm leading-7 text-slate-200">
+                  {hoveredService
+                    ? hoveredService[2]
+                    : "Move your cursor over any Maritime Intelligence service to view a concise explanation of the capability."}
+                </p>
+
+                <div className="mt-8 h-px w-full bg-white/15" />
+
+                <p className="mt-6 text-xs uppercase tracking-[0.22em] text-slate-400">
+                  Vessel exposure · Ownership risk · Sanctions linkage · Routing behaviour
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

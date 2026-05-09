@@ -805,10 +805,10 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#f7f5f1]">
+      <section className="relative overflow-hidden bg-white border-t border-slate-200">
         <div className="mx-auto max-w-[1700px]">
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative flex items-center bg-[#f7f5f1] px-8 py-16 lg:px-14">
+            <div className="relative flex items-center bg-white px-8 py-16 lg:px-14">
               <div className="max-w-xl">
                 <div className="text-xs uppercase tracking-[0.32em] text-[#b5893d]">
                   Global Monitoring Centre
@@ -831,7 +831,7 @@ function HomePage({ onOpenPage }) {
                 </p>
               </div>
 
-              <div className="absolute right-0 top-0 hidden h-full w-32 bg-gradient-to-r from-[#f7f5f1] to-transparent lg:block" />
+              <div className="absolute right-0 top-0 hidden h-full w-32 bg-gradient-to-r from-white to-transparent lg:block" />
             </div>
 
             <div className="relative min-h-[480px]">

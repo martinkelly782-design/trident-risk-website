@@ -685,6 +685,13 @@ function HomeServiceSection({ pillar, onOpenPage }) {
 }
 
 function HomePage({ onOpenPage }) {
+  function scrollToHomeServices() {
+    document.getElementById("home-services")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
   return (
     <main>
       <section className="relative h-[88vh] w-full overflow-hidden">
@@ -721,7 +728,7 @@ function HomePage({ onOpenPage }) {
 
               <Button
                 type="button"
-                onClick={() => onOpenPage("maritime-intelligence")}
+                onClick={scrollToHomeServices}
                 className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
               >
                 Explore Services
@@ -812,7 +819,7 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-white border-t border-slate-200">
+      <section className="relative overflow-hidden border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-[1700px]">
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
             <div className="relative flex items-center bg-white px-8 py-16 lg:px-14">
@@ -887,13 +894,15 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      {pillars.map((pillar) => (
-        <HomeServiceSection
-          key={pillar.id}
-          pillar={pillar}
-          onOpenPage={onOpenPage}
-        />
-      ))}
+      <section id="home-services">
+        {pillars.map((pillar) => (
+          <HomeServiceSection
+            key={pillar.id}
+            pillar={pillar}
+            onOpenPage={onOpenPage}
+          />
+        ))}
+      </section>
     </main>
   );
 }

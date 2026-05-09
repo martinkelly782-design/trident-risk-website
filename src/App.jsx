@@ -666,18 +666,28 @@ function HomeServiceSection({ pillar, onOpenPage }) {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pillar.services.map((service) => (
-            <button
-              key={service[0]}
-              type="button"
-              onClick={() =>
-                onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
-              }
-              className="rounded-2xl border border-white/30 bg-white/95 px-5 py-5 text-left font-semibold text-slate-950 shadow-lg transition hover:shadow-2xl"
-            >
-              {service[0]}
-            </button>
-          ))}
+          {pillar.services.map((service) => {
+            const showHoverSummary = pillar.id === "maritime-intelligence";
+
+            return (
+              <button
+                key={service[0]}
+                type="button"
+                onClick={() =>
+                  onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
+                }
+                className="group relative overflow-hidden rounded-2xl border border-white/30 bg-white/95 px-5 py-5 text-left font-semibold text-slate-950 shadow-lg transition hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
+              >
+                <span>{service[0]}</span>
+
+                {showHoverSummary && (
+                  <div className="mt-3 max-h-0 overflow-hidden text-sm font-normal leading-6 text-slate-700 opacity-0 transition-all duration-300 group-hover:max-h-44 group-hover:opacity-100">
+                    {service[2]}
+                  </div>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

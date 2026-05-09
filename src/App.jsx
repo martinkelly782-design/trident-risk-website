@@ -356,6 +356,11 @@ function ServiceCard({ service, pillarId, onRequest }) {
 function NavDropdown({ pillar, onOpenPage }) {
   const [open, setOpen] = useState(false);
 
+  function handleSelect(anchorId) {
+    setOpen(false);
+    onOpenPage(pillar.id, anchorId);
+  }
+
   return (
     <div
       className="relative"
@@ -365,25 +370,27 @@ function NavDropdown({ pillar, onOpenPage }) {
       <button
         type="button"
         onClick={() => onOpenPage(pillar.id)}
-        className="text-sm text-slate-700 hover:text-slate-950"
+        className="rounded-xl px-2 py-2 text-sm text-slate-700 hover:text-slate-950"
       >
         {pillar.title} <span className="text-xs">▾</span>
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full z-50 mt-3 w-96 rounded-3xl border border-slate-200 bg-white/95 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
-          {pillar.services.map((service) => (
-            <button
-              key={service[0]}
-              type="button"
-              onClick={() =>
-                onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
-              }
-              className="block w-full rounded-2xl px-3 py-3 text-left text-sm text-slate-700 hover:bg-slate-100"
-            >
-              {service[0]}
-            </button>
-          ))}
+        <div className="absolute left-0 top-full z-50 w-96 pt-2">
+          <div className="rounded-3xl border border-slate-200 bg-white/95 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
+            {pillar.services.map((service) => (
+              <button
+                key={service[0]}
+                type="button"
+                onClick={() =>
+                  handleSelect(`${pillar.id}-${slugify(service[0])}`)
+                }
+                className="block w-full rounded-2xl px-3 py-3 text-left text-sm text-slate-700 hover:bg-slate-100"
+              >
+                {service[0]}
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>

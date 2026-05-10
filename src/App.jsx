@@ -635,7 +635,6 @@ function RequestPage({ service, onBack }) {
 
 function HomeServiceSection({ pillar, onOpenPage }) {
   const [hoveredService, setHoveredService] = useState(null);
-  const isMaritimeIntelligence = pillar.id === "maritime-intelligence";
 
   return (
     <section className="relative overflow-hidden border-t border-slate-200 py-24">
@@ -670,13 +669,7 @@ function HomeServiceSection({ pillar, onOpenPage }) {
           </Button>
         </div>
 
-        <div
-          className={
-            isMaritimeIntelligence
-              ? "grid gap-6 lg:grid-cols-[1.15fr_0.85fr]"
-              : ""
-          }
-        >
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {pillar.services.map((service) => (
               <button
@@ -697,42 +690,36 @@ function HomeServiceSection({ pillar, onOpenPage }) {
                   {service[0]}
                 </div>
 
-                {isMaritimeIntelligence && (
-                  <div className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    Hover for summary
-                  </div>
-                )}
+                <div className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                  Hover for summary
+                </div>
               </button>
             ))}
           </div>
 
-          {isMaritimeIntelligence && (
-            <div className="hidden lg:block">
-              <div className="sticky top-32 rounded-[2rem] border border-white/25 bg-[#0f172a]/88 p-8 text-white shadow-2xl backdrop-blur-xl">
-                <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-                  Intelligence Summary
-                </div>
-
-                <h3 className="mt-6 text-3xl font-light leading-tight">
-                  {hoveredService
-                    ? hoveredService[0]
-                    : "Hover over a service"}
-                </h3>
-
-                <p className="mt-6 text-sm leading-7 text-slate-200">
-                  {hoveredService
-                    ? hoveredService[2]
-                    : "Move your cursor over any Maritime Intelligence service to view a concise explanation of the capability."}
-                </p>
-
-                <div className="mt-8 h-px w-full bg-white/15" />
-
-                <p className="mt-6 text-xs uppercase tracking-[0.22em] text-slate-400">
-                  Vessel exposure · Ownership risk · Sanctions linkage · Routing behaviour
-                </p>
+          <div className="hidden lg:block">
+            <div className="sticky top-32 rounded-[2rem] border border-white/25 bg-[#0f172a]/88 p-8 text-white shadow-2xl backdrop-blur-xl">
+              <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
+                Service Summary
               </div>
+
+              <h3 className="mt-6 text-3xl font-light leading-tight">
+                {hoveredService ? hoveredService[0] : "Hover over a service"}
+              </h3>
+
+              <p className="mt-6 text-sm leading-7 text-slate-200">
+                {hoveredService
+                  ? hoveredService[2]
+                  : `Move your cursor over any ${pillar.title} service to view a concise explanation of the capability.`}
+              </p>
+
+              <div className="mt-8 h-px w-full bg-white/15" />
+
+              <p className="mt-6 text-xs uppercase tracking-[0.22em] text-slate-400">
+                Intelligence led · Operationally grounded · Client ready
+              </p>
             </div>
-          )}
+          </div>
         </div>
       </div>
     </section>

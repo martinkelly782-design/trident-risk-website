@@ -677,11 +677,7 @@ function HomeServiceSection({ pillar, onOpenPage }) {
               }
               className="rounded-2xl border border-white/20 bg-white/90 px-5 py-5 text-left shadow-lg backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
             >
-              <div className="text-sm font-semibold uppercase tracking-[0.12em] text-[#9b7a2f]">
-                {pillar.title}
-              </div>
-
-              <div className="mt-3 text-lg font-semibold leading-snug text-slate-950">
+              <div className="text-lg font-semibold leading-snug text-slate-950">
                 {service[0]}
               </div>
 

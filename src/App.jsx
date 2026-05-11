@@ -46,13 +46,13 @@ function slugify(value) {
 }
 
 const imageBank = {
+  const imageBank = {
   vessel:
     "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1800&q=85",
   ship:
     "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1800&q=85",
-  cyber:
-"/Cyber.webp",  map:
-map: "/digital-geopolitics-pakistan.jpg",
+  cyber: "/Cyber.webp",
+  map: "/digital-geopolitics-pakistan.jpg",
   buildings:
     "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=85",
   legal:
@@ -60,7 +60,6 @@ map: "/digital-geopolitics-pakistan.jpg",
   port:
     "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=85",
 };
-
 const pillars = [
   {
     id: "maritime-intelligence",

@@ -400,16 +400,13 @@ function NavDropdown({ pillar, onOpenPage }) {
 function Header({ onHome, onOpenPage }) {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
-        <button
-          type="button"
-          onClick={onHome}
-          className="text-left text-xl font-semibold tracking-tight text-slate-950"
-        >
-          TRIDENT
-          <span className="block text-xs font-normal uppercase tracking-[0.3em] text-[#9b7a2f]">
-            Risk and Advisory
-          </span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        <button type="button" onClick={onHome} className="flex items-center">
+          <img
+            src="/logo.png"
+            alt="Trident Risk and Advisory"
+            className="h-12 w-auto"
+          />
         </button>
 
         <nav className="hidden items-center gap-6 lg:flex">

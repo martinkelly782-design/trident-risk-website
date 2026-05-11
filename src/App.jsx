@@ -634,8 +634,6 @@ function RequestPage({ service, onBack }) {
 }
 
 function HomeServiceSection({ pillar, onOpenPage }) {
-  const [hoveredService, setHoveredService] = useState(null);
-
   return (
     <section className="relative overflow-hidden border-t border-slate-200 py-24">
       <div
@@ -669,57 +667,29 @@ function HomeServiceSection({ pillar, onOpenPage }) {
           </Button>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {pillar.services.map((service) => (
-              <button
-                key={service[0]}
-                type="button"
-                onMouseEnter={() => setHoveredService(service)}
-                onMouseLeave={() => setHoveredService(null)}
-                onClick={() =>
-                  onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
-                }
-                className="group rounded-2xl border border-white/20 bg-white/90 px-5 py-5 text-left shadow-lg backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
-              >
-                <div className="text-sm font-semibold uppercase tracking-[0.12em] text-[#9b7a2f]">
-                  {pillar.title}
-                </div>
-
-                <div className="mt-3 text-lg font-semibold leading-snug text-slate-950">
-                  {service[0]}
-                </div>
-
-                <div className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  Hover for summary
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <div className="hidden lg:block">
-            <div className="sticky top-32 rounded-[2rem] border border-white/25 bg-[#0f172a]/88 p-8 text-white shadow-2xl backdrop-blur-xl">
-              <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-                Service Summary
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {pillar.services.map((service) => (
+            <button
+              key={service[0]}
+              type="button"
+              onClick={() =>
+                onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
+              }
+              className="rounded-2xl border border-white/20 bg-white/90 px-5 py-5 text-left shadow-lg backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
+            >
+              <div className="text-sm font-semibold uppercase tracking-[0.12em] text-[#9b7a2f]">
+                {pillar.title}
               </div>
 
-              <h3 className="mt-6 text-3xl font-light leading-tight">
-                {hoveredService ? hoveredService[0] : "Hover over a service"}
-              </h3>
+              <div className="mt-3 text-lg font-semibold leading-snug text-slate-950">
+                {service[0]}
+              </div>
 
-              <p className="mt-6 text-sm leading-7 text-slate-200">
-                {hoveredService
-                  ? hoveredService[2]
-                  : `Move your cursor over any ${pillar.title} service to view a concise explanation of the capability.`}
+              <p className="mt-4 line-clamp-3 text-sm font-normal leading-6 text-slate-600">
+                {service[2]}
               </p>
-
-              <div className="mt-8 h-px w-full bg-white/15" />
-
-              <p className="mt-6 text-xs uppercase tracking-[0.22em] text-slate-400">
-                Intelligence led · Operationally grounded · Client ready
-              </p>
-            </div>
-          </div>
+            </button>
+          ))}
         </div>
       </div>
     </section>

@@ -45,7 +45,6 @@ function slugify(value) {
     .replace(/(^-|-$)/g, "");
 }
 
-const imageBank = {
   const imageBank = {
   vessel:
     "https://images.unsplash.com/photo-1494412519320-aa613dfb7738?auto=format&fit=crop&w=1800&q=85",

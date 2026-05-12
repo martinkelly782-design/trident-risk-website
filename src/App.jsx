@@ -45,9 +45,8 @@ function slugify(value) {
     .replace(/(^-|-$)/g, "");
 }
 
-  const imageBank = {
-  vessel:
-    "/productAISLarge.webp",
+const imageBank = {
+  vessel: "/productAISLarge.webp",
   ship:
     "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1800&q=85",
   cyber: "/Cyber.webp",
@@ -59,6 +58,7 @@ function slugify(value) {
   port:
     "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=85",
 };
+
 const pillars = [
   {
     id: "maritime-intelligence",
@@ -66,6 +66,8 @@ const pillars = [
     intro:
       "Maritime intelligence services are used to understand vessel exposure, ownership risk, sanctions linkage and behavioural indicators before commercial or operational decisions are made.",
     hero: imageBank.vessel,
+    summary:
+      "Actionable intelligence on vessels, ownership, movements and activity. Trident provides clarity in complex maritime environments so clients can make informed, risk aware decisions before committing assets, capital or exposure.",
     services: [
       [
         "Vessel Affiliation Check",
@@ -110,6 +112,8 @@ const pillars = [
     intro:
       "Maritime security services provide practical, operationally grounded support to reduce risk to vessels, crews and assets operating in high threat or unstable environments.",
     hero: imageBank.ship,
+    summary:
+      "Operationally grounded security support for vessels, crews, offshore assets and port calls in complex operating environments. Trident supports planning, mitigation and response before risk becomes operational disruption.",
     services: [
       [
         "Port Vulnerability Assessment",
@@ -154,6 +158,8 @@ const pillars = [
     intro:
       "Maritime cyber services address real world vulnerabilities in navigation, tracking and onboard systems where digital disruption can directly impact operational safety.",
     hero: imageBank.cyber,
+    summary:
+      "Cyber risk support for maritime operators, vessels, ports and offshore infrastructure. Trident helps identify vulnerabilities, strengthen resilience and support incident response across connected maritime systems.",
     services: [
       [
         "AIS Alternatives",
@@ -193,6 +199,8 @@ const pillars = [
     intro:
       "Geopolitical analysis supports forward looking decision making by identifying how conflict, politics and regulation will affect operations, assets and market access.",
     hero: imageBank.map,
+    summary:
+      "Forward looking analysis of conflict, politics, regulation and disruption. Trident helps clients understand how geopolitical change can affect maritime operations, market access and strategic exposure.",
     services: [
       [
         "Regional Risk Reports",
@@ -232,6 +240,8 @@ const pillars = [
     intro:
       "Market entry services support organisations entering complex environments by identifying risk, shaping strategy and avoiding exposure before commitment.",
     hero: imageBank.buildings,
+    summary:
+      "Risk led market entry support for organisations expanding into complex jurisdictions. Trident identifies political, regulatory, reputational and security exposure before commitment.",
     services: [
       [
         "Country Entry Risk Assessments",
@@ -271,6 +281,8 @@ const pillars = [
     intro:
       "Trident’s legal and expert witness capability is delivered by a former Royal Navy specialist and government advisor, with deep regional expertise across the Middle East and high risk maritime theatres. The service supports counsel and insurers with clear, defensible opinion grounded in real world operational context.",
     hero: imageBank.legal,
+    summary:
+      "Expert witness and legal support grounded in operational maritime experience. Trident supports counsel, insurers and clients with clear, defensible analysis in disputes involving maritime security, war risk and operational decision making.",
     services: [
       [
         "Expert Witness",
@@ -627,59 +639,51 @@ function RequestPage({ service, onBack }) {
   );
 }
 
-function HomeServiceSection({ pillar, onOpenPage }) {
-  return (
-    <section className="relative overflow-hidden border-t border-slate-200 py-24">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${pillar.hero})` }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/95 via-[#111827]/82 to-transparent" />
+function HomeOverviewSection({ pillar, index, onOpenPage }) {
+  const imageLeft = index % 2 === 0;
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-3xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Service Type
+  return (
+    <section className="border-t border-slate-200 bg-[#f8f5ef]">
+      <div className="grid min-h-[390px] lg:grid-cols-2">
+        <div
+          className={`relative min-h-[320px] overflow-hidden ${
+            imageLeft ? "lg:order-1" : "lg:order-2"
+          }`}
+        >
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${pillar.hero})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-white/10" />
+        </div>
+
+        <div
+          className={`flex items-center bg-[#fbfaf7] px-8 py-14 md:px-14 lg:px-20 ${
+            imageLeft ? "lg:order-2" : "lg:order-1"
+          }`}
+        >
+          <div className="max-w-xl">
+            <div className="text-sm font-semibold tracking-[0.2em] text-[#b5893d]">
+              {String(index + 1).padStart(2, "0")}
             </div>
 
-            <h2 className="mt-3 text-3xl font-light tracking-tight md:text-5xl">
+            <h2 className="mt-4 text-3xl font-light tracking-tight text-[#0f172a] md:text-5xl">
               {pillar.title}
             </h2>
 
-            <p className="mt-4 text-sm leading-7 text-slate-200 md:text-base">
-              {pillar.intro}
+            <p className="mt-6 text-sm leading-7 text-slate-700 md:text-base">
+              {pillar.summary || pillar.intro}
             </p>
-          </div>
 
-          <Button
-            type="button"
-            onClick={() => onOpenPage(pillar.id)}
-            className="rounded-2xl bg-white px-6 py-3 font-semibold text-slate-950 hover:bg-slate-200"
-          >
-            View {pillar.title}
-          </Button>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pillar.services.map((service) => (
             <button
-              key={service[0]}
               type="button"
-              onClick={() =>
-                onOpenPage(pillar.id, `${pillar.id}-${slugify(service[0])}`)
-              }
-              className="rounded-2xl border border-white/20 bg-white/90 px-5 py-5 text-left shadow-lg backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-2xl"
+              onClick={() => onOpenPage(pillar.id)}
+              className="mt-8 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#9b7a2f] hover:text-[#0f172a]"
             >
-              <div className="text-lg font-semibold leading-snug text-slate-950">
-                {service[0]}
-              </div>
-
-              <p className="mt-4 line-clamp-3 text-sm font-normal leading-6 text-slate-600">
-                {service[2]}
-              </p>
+              View {pillar.title}
+              <span aria-hidden="true">→</span>
             </button>
-          ))}
+          </div>
         </div>
       </div>
     </section>
@@ -715,7 +719,7 @@ function HomePage({ onOpenPage }) {
               risk.
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-200 md:text-lg">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-lg">
               Supporting shipping, insurance, corporate and legal clients with
               clear, defensible analysis in complex and high risk environments.
             </p>
@@ -816,10 +820,11 @@ function HomePage({ onOpenPage }) {
       </section>
 
       <section id="home-services">
-        {pillars.map((pillar) => (
-          <HomeServiceSection
+        {pillars.map((pillar, index) => (
+          <HomeOverviewSection
             key={pillar.id}
             pillar={pillar}
+            index={index}
             onOpenPage={onOpenPage}
           />
         ))}

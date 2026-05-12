@@ -66,8 +66,6 @@ const pillars = [
     intro:
       "Maritime intelligence services are used to understand vessel exposure, ownership risk, sanctions linkage and behavioural indicators before commercial or operational decisions are made.",
     hero: imageBank.vessel,
-    summary:
-      "Actionable intelligence on vessels, ownership, movements and activity. Trident provides clarity in complex maritime environments so clients can make informed, risk aware decisions before committing assets, capital or exposure.",
     services: [
       [
         "Vessel Affiliation Check",
@@ -112,8 +110,6 @@ const pillars = [
     intro:
       "Maritime security services provide practical, operationally grounded support to reduce risk to vessels, crews and assets operating in high threat or unstable environments.",
     hero: imageBank.ship,
-    summary:
-      "Operationally grounded security support for vessels, crews, offshore assets and port calls in complex operating environments. Trident supports planning, mitigation and response before risk becomes operational disruption.",
     services: [
       [
         "Port Vulnerability Assessment",
@@ -158,8 +154,6 @@ const pillars = [
     intro:
       "Maritime cyber services address real world vulnerabilities in navigation, tracking and onboard systems where digital disruption can directly impact operational safety.",
     hero: imageBank.cyber,
-    summary:
-      "Cyber risk support for maritime operators, vessels, ports and offshore infrastructure. Trident helps identify vulnerabilities, strengthen resilience and support incident response across connected maritime systems.",
     services: [
       [
         "AIS Alternatives",
@@ -199,8 +193,6 @@ const pillars = [
     intro:
       "Geopolitical analysis supports forward looking decision making by identifying how conflict, politics and regulation will affect operations, assets and market access.",
     hero: imageBank.map,
-    summary:
-      "Forward looking analysis of conflict, politics, regulation and disruption. Trident helps clients understand how geopolitical change can affect maritime operations, market access and strategic exposure.",
     services: [
       [
         "Regional Risk Reports",
@@ -240,8 +232,6 @@ const pillars = [
     intro:
       "Market entry services support organisations entering complex environments by identifying risk, shaping strategy and avoiding exposure before commitment.",
     hero: imageBank.buildings,
-    summary:
-      "Risk led market entry support for organisations expanding into complex jurisdictions. Trident identifies political, regulatory, reputational and security exposure before commitment.",
     services: [
       [
         "Country Entry Risk Assessments",
@@ -281,8 +271,6 @@ const pillars = [
     intro:
       "Trident’s legal and expert witness capability is delivered by a former Royal Navy specialist and government advisor, with deep regional expertise across the Middle East and high risk maritime theatres. The service supports counsel and insurers with clear, defensible opinion grounded in real world operational context.",
     hero: imageBank.legal,
-    summary:
-      "Expert witness and legal support grounded in operational maritime experience. Trident supports counsel, insurers and clients with clear, defensible analysis in disputes involving maritime security, war risk and operational decision making.",
     services: [
       [
         "Expert Witness",
@@ -325,6 +313,66 @@ const pillars = [
         "Preparation for oral evidence, cross examination, technical explanation and clear presentation of complex maritime risk matters.",
       ],
     ],
+  },
+];
+
+const homeCards = [
+  {
+    icon: "♔",
+    title: "Maritime Intelligence",
+    text:
+      "Actionable intelligence on vessels, ownership, movements and activity to reduce exposure and support informed decisions.",
+    pillarId: "maritime-intelligence",
+  },
+  {
+    icon: "◇",
+    title: "Maritime Security",
+    text:
+      "Operationally grounded security support to protect people, assets and operations in high threat environments.",
+    pillarId: "maritime-security",
+  },
+  {
+    icon: "⌬",
+    title: "Maritime Cyber",
+    text:
+      "Identify and mitigate cyber risks to vessels, systems and operations in an increasingly connected maritime environment.",
+    pillarId: "maritime-cyber",
+  },
+  {
+    icon: "◎",
+    title: "Geopolitical Analysis",
+    text:
+      "Forward looking analysis of political, security and regulatory developments that shape maritime risk and opportunity.",
+    pillarId: "geopolitical-analysis",
+  },
+  {
+    icon: "▥",
+    title: "Market Entry",
+    text:
+      "Risk led market entry advisory to help organisations expand confidently and avoid costly exposure in new environments.",
+    pillarId: "market-entry",
+  },
+  {
+    icon: "⚖",
+    title: "Legal",
+    text:
+      "Expert witness and specialist legal support grounded in real world maritime and security experience.",
+    pillarId: "legal",
+  },
+  {
+    icon: "⚓",
+    title: "Ports and Infrastructure",
+    text:
+      "Assess and manage risk to ports, infrastructure and maritime operations across critical environments.",
+    pillarId: "maritime-security",
+  },
+  {
+    icon: "☷",
+    title: "Incident Response",
+    text:
+      "Rapid, discreet and effective support when incidents occur, helping you stabilise, respond and recover.",
+    pillarId: "maritime-security",
+    anchorId: "maritime-security-crisis-response-and-incident-management",
   },
 ];
 
@@ -639,52 +687,35 @@ function RequestPage({ service, onBack }) {
   );
 }
 
-function HomeOverviewSection({ pillar, index, onOpenPage }) {
-  const imageLeft = index % 2 === 0;
-
+function HomeServicesGrid({ onOpenPage }) {
   return (
-    <section className="border-t border-slate-200 bg-[#f8f5ef]">
-      <div className="grid min-h-[390px] lg:grid-cols-2">
-        <div
-          className={`relative min-h-[320px] overflow-hidden ${
-            imageLeft ? "lg:order-1" : "lg:order-2"
-          }`}
-        >
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${pillar.hero})` }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-white/10" />
-        </div>
-
-        <div
-          className={`flex items-center bg-[#fbfaf7] px-8 py-14 md:px-14 lg:px-20 ${
-            imageLeft ? "lg:order-2" : "lg:order-1"
-          }`}
-        >
-          <div className="max-w-xl">
-            <div className="text-sm font-semibold tracking-[0.2em] text-[#b5893d]">
-              {String(index + 1).padStart(2, "0")}
+    <section id="home-services" className="bg-[#071827] px-6 py-16 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {homeCards.map((item) => (
+          <button
+            key={item.title}
+            type="button"
+            onClick={() => onOpenPage(item.pillarId, item.anchorId)}
+            className="min-h-[260px] rounded-md border border-white/10 bg-white px-7 py-8 text-left shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
+          >
+            <div className="text-4xl leading-none text-[#b5893d]">
+              {item.icon}
             </div>
 
-            <h2 className="mt-4 text-3xl font-light tracking-tight text-[#0f172a] md:text-5xl">
-              {pillar.title}
-            </h2>
+            <h3 className="mt-7 text-2xl font-light leading-tight tracking-tight text-[#0f172a]">
+              {item.title}
+            </h3>
 
-            <p className="mt-6 text-sm leading-7 text-slate-700 md:text-base">
-              {pillar.summary || pillar.intro}
+            <p className="mt-4 text-sm leading-7 text-slate-700">
+              {item.text}
             </p>
 
-            <button
-              type="button"
-              onClick={() => onOpenPage(pillar.id)}
-              className="mt-8 inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-[#9b7a2f] hover:text-[#0f172a]"
-            >
-              View {pillar.title}
-              <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
+            <div className="mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#0f172a]">
+              View Service
+              <span className="text-[#b5893d]">→</span>
+            </div>
+          </button>
+        ))}
       </div>
     </section>
   );
@@ -819,16 +850,7 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
-      <section id="home-services">
-        {pillars.map((pillar, index) => (
-          <HomeOverviewSection
-            key={pillar.id}
-            pillar={pillar}
-            index={index}
-            onOpenPage={onOpenPage}
-          />
-        ))}
-      </section>
+      <HomeServicesGrid onOpenPage={onOpenPage} />
     </main>
   );
 }

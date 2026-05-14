@@ -695,13 +695,8 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
           >
             <div className="flex h-full min-h-[360px] items-end bg-gradient-to-t from-[#071426]/70 via-transparent to-transparent p-6">
               <div className="grid w-full grid-cols-2 gap-3 text-xs text-white md:grid-cols-5">
-                {[
-                  "High Risk Route",
-                  "Sanctioned Port",
-                  "Vessel of Interest",
-                  "AIS Gap",
-                  "Port Call",
-                ].map((item) => (
+                {
+                  .map((item) => (
                   <div
                     key={item}
                     className="rounded-md border border-white/15 bg-[#071426]/75 px-3 py-2 backdrop-blur"

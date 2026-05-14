@@ -360,9 +360,10 @@ const homeCards = [
     pillarId: "legal",
   },
   {
-    icon: "⚓",
-    title: "Ports and Infrastructure",
-    text:
+    {
+  icon: "⚓︎",
+  title: "Ports and Infrastructure",
+       text:
       "Assess and manage risk to ports, infrastructure and maritime operations across critical environments.",
     pillarId: "maritime-security",
   },

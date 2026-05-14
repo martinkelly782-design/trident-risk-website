@@ -450,7 +450,7 @@ function LegalPage({ onHome, onRequest }) {
         className="relative min-h-[520px] bg-cover bg-center"
         style={{ backgroundImage: "url('/legalheader.png')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/88 via-[#061426]/58 to-[#061426]/12" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/95 via-[#061426]/75 to-[#061426]/35" />
 
         <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
           <button

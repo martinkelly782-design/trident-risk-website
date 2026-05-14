@@ -327,7 +327,8 @@ function HeroSection({
 }) {
   return (
     <section className="relative min-h-[580px] bg-cover bg-center" style={{ backgroundImage: `url('${image}')` }}>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/96 via-[#061426]/78 to-[#061426]/32" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/90 to-[#061426]/65" />
+<div className="absolute inset-0 bg-black/25" />
 
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
         <button
@@ -488,7 +489,8 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
         ]}
       />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/90 to-[#061426]/65" />
+<div className="absolute inset-0 bg-black/25" />
         <div>
           <div className="mb-5 flex items-center gap-4">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
@@ -763,13 +765,13 @@ function CyberPage({ onHome, onRequest }) {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
-          <img
-            src="/cyberthreat.png"
-            alt="Maritime cyber threat landscape"
-            className="h-full min-h-[360px] w-full object-contain object-center p-4"
-          />
-        </div>
+       <div className="mt-10 overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
+  <img
+    src="/cyberthreat.png"
+    alt="Maritime cyber threat landscape"
+    className="h-auto w-full object-contain object-center"
+  />
+</div>
       </section>
 
       <ServicesGrid

@@ -126,7 +126,7 @@ const legalServices = [
     icon: Mic,
     title: "Oral Evidence Preparation",
     text:
-      "Preparation for cross examination and technical explanation of complex maritime risk matters.",
+      "Preparation for oral evidence, cross examination and technical explanation of complex maritime risk matters.",
   },
 ];
 
@@ -159,6 +159,102 @@ const caseExperience = [
   [
     "Maritime Incident Reconstruction",
     "Operational reconstruction of events to support legal and insurance outcomes.",
+    Clock,
+  ],
+];
+
+const cyberServices = [
+  {
+    icon: Globe2,
+    title: "AIS Alternatives and Resilient Tracking",
+    text:
+      "Alternative tracking and monitoring solutions when AIS is unavailable, unreliable or manipulated.",
+  },
+  {
+    icon: Compass,
+    title: "GNSS Interference Advisory",
+    text:
+      "Analysis of jamming, spoofing and navigation interference affecting vessel position and safety.",
+  },
+  {
+    icon: Target,
+    title: "AIS Spoofing and Behaviour Analysis",
+    text:
+      "Detection of AIS manipulation, identity spoofing and anomalous vessel behaviour.",
+  },
+  {
+    icon: Shield,
+    title: "Vessel OT Security Assessments",
+    text:
+      "Assessment of onboard operational technology and control systems exposure.",
+  },
+  {
+    icon: Search,
+    title: "Maritime Cyber Risk Assessments",
+    text:
+      "Assessment of cyber risk across vessels, fleets, offshore assets and maritime operations.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Cyber Incident Response",
+    text:
+      "Advisory support during cyber incidents, system disruption and suspected compromise.",
+  },
+  {
+    icon: FileText,
+    title: "Vessel Network Penetration Testing",
+    text:
+      "Controlled testing of vessel or shore networks to identify vulnerabilities and gaps.",
+  },
+  {
+    icon: Users,
+    title: "Crew Cyber Awareness Training",
+    text:
+      "Practical training to strengthen crew awareness and reduce human risk onboard.",
+  },
+  {
+    icon: Landmark,
+    title: "Offshore and Port Infrastructure Security",
+    text:
+      "Cyber security advisory for ports, terminals, offshore assets and critical infrastructure.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Cyber Compliance and IMO / IACS Advisory",
+    text:
+      "Support with IMO guidance, IACS requirements and emerging cyber compliance obligations.",
+  },
+];
+
+const cyberCases = [
+  [
+    "Strait of Hormuz GNSS Interference",
+    "Support for vessels transiting areas of active electronic warfare and interference.",
+    Target,
+  ],
+  [
+    "Baltic Sea GPS Disruption",
+    "Advisory during widespread jamming and spoofing affecting commercial traffic.",
+    Compass,
+  ],
+  [
+    "AIS Spoofing Investigations",
+    "Analysis of manipulated AIS signals and identity spoofing incidents.",
+    Search,
+  ],
+  [
+    "Vessel OT Vulnerability Reviews",
+    "Assessment of onboard systems, networks and operational technology risk.",
+    Shield,
+  ],
+  [
+    "Offshore Infrastructure Resilience",
+    "Cyber security reviews for rigs, platforms and offshore support operations.",
+    Landmark,
+  ],
+  [
+    "Maritime Cyber Incident Response",
+    "Support during live incidents affecting vessels, networks or critical operations.",
     Clock,
   ],
 ];
@@ -257,39 +353,12 @@ const pillars = [
     title: "Maritime Cyber",
     intro:
       "Maritime cyber services address real world vulnerabilities in navigation, tracking and onboard systems where digital disruption can directly impact operational safety.",
-    hero: imageBank.cyber,
-    services: [
-      [
-        "AIS Alternatives",
-        imageBank.map,
-        "Alternative tracking and monitoring solutions where AIS is unreliable, manipulated, degraded or unavailable. Used when standard maritime tracking cannot be treated as reliable.",
-      ],
-      [
-        "GNSS Interference Advisory",
-        imageBank.map,
-        "Analysis of jamming, spoofing and navigation interference affecting vessel positioning and bridge decision making. Supports routing, reporting and practical navigation precautions.",
-      ],
-      [
-        "Vessel Network Penetration Testing",
-        imageBank.cyber,
-        "Controlled testing of vessel or maritime company network exposure to identify vulnerabilities affecting operations, data integrity, communications or safety critical systems.",
-      ],
-      [
-        "Cyber Threat Monitoring",
-        imageBank.cyber,
-        "Monitoring of maritime relevant cyber threat reporting, hostile actor activity, data exposure and attacks against shipping, port or logistics infrastructure.",
-      ],
-      [
-        "Crew Cyber Awareness Training",
-        imageBank.cyber,
-        "Practical training covering phishing, device handling, onboard digital hygiene, removable media, communications discipline and escalation procedures.",
-      ],
-      [
-        "Incident Response Advisory",
-        imageBank.cyber,
-        "Advisory support during cyber disruption, suspected compromise, navigation anomalies, data exposure or operational system interruption.",
-      ],
-    ],
+    hero: "/cyberheader.png",
+    services: cyberServices.map((item) => [
+      item.title,
+      imageBank.cyber,
+      item.text,
+    ]),
   },
   {
     id: "geopolitical-analysis",
@@ -584,50 +653,231 @@ function LegalPage({ onHome, onRequest }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-14 lg:px-8">
-        <div className="relative overflow-hidden rounded-xl bg-[#071426] px-8 py-10 shadow-2xl">
-          <div className="absolute left-0 bottom-0 h-full w-[36%] bg-[url('/globe.png')] bg-cover bg-left opacity-80" />
-          <div className="relative ml-auto max-w-4xl">
-            <h2 className="text-3xl font-light text-white">
-              Need operational legal support?
-            </h2>
-            <p className="mt-3 text-sm text-white/85">
-              24/7 analyst support for legal teams, insurers and commercial
-              operators.
-            </p>
+      <BottomCta
+        title="Need operational legal support?"
+        text="24/7 analyst support for legal teams, insurers and commercial operators."
+        items={[
+          [Clock, "Rapid Global Response"],
+          [Target, "Operationally Grounded Analysis"],
+          [Users, "Support for Legal Teams, Insurers and Commercial Operators"],
+        ]}
+        buttonText="Contact Trident →"
+        onClick={() => onRequest("Operational Legal Support")}
+      />
+    </main>
+  );
+}
 
-            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr_1fr_auto]">
-              <div className="flex items-center gap-3 text-white">
-                <Clock className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
-                <span className="text-sm">Rapid Global Response</span>
-              </div>
+function CyberPage({ onHome, onRequest }) {
+  return (
+    <main className="bg-[#f7f8fa] text-[#071426]">
+      <section
+        className="relative min-h-[520px] bg-cover bg-center"
+        style={{ backgroundImage: "url('/cyberheader.png')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/95 via-[#061426]/78 to-[#061426]/32" />
 
-              <div className="flex items-center gap-3 text-white">
-                <Target className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
-                <span className="text-sm">
-                  Operationally Grounded Analysis
-                </span>
-              </div>
+        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
+          <button
+            type="button"
+            onClick={onHome}
+            className="mb-8 text-sm text-white/85 hover:text-white"
+          >
+            Home <span className="mx-2 text-white/40">›</span>
+            <span className="text-[#c4933a]">Maritime Cyber</span>
+          </button>
 
-              <div className="flex items-center gap-3 text-white">
-                <Users className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
-                <span className="text-sm">
-                  Support for Legal Teams, Insurers and Commercial Operators
-                </span>
-              </div>
+          <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
+            Maritime Cyber and Electronic Risk
+          </h1>
 
-              <button
-                type="button"
-                onClick={() => onRequest("Operational Legal Support")}
-                className="rounded-md bg-[#c4933a] px-8 py-4 text-center text-sm font-semibold text-white hover:bg-[#ad7f2e]"
-              >
-                Contact Trident →
-              </button>
-            </div>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
+            Operational cyber advisory addressing vessel systems, navigation
+            disruption, AIS manipulation and maritime operational technology
+            risk.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-5">
+            <Button
+              type="button"
+              onClick={() => onRequest("Maritime Cyber Support")}
+              className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
+            >
+              Request Cyber Support →
+            </Button>
+
+            <a
+              href={emailHref}
+              className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"
+            >
+              Speak to an Analyst →
+            </a>
           </div>
         </div>
       </section>
+
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-7 md:grid-cols-4 lg:px-8">
+          {[
+            [ShieldCheck, "Maritime Cyber Specialists"],
+            [Compass, "GNSS and AIS Risk Analysis"],
+            [Target, "Operational Technology Security"],
+            [Globe2, "Global Maritime Threat Monitoring"],
+          ].map(([Icon, text]) => (
+            <div
+              key={text}
+              className="flex items-center gap-5 border-slate-200 md:border-r last:border-r-0"
+            >
+              <Icon className="h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+              <p className="max-w-[190px] text-sm font-medium leading-6 text-[#071426]">
+                {text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+            Threat Landscape
+          </p>
+
+          <h2 className="text-4xl font-light leading-tight tracking-tight text-[#071426]">
+            The threat landscape is changing
+          </h2>
+
+          <div className="mt-7 space-y-5 text-sm leading-7 text-slate-700">
+            <p>
+              Maritime operations are increasingly exposed to cyber and
+              electronic threats that can disrupt navigation, tracking,
+              communications and vessel systems.
+            </p>
+            <p>
+              GNSS interference and AIS spoofing are affecting commercial
+              shipping across key maritime corridors, creating safety,
+              operational and insurance exposure.
+            </p>
+            <p>
+              The integration of onboard systems and shore connectivity
+              increases efficiency, but also expands the attack surface across
+              bridge systems, vessel networks and operational technology.
+            </p>
+            <p>
+              Ransomware, data manipulation and operational technology
+              compromise now present direct consequences for safety, reliability
+              and business continuity.
+            </p>
+          </div>
+        </div>
+
+        <div
+          className="min-h-[360px] rounded-xl bg-cover bg-center shadow-xl"
+          style={{ backgroundImage: "url('/cyberthreat.png')" }}
+        />
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-12 lg:px-8">
+        <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+          Services
+        </p>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {cyberServices.map(({ icon: Icon, title, text }) => (
+            <article
+              key={title}
+              id={`maritime-cyber-${slugify(title)}`}
+              className="rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <Icon className="mb-8 h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+              <h3 className="text-lg font-semibold leading-6 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-5 text-sm leading-7 text-slate-700">{text}</p>
+              <button
+                type="button"
+                onClick={() => onRequest(title)}
+                className="mt-7 text-sm font-semibold text-[#b5832f]"
+              >
+                Request this service →
+              </button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
+        <div className="mb-5 flex flex-wrap items-center gap-6">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#071426]">
+            Case Experience
+          </p>
+          <div className="h-px w-10 bg-[#c4933a]" />
+          <p className="text-sm text-slate-500">
+            Support provided across maritime cyber and electronic risk matters.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 rounded-md border border-slate-200 bg-white md:grid-cols-3 xl:grid-cols-6">
+          {cyberCases.map(([title, text, Icon]) => (
+            <div
+              key={title}
+              className="border-b border-slate-200 p-6 text-center md:border-r xl:border-b-0 last:border-r-0"
+            >
+              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#071426]">
+                <Icon className="h-6 w-6 text-white" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-sm font-semibold leading-5 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-3 text-xs leading-6 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <BottomCta
+        title="Need maritime cyber support?"
+        text="24/7 operational support for vessel operators, offshore infrastructure and maritime organisations facing cyber and electronic threats."
+        items={[
+          [Compass, "Navigation Risk Analysis"],
+          [Target, "AIS and GNSS Monitoring"],
+          [Shield, "Operational Technology Advisory"],
+        ]}
+        buttonText="Contact Trident →"
+        onClick={() => onRequest("Maritime Cyber Support")}
+      />
     </main>
+  );
+}
+
+function BottomCta({ title, text, items, buttonText, onClick }) {
+  return (
+    <section className="mx-auto max-w-7xl px-6 pb-14 lg:px-8">
+      <div className="relative overflow-hidden rounded-xl bg-[#071426] px-8 py-10 shadow-2xl">
+        <div className="absolute left-0 bottom-0 h-full w-[36%] bg-[url('/globe.png')] bg-cover bg-left opacity-80" />
+        <div className="relative ml-auto max-w-4xl">
+          <h2 className="text-3xl font-light text-white">{title}</h2>
+          <p className="mt-3 text-sm text-white/85">{text}</p>
+
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr_1fr_auto]">
+            {items.map(([Icon, itemText]) => (
+              <div key={itemText} className="flex items-center gap-3 text-white">
+                <Icon className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
+                <span className="text-sm">{itemText}</span>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              onClick={onClick}
+              className="rounded-md bg-[#c4933a] px-8 py-4 text-center text-sm font-semibold text-white hover:bg-[#ad7f2e]"
+            >
+              {buttonText}
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -745,6 +995,10 @@ function Header({ onHome, onOpenPage }) {
 function PillarPage({ pillar, onHome, onRequest }) {
   if (pillar.id === "legal") {
     return <LegalPage onHome={onHome} onRequest={onRequest} />;
+  }
+
+  if (pillar.id === "maritime-cyber") {
+    return <CyberPage onHome={onHome} onRequest={onRequest} />;
   }
 
   return (
@@ -1169,7 +1423,11 @@ export default function App() {
       <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
-            <img src="/logo.png" alt="Trident Risk and Advisory" className="h-12 w-auto" />
+            <img
+              src="/logo.png"
+              alt="Trident Risk and Advisory"
+              className="h-12 w-auto"
+            />
             <div>
               <div className="text-xl font-semibold tracking-[0.25em]">
                 TRIDENT

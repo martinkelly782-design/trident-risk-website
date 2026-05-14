@@ -605,8 +605,8 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
         className="relative min-h-[580px] bg-cover bg-center"
         style={{ backgroundImage: "url('/maritime-intelligence-header.png')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/92 via-[#061426]/58 to-[#061426]/12" />
-        <div className="absolute inset-0 bg-[#061426]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/96 via-[#061426]/78 to-[#061426]/38" />
+        <div className="absolute inset-0 bg-[#061426]/18" />
 
         <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
           <button

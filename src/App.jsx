@@ -492,8 +492,7 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
         ]}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/90 to-[#061426]/65" />
-<div className="absolute inset-0 bg-black/25" />
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
         <div>
           <div className="mb-5 flex items-center gap-4">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
@@ -555,7 +554,6 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
     </main>
   );
 }
-
 function MaritimeSecurityPage({ onHome, onRequest }) {
   return (
     <main className="bg-[#f7f8fa] text-[#071426]">

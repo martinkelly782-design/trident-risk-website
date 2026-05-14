@@ -267,10 +267,10 @@ const pillars = [
   },
   {
     id: "legal",
-    title: "Legal",
-    intro:
-      "Trident’s legal and expert witness capability is delivered by a former Royal Navy specialist and government advisor, with deep regional expertise across the Middle East and high risk maritime theatres. The service supports counsel and insurers with clear, defensible opinion grounded in real world operational context.",
-    hero: imageBank.legal,
+  title: "Legal",
+  intro:
+    "Trident’s legal and expert witness capability is delivered by former US Navy specialists, intelligence advisors and maritime risk professionals with global operational experience across high risk environments. The service supports counsel, insurers and commercial stakeholders with clear, defensible opinion grounded in real world operational context.",
+  hero: "/legalheader.png",
     services: [
       [
         "Expert Witness",
@@ -495,7 +495,7 @@ function PillarPage({ pillar, onHome, onRequest }) {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${pillar.hero})` }}
         />
-        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/95 via-[#111827]/80 to-transparent" />
 
         <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">

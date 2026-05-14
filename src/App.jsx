@@ -268,6 +268,90 @@ const maritimeIntelligenceCases = [
   ],
 ];
 
+const maritimeSecurityServices = [
+  {
+    icon: Anchor,
+    title: "Port Vulnerability Assessment",
+    text:
+      "Assessment of port security posture, waterside exposure, access control, local crime, protest activity, ISPS implementation and resilience.",
+  },
+  {
+    icon: Ship,
+    title: "Voyage Vulnerability Assessment",
+    text:
+      "Route based assessment combining vessel profile, cargo, ownership, recent trading pattern, threat environment and escalation indicators.",
+  },
+  {
+    icon: Compass,
+    title: "High Risk Area Transit Planning",
+    text:
+      "Planning support for vessels entering exposed maritime corridors, including routing, reporting, watchkeeping and escalation triggers.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Embarked Security Coordination",
+    text:
+      "Coordination of armed or unarmed embarked security arrangements, provider selection, embarkation planning and reporting expectations.",
+  },
+  {
+    icon: Eye,
+    title: "Stowaway Risk Mitigation",
+    text:
+      "Port and vessel level measures to reduce stowaway exposure through search planning, access control and gangway discipline.",
+  },
+  {
+    icon: Landmark,
+    title: "Offshore Asset Protection",
+    text:
+      "Security advisory for offshore vessels, rigs, platforms, survey activity and energy infrastructure in exposed waters.",
+  },
+  {
+    icon: Radio,
+    title: "Crisis Response and Incident Management",
+    text:
+      "Support during boardings, detention, attack, port closure, civil unrest, crew welfare incidents or rapid regional escalation.",
+  },
+  {
+    icon: Radar,
+    title: "Maritime Threat Monitoring",
+    text:
+      "Continuous monitoring of maritime incidents, threat reporting, vessel exposure and operational risk indicators.",
+  },
+];
+
+const maritimeSecurityCases = [
+  [
+    "Port Call Risk Reviews",
+    "Security assessment before calling at exposed or operationally sensitive ports.",
+    Anchor,
+  ],
+  [
+    "High Risk Transit Support",
+    "Planning support for vessels entering elevated threat maritime corridors.",
+    Compass,
+  ],
+  [
+    "Offshore Security Advisory",
+    "Support for offshore assets, survey activity and energy infrastructure.",
+    Landmark,
+  ],
+  [
+    "Boarding and Detention Response",
+    "Advisory support during hostile boarding, detention or attempted interference.",
+    Shield,
+  ],
+  [
+    "Crew and Vessel Protection",
+    "Practical measures to reduce exposure to crew, vessel and cargo.",
+    Users,
+  ],
+  [
+    "Crisis Management Support",
+    "Operational advice during fast moving maritime security incidents.",
+    Radio,
+  ],
+];
+
 const cyberServices = [
   {
     icon: Globe2,
@@ -382,44 +466,12 @@ const pillars = [
     title: "Maritime Security",
     intro:
       "Maritime security services provide practical, operationally grounded support to reduce risk to vessels, crews and assets operating in high threat or unstable environments.",
-    hero: imageBank.ship,
-    services: [
-      [
-        "Port Vulnerability Assessment",
-        imageBank.port,
-        "Detailed assessment of port security posture, access control, waterside exposure, local criminality, protest potential, ISPS implementation and resilience. Used to determine whether a port call is acceptable or requires mitigation.",
-      ],
-      [
-        "Voyage Vulnerability Assessment",
-        imageBank.ship,
-        "Comprehensive voyage assessment combining vessel characteristics, route, cargo, ownership, recent trading patterns, threat environment and escalation indicators. Supports go or no go decisions, routing and insurance submissions.",
-      ],
-      [
-        "High Risk Area Transit Planning",
-        imageBank.map,
-        "Planning support for vessels entering high risk maritime corridors, including route selection, reporting requirements, watchkeeping, communications, citadel considerations and escalation triggers.",
-      ],
-      [
-        "Embarked Security Coordination",
-        imageBank.ship,
-        "Coordination of armed or unarmed embarked security arrangements, including provider selection, embarkation planning, rules of conduct, guard force oversight and reporting expectations.",
-      ],
-      [
-        "Stowaway Risk Mitigation",
-        imageBank.port,
-        "Port and vessel level measures to reduce stowaway exposure, including search planning, access control, deck checks, machinery space checks and gangway discipline.",
-      ],
-      [
-        "Offshore Asset Protection",
-        imageBank.ship,
-        "Security advisory for offshore vessels, rigs, platforms, survey activity and energy infrastructure operating in exposed or politically sensitive waters.",
-      ],
-      [
-        "Crisis Response and Incident Management",
-        imageBank.map,
-        "Support during boardings, detention, attack, port closure, civil unrest, crew welfare incidents or rapid regional escalation affecting maritime operations.",
-      ],
-    ],
+    hero: "/maritime-security-header.png",
+    services: maritimeSecurityServices.map((item) => [
+      item.title,
+      "/maritime-security-header.png",
+      item.text,
+    ]),
   },
   {
     id: "maritime-cyber",
@@ -605,15 +657,14 @@ function CapabilityStrip({ items }) {
   );
 }
 
-function MaritimeIntelligencePage({ onHome, onRequest }) {
+function MaritimeSecurityPage({ onHome, onRequest }) {
   return (
     <main className="bg-[#f7f8fa] text-[#071426]">
       <section
         className="relative min-h-[580px] bg-cover bg-center"
-        style={{ backgroundImage: "url('/maritime-intelligence-header.png')" }}
+        style={{ backgroundImage: "url('/maritime-security-header.png')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/88 to-[#061426]/58" />
-        <div className="absolute inset-0 bg-[#061426]/32" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/96 via-[#061426]/78 to-[#061426]/32" />
 
         <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
           <button
@@ -622,26 +673,26 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
             className="mb-8 text-sm text-white/85 hover:text-white"
           >
             Home <span className="mx-2 text-white/40">›</span>
-            <span className="text-[#c4933a]">Maritime Intelligence</span>
+            <span className="text-[#c4933a]">Maritime Security</span>
           </button>
 
           <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
-            Maritime <br /> Intelligence
+            Maritime <br /> Security
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
-            Intelligence led vessel, ownership and operational risk analysis for
-            ship owners, charterers, insurers, legal teams and maritime
-            operators.
+            Operational security advisory for vessels, ports, offshore assets
+            and crews operating in high threat or unstable maritime
+            environments.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-5">
             <Button
               type="button"
-              onClick={() => onRequest("Maritime Intelligence Support")}
+              onClick={() => onRequest("Maritime Security Support")}
               className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
             >
-              Request Intelligence Support →
+              Request Security Support →
             </Button>
 
             <a
@@ -656,9 +707,9 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
 
       <CapabilityStrip
         items={[
-          [Ship, "Vessel Intelligence Specialists"],
-          [Scale, "Sanctions and Compliance Analysis"],
-          [Radio, "AIS and Behavioural Monitoring"],
+          [ShieldCheck, "Operational Security Advisors"],
+          [Anchor, "Port and Vessel Risk Assessments"],
+          [Radio, "Incident Response Support"],
           [Globe2, "Global Maritime Threat Monitoring"],
         ]}
       />
@@ -673,24 +724,26 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
           </div>
 
           <h2 className="text-4xl font-light leading-tight tracking-tight text-[#071426]">
-            The maritime threat environment is evolving
+            Maritime security risk remains operationally complex
           </h2>
 
           <div className="mt-7 space-y-5 text-sm leading-7 text-slate-700">
             <p>
-              Vessels are increasingly exposed to a range of risks including
-              ownership linkages, sanctions, AIS manipulation, geopolitical
-              targeting, port call exposure and state or non state threats.
+              Commercial vessels, offshore assets and port operations remain
+              exposed to threats including piracy, armed robbery, hostile
+              boarding, detention, civil unrest, stowaway activity and regional
+              military escalation.
             </p>
             <p>
-              Maritime intelligence capability integrates multiple data sources,
-              behavioural analytics, open source intelligence and proprietary
-              monitoring to deliver timely, actionable risk insight.
+              Security decisions require more than generic country risk
+              reporting. They require vessel specific analysis, route context,
+              port exposure, crew vulnerability and clear operational
+              mitigation.
             </p>
             <p>
-              The output supports commercial decisions before fixture, voyage
-              approval, insurance placement, legal review or entry into high
-              risk maritime regions.
+              Trident supports go or no go decisions, port call planning,
+              offshore activity, high risk area transit and incident response
+              through practical maritime security advice.
             </p>
           </div>
         </div>
@@ -698,7 +751,7 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
         <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
           <div
             className="min-h-[360px] bg-cover bg-center"
-            style={{ backgroundImage: "url('/maritime-threat-map.png')" }}
+            style={{ backgroundImage: "url('/maritime-security-threat.png')" }}
           >
             <div className="h-full min-h-[360px] bg-gradient-to-t from-[#071426]/35 via-transparent to-transparent" />
           </div>
@@ -713,11 +766,11 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
           <div className="h-px w-10 bg-[#c4933a]" />
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
-          {maritimeIntelligenceServices.map(({ icon: Icon, title, text }) => (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {maritimeSecurityServices.map(({ icon: Icon, title, text }) => (
             <article
               key={title}
-              id={`maritime-intelligence-${slugify(title)}`}
+              id={`maritime-security-${slugify(title)}`}
               className="rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
             >
               <Icon className="mb-8 h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
@@ -744,157 +797,13 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
           </p>
           <div className="h-px w-10 bg-[#c4933a]" />
           <p className="text-sm text-slate-500">
-            Operational intelligence and risk support delivered across key
-            maritime environments.
+            Practical security support across ports, vessels, offshore assets
+            and high risk transits.
           </p>
         </div>
 
         <div className="grid grid-cols-1 rounded-md border border-slate-200 bg-white md:grid-cols-3 xl:grid-cols-6">
-          {maritimeIntelligenceCases.map(([title, text, Icon]) => (
-            <div
-              key={title}
-              className="border-b border-slate-200 p-6 text-center md:border-r xl:border-b-0 last:border-r-0"
-            >
-              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white">
-                <Icon className="h-7 w-7 text-[#071426]" strokeWidth={1.5} />
-              </div>
-              <h3 className="text-sm font-semibold leading-5 text-[#071426]">
-                {title}
-              </h3>
-              <p className="mt-3 text-xs leading-6 text-slate-600">{text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <BottomCta
-        title="Need maritime intelligence support?"
-        text="24/7 operational intelligence support for ship owners, charterers, insurers and legal teams operating in complex maritime environments."
-        items={[
-          [Radar, "Global Monitoring 24/7"],
-          [Network, "Multi Source Intelligence"],
-          [UserRound, "Expert Analyst Support"],
-        ]}
-        buttonText="Contact Trident →"
-        onClick={() => onRequest("Maritime Intelligence Support")}
-      />
-    </main>
-  );
-}
-
-function LegalPage({ onHome, onRequest }) {
-  return (
-    <main className="bg-[#f7f8fa] text-[#071426]">
-      <section
-        className="relative min-h-[520px] bg-cover bg-center"
-        style={{ backgroundImage: "url('/legalheader.png')" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/95 via-[#061426]/75 to-[#061426]/35" />
-
-        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
-          <button
-            type="button"
-            onClick={onHome}
-            className="mb-8 text-sm text-white/85 hover:text-white"
-          >
-            Home <span className="mx-2 text-white/40">›</span>
-            <span className="text-[#c4933a]">Legal</span>
-          </button>
-
-          <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
-            Legal and <br /> Expert Witness Support
-          </h1>
-
-          <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
-            Operationally grounded maritime legal advisory for insurers, counsel
-            and commercial stakeholders operating in complex environments.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-5">
-            <Button
-              type="button"
-              onClick={() => onRequest("Legal and Expert Witness Support")}
-              className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
-            >
-              Request Advisory Support →
-            </Button>
-
-            <a
-              href={emailHref}
-              className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"
-            >
-              Speak to an Analyst →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <CapabilityStrip
-        items={[
-          [ShieldCheck, "Government and Military Advisors"],
-          [Compass, "Maritime Intelligence Specialists"],
-          [Globe2, "Global Operational Experience"],
-          [Scale, "Court and Arbitration Support"],
-        ]}
-      />
-
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-14 lg:grid-cols-[300px_1fr] lg:px-8">
-        <aside className="border-r border-slate-200 pr-8">
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
-            Overview
-          </p>
-          <p className="text-sm leading-7 text-slate-700">
-            Trident provides operationally grounded legal and expert witness
-            support across maritime security, war risk, charterparty disputes
-            and vessel exposure analysis. Support is delivered by government
-            and military advisors, intelligence specialists and maritime risk
-            advisors with experience across high threat operating environments.
-          </p>
-        </aside>
-
-        <div>
-          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
-            Services
-          </p>
-
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {legalServices.map(({ icon: Icon, title, text }) => (
-              <article
-                key={title}
-                id={`legal-${slugify(title)}`}
-                className="rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
-              >
-                <Icon className="mb-8 h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
-                <h3 className="text-lg font-semibold leading-6 text-[#071426]">
-                  {title}
-                </h3>
-                <p className="mt-5 text-sm leading-7 text-slate-700">{text}</p>
-                <button
-                  type="button"
-                  onClick={() => onRequest(title)}
-                  className="mt-7 text-sm font-semibold text-[#b5832f]"
-                >
-                  Request this service →
-                </button>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
-        <div className="mb-5 flex flex-wrap items-center gap-6">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#071426]">
-            Case Experience
-          </p>
-          <div className="h-px w-10 bg-[#c4933a]" />
-          <p className="text-sm text-slate-500">
-            Support provided across a wide range of complex maritime matters.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 rounded-md border border-slate-200 bg-white md:grid-cols-3 xl:grid-cols-6">
-          {caseExperience.map(([title, text, Icon]) => (
+          {maritimeSecurityCases.map(([title, text, Icon]) => (
             <div
               key={title}
               className="border-b border-slate-200 p-6 text-center md:border-r xl:border-b-0 last:border-r-0"
@@ -912,15 +821,15 @@ function LegalPage({ onHome, onRequest }) {
       </section>
 
       <BottomCta
-        title="Need operational legal support?"
-        text="24/7 analyst support for legal teams, insurers and commercial operators."
+        title="Need maritime security support?"
+        text="24/7 operational support for vessels, ports, offshore assets and maritime organisations exposed to security risk."
         items={[
-          [Clock, "Rapid Global Response"],
-          [Target, "Operationally Grounded Analysis"],
-          [Users, "Support for Legal Teams, Insurers and Commercial Operators"],
+          [ShieldCheck, "Operational Risk Advice"],
+          [Radar, "Threat Monitoring"],
+          [Radio, "Incident Response Support"],
         ]}
         buttonText="Contact Trident →"
-        onClick={() => onRequest("Operational Legal Support")}
+        onClick={() => onRequest("Maritime Security Support")}
       />
     </main>
   );
@@ -990,37 +899,86 @@ function CyberPage({ onHome, onRequest }) {
           </p>
 
           <h2 className="text-4xl font-light leading-tight tracking-tight text-[#071426]">
-            The threat landscape is changing
+            The threat landscape is changing rapidly across the maritime sector
           </h2>
 
           <div className="mt-7 space-y-5 text-sm leading-7 text-slate-700">
             <p>
-              Maritime operations are increasingly exposed to cyber and
-              electronic threats that can disrupt navigation, tracking,
-              communications and vessel systems.
+              Commercial shipping, ports and offshore infrastructure are
+              increasingly exposed to cyber and electronic threats capable of
+              disrupting navigation, cargo handling, communications and
+              operational technology systems.
             </p>
             <p>
-              GNSS interference and AIS spoofing are affecting commercial
-              shipping across key maritime corridors, creating safety,
-              operational and insurance exposure.
+              Cyber attacks against the maritime industry increased
+              significantly over the past two years. Industry reporting
+              identified a 103% increase in recorded maritime cyber incidents
+              during 2025, with ransomware, malware infections and distributed
+              denial of service attacks accounting for the majority of
+              incidents.
             </p>
             <p>
-              The integration of onboard systems and shore connectivity
-              increases efficiency, but also expands the attack surface across
-              bridge systems, vessel networks and operational technology.
+              The maritime sector is now considered one of the most targeted
+              critical infrastructure environments globally. Reporting during
+              2025 indicated that 31% of maritime organisations experienced a
+              cyber attack within the previous 12 months, nearly double the
+              level recorded five years earlier.
             </p>
             <p>
-              Ransomware, data manipulation and operational technology
-              compromise now present direct consequences for safety, reliability
-              and business continuity.
+              GNSS interference, AIS spoofing and electronic navigation
+              disruption are increasingly affecting vessels operating in the
+              Arabian Gulf, Strait of Hormuz, Red Sea, Black Sea and Baltic Sea.
+              These incidents create direct navigational, operational and
+              insurance exposure, particularly for vessels transiting congested
+              or geopolitically sensitive maritime corridors.
+            </p>
+            <p>
+              The increasing integration of vessel systems, satellite
+              communications, remote monitoring and shore connectivity continues
+              to improve operational efficiency, but significantly expands the
+              attack surface across bridge systems, operational technology,
+              propulsion systems and vessel networks. CyberOwl reported that
+              remote access pathways accounted for 13% of maritime cyber
+              incidents during 2024, compared to less than 5% in 2023.
+            </p>
+            <p>
+              Ports and terminals remain particularly exposed due to their
+              dependence on interconnected logistics and cargo handling systems.
+              Maritime cyber incidents now regularly target port infrastructure,
+              container management systems, satellite communications and
+              industrial control systems. NATO linked reporting during 2025
+              highlighted a significant increase in ransomware activity against
+              European port infrastructure.
+            </p>
+            <p>
+              The operational impact of maritime cyber attacks has already
+              demonstrated the potential to disrupt global trade. The 2017
+              NotPetya attack against Maersk disrupted operations across 76 port
+              terminals worldwide, impacted more than 45,000 systems and
+              resulted in estimated losses of USD 250 to 300 million.
+            </p>
+            <p>
+              More recent reporting identified 23,400 malware detections and
+              178 ransomware incidents across approximately 1,800 monitored
+              vessels during the first half of 2024 alone.
+            </p>
+            <p>
+              Operational technology compromise is now assessed as one of the
+              most significant emerging threats to maritime operations. Cyber
+              incidents affecting propulsion systems, cargo handling systems,
+              communications and navigational equipment can create direct safety
+              consequences in addition to financial and operational disruption.
             </p>
           </div>
         </div>
 
-        <div
-          className="min-h-[360px] rounded-xl bg-cover bg-center shadow-xl"
-          style={{ backgroundImage: "url('/cyberthreat.png')" }}
-        />
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
+          <img
+            src="/cyberthreat.png"
+            alt="Maritime cyber threat landscape"
+            className="h-full min-h-[360px] w-full object-contain object-center p-4"
+          />
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-12 lg:px-8">
@@ -1096,151 +1054,13 @@ function CyberPage({ onHome, onRequest }) {
   );
 }
 
-function BottomCta({ title, text, items, buttonText, onClick }) {
-  return (
-    <section className="mx-auto max-w-7xl px-6 pb-14 lg:px-8">
-      <div className="relative overflow-hidden rounded-xl bg-[#071426] px-8 py-10 shadow-2xl">
-        <div className="absolute left-0 bottom-0 h-full w-[36%] bg-[url('/globe.png')] bg-cover bg-left opacity-80" />
-        <div className="relative ml-auto max-w-4xl">
-          <h2 className="text-3xl font-light text-white">{title}</h2>
-          <p className="mt-3 text-sm text-white/85">{text}</p>
-
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr_1fr_auto]">
-            {items.map(([Icon, itemText]) => (
-              <div key={itemText} className="flex items-center gap-3 text-white">
-                <Icon className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
-                <span className="text-sm">{itemText}</span>
-              </div>
-            ))}
-
-            <button
-              type="button"
-              onClick={onClick}
-              className="rounded-md bg-[#c4933a] px-8 py-4 text-center text-sm font-semibold text-white hover:bg-[#ad7f2e]"
-            >
-              {buttonText}
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ServiceCard({ service, pillarId, onRequest }) {
-  const [title, image, summary] = service;
-
-  return (
-    <Card
-      id={`${pillarId}-${slugify(title)}`}
-      className="scroll-mt-32 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-500/10"
-    >
-      <div
-        className="h-44 bg-cover bg-center"
-        style={{
-          backgroundImage: `linear-gradient(180deg, rgba(8,15,28,0.08), rgba(8,15,28,0.45)), url(${image})`,
-        }}
-      />
-
-      <CardContent className="p-7">
-        <h3 className="text-2xl font-light tracking-tight text-slate-950">
-          {title}
-        </h3>
-        <p className="mt-5 text-sm leading-7 text-slate-700 md:text-base">
-          {summary}
-        </p>
-        <Button
-          type="button"
-          onClick={() => onRequest(title)}
-          className="mt-6 rounded-2xl bg-[#111827] px-5 py-3 text-sm font-semibold text-white hover:bg-[#2b3443]"
-        >
-          Request this service
-        </Button>
-      </CardContent>
-    </Card>
-  );
-}
-
-function NavDropdown({ pillar, onOpenPage }) {
-  const [open, setOpen] = useState(false);
-
-  function handleSelect(anchorId) {
-    setOpen(false);
-    onOpenPage(pillar.id, anchorId);
-  }
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        onClick={() => onOpenPage(pillar.id)}
-        className="rounded-xl px-2 py-2 text-sm text-slate-700 hover:text-slate-950"
-      >
-        {pillar.title} <span className="text-xs">▾</span>
-      </button>
-
-      {open && (
-        <div className="absolute left-0 top-full z-50 w-96 pt-2">
-          <div className="rounded-3xl border border-slate-200 bg-white/95 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
-            {pillar.services.map((service) => (
-              <button
-                key={service[0]}
-                type="button"
-                onClick={() =>
-                  handleSelect(`${pillar.id}-${slugify(service[0])}`)
-                }
-                className="block w-full rounded-2xl px-3 py-3 text-left text-sm text-slate-700 hover:bg-slate-100"
-              >
-                {service[0]}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Header({ onHome, onOpenPage }) {
-  return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <button type="button" onClick={onHome} className="flex items-center">
-          <img
-            src="/logo.png"
-            alt="Trident Risk and Advisory"
-            className="h-12 w-auto"
-          />
-        </button>
-
-        <nav className="hidden items-center gap-6 lg:flex">
-          {pillars.map((pillar) => (
-            <NavDropdown
-              key={pillar.id}
-              pillar={pillar}
-              onOpenPage={onOpenPage}
-            />
-          ))}
-        </nav>
-
-        <a
-          href={emailHref}
-          className="rounded-2xl bg-[#111827] px-5 py-3 text-sm font-semibold text-white hover:bg-[#2b3443]"
-        >
-          Ask an Analyst
-        </a>
-      </div>
-    </header>
-  );
-}
-
 function PillarPage({ pillar, onHome, onRequest }) {
   if (pillar.id === "maritime-intelligence") {
     return <MaritimeIntelligencePage onHome={onHome} onRequest={onRequest} />;
+  }
+
+  if (pillar.id === "maritime-security") {
+    return <MaritimeSecurityPage onHome={onHome} onRequest={onRequest} />;
   }
 
   if (pillar.id === "legal") {
@@ -1251,457 +1071,5 @@ function PillarPage({ pillar, onHome, onRequest }) {
     return <CyberPage onHome={onHome} onRequest={onRequest} />;
   }
 
-  return (
-    <main>
-      <section className="relative overflow-hidden border-b border-slate-200">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${pillar.hero})` }}
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/95 via-[#111827]/80 to-transparent" />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <Button
-            type="button"
-            onClick={onHome}
-            className="mb-8 rounded-2xl bg-white/90 px-5 py-3 text-slate-900 hover:bg-white"
-          >
-            Back to Home
-          </Button>
-
-          <Badge className="mb-6 inline-block rounded-full border border-white/30 bg-white/15 px-4 py-1 text-white backdrop-blur-sm">
-            {pillar.title}
-          </Badge>
-
-          <h1 className="text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
-            {pillar.title}
-          </h1>
-
-          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-100 md:text-lg">
-            {pillar.intro}
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-[#f6f3ec] px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl space-y-3">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#9b7a2f]">
-              Services
-            </div>
-            <h2 className="text-3xl font-light tracking-tight text-slate-950 md:text-5xl">
-              Explore {pillar.title}
-            </h2>
-            <p className="text-sm leading-7 text-slate-700 md:text-base">
-              {pillar.intro}
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {pillar.services.map((service) => (
-              <ServiceCard
-                key={service[0]}
-                service={service}
-                pillarId={pillar.id}
-                onRequest={onRequest}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-function RequestPage({ service, onBack }) {
-  const [submitted, setSubmitted] = useState(false);
-
-  return (
-    <main>
-      <section className="relative overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `linear-gradient(90deg, rgba(17,24,39,0.90), rgba(17,24,39,0.62), rgba(17,24,39,0.90)), url(${imageBank.port})`,
-          }}
-        />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-          <button
-            type="button"
-            onClick={onBack}
-            className="mb-8 text-sm text-white/80 hover:text-white"
-          >
-            Back
-          </button>
-
-          <div className="max-w-4xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Request Support
-            </div>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight md:text-6xl">
-              Request: {service}
-            </h1>
-            <p className="mt-6 max-w-3xl leading-8 text-slate-100">
-              Submit the outline below and Trident will review the requirement,
-              identify the correct analyst support and respond with the proposed
-              next step.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f6f3ec] px-6 py-16 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <Card className="rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-500/10">
-            <CardContent className="p-7">
-              <h2 className="text-2xl font-light tracking-tight text-slate-950">
-                What happens next
-              </h2>
-              <div className="mt-6 space-y-5 text-sm leading-7 text-slate-700">
-                <p>
-                  <strong>1. Requirement review:</strong> Trident confirms the
-                  service requirement, urgency, geography and operational
-                  context.
-                </p>
-                <p>
-                  <strong>2. Analyst allocation:</strong> The relevant analyst
-                  or advisory lead is assigned.
-                </p>
-                <p>
-                  <strong>3. Response and scope:</strong> Trident responds with
-                  the proposed scope and any information required to proceed.
-                </p>
-                <a href={emailHref} className="block text-[#9b7a2f]">
-                  {email}
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="rounded-[2rem] border border-slate-200 bg-white shadow-xl shadow-slate-500/10">
-            <CardContent className="p-7">
-              {submitted ? (
-                <div>
-                  <h2 className="text-2xl font-light text-slate-950">
-                    Request captured
-                  </h2>
-                  <p className="mt-4 leading-7 text-slate-700">
-                    This prototype has captured the request locally. In the live
-                    build, connect this form to Wix Forms, HubSpot, Zapier or
-                    secure email.
-                  </p>
-                </div>
-              ) : (
-                <form
-                  className="grid gap-3"
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    setSubmitted(true);
-                  }}
-                >
-                  <input
-                    className="rounded-2xl border border-slate-300 bg-white p-4"
-                    placeholder="Name"
-                  />
-                  <input
-                    className="rounded-2xl border border-slate-300 bg-white p-4"
-                    placeholder="Company"
-                  />
-                  <input
-                    className="rounded-2xl border border-slate-300 bg-white p-4"
-                    placeholder="Email"
-                  />
-                  <input
-                    className="rounded-2xl border border-slate-300 bg-white p-4"
-                    value={service || ""}
-                    readOnly
-                  />
-                  <select
-                    className="rounded-2xl border border-slate-300 bg-white p-4 text-slate-700"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Urgency
-                    </option>
-                    <option>Routine</option>
-                    <option>Time sensitive</option>
-                    <option>Urgent</option>
-                  </select>
-                  <textarea
-                    className="rounded-2xl border border-slate-300 bg-white p-4"
-                    rows={7}
-                    placeholder="Briefly describe the requirement, geography, vessel, route, legal issue or market entry question"
-                  />
-                  <Button
-                    type="submit"
-                    className="rounded-2xl bg-[#111827] px-5 py-3 font-semibold text-white hover:bg-[#2b3443]"
-                  >
-                    Submit Request
-                  </Button>
-                </form>
-              )}
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-function HomeServicesGrid({ onOpenPage }) {
-  return (
-    <section id="home-services" className="bg-[#071827] px-6 py-16 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {homeCards.map((item) => (
-          <button
-            key={item.title}
-            type="button"
-            onClick={() => onOpenPage(item.pillarId, item.anchorId)}
-            className="min-h-[260px] rounded-md border border-white/10 bg-white px-7 py-8 text-left shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
-          >
-            <div className="text-4xl leading-none text-[#b5893d]">
-              {item.icon}
-            </div>
-
-            <h3 className="mt-7 text-2xl font-light leading-tight tracking-tight text-[#0f172a]">
-              {item.title}
-            </h3>
-
-            <p className="mt-4 text-sm leading-7 text-slate-700">
-              {item.text}
-            </p>
-
-            <div className="mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#0f172a]">
-              View Service
-              <span className="text-[#b5893d]">→</span>
-            </div>
-          </button>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function HomePage({ onOpenPage }) {
-  function scrollToHomeServices() {
-    document.getElementById("home-services")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-
-  return (
-    <main>
-      <section className="relative h-[88vh] w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/ship.png')" }}
-        />
-        <div className="absolute inset-0 bg-black/5" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/45 via-[#111827]/20 to-transparent" />
-
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
-          <div className="max-w-3xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Trident Risk and Advisory
-            </div>
-
-            <h1 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-              Intelligence led advisory for maritime, geopolitical and legal
-              risk.
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-lg">
-              Supporting shipping, insurance, corporate and legal clients with
-              clear, defensible analysis in complex and high risk environments.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button
-                asChild
-                className="rounded-2xl bg-[#d6b25e] px-8 py-4 text-base font-semibold text-[#111827] hover:bg-[#c19d4a]"
-              >
-                <a href={emailHref}>Ask an Analyst</a>
-              </Button>
-
-              <Button
-                type="button"
-                onClick={scrollToHomeServices}
-                className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
-              >
-                Explore Services
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-[1700px]">
-          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative flex items-center bg-white px-8 py-16 lg:px-14">
-              <div className="max-w-xl">
-                <div className="text-xs uppercase tracking-[0.32em] text-[#b5893d]">
-                  Global Monitoring Centre
-                </div>
-
-                <div className="mt-5 h-px w-20 bg-[#b5893d]" />
-
-                <h2 className="mt-7 text-3xl font-light leading-tight tracking-tight text-[#0f172a] md:text-5xl">
-                  24/7 oversight.
-                  <br />
-                  Real time insight.
-                  <br />
-                  Confident decisions.
-                </h2>
-
-                <p className="mt-6 text-base leading-7 text-slate-700">
-                  Trident operates a 24/7 Global Monitoring Centre providing
-                  continuous oversight of vessel activity, geopolitical
-                  developments and emerging threats.
-                </p>
-              </div>
-
-              <div className="absolute right-0 top-0 hidden h-full w-32 bg-gradient-to-r from-white to-transparent lg:block" />
-            </div>
-
-            <div className="relative min-h-[480px]">
-              <img
-                src="/opr2.png"
-                alt="Global Monitoring Centre operations room"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-black/10" />
-            </div>
-          </div>
-
-          <div className="grid border-t border-slate-200 bg-white lg:grid-cols-4">
-            {[
-              [
-                "24/7 Vessel Tracking",
-                "Continuous monitoring of global vessel movements, routing and behavioural indicators.",
-              ],
-              [
-                "Real Time Incident Monitoring",
-                "Live monitoring of geopolitical escalation, maritime incidents and emerging threats.",
-              ],
-              [
-                "Direct Analyst Support",
-                "Immediate access to experienced analysts during operational or crisis situations.",
-              ],
-              [
-                "Crisis Response Capability",
-                "Support during rapidly evolving incidents affecting vessels, personnel or operations.",
-              ],
-            ].map(([title, text]) => (
-              <div
-                key={title}
-                className="border-b border-slate-200 px-6 py-8 lg:border-b-0 lg:border-r last:border-r-0"
-              >
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
-                  {title}
-                </div>
-
-                <p className="mt-4 text-sm leading-6 text-slate-700">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HomeServicesGrid onOpenPage={onOpenPage} />
-    </main>
-  );
-}
-
-export default function App() {
-  const [page, setPage] = useState("home");
-  const [requestedService, setRequestedService] = useState(null);
-
-  function openPage(pillarId, anchorId) {
-    setRequestedService(null);
-    setPage(pillarId);
-
-    setTimeout(() => {
-      if (anchorId) {
-        document.getElementById(anchorId)?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    }, 100);
-  }
-
-  function goHome() {
-    setRequestedService(null);
-    setPage("home");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  function requestService(service) {
-    setRequestedService(service);
-    setPage("request");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  const activePillar = pillars.find((pillar) => pillar.id === page);
-
-  return (
-    <div className="min-h-screen bg-[#f6f3ec] text-slate-950">
-      <Header onHome={goHome} onOpenPage={openPage} />
-
-      {page === "home" && <HomePage onOpenPage={openPage} />}
-
-      {activePillar && (
-        <PillarPage
-          pillar={activePillar}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      )}
-
-      {page === "request" && (
-        <RequestPage service={requestedService} onBack={goHome} />
-      )}
-
-      <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <img
-              src="/logo.png"
-              alt="Trident Risk and Advisory"
-              className="h-12 w-auto"
-            />
-            <div>
-              <div className="text-xl font-semibold tracking-[0.25em]">
-                TRIDENT
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#071426]">
-                Risk and Advisory
-              </div>
-            </div>
-          </div>
-
-          <a
-            href={emailHref}
-            className="flex items-center gap-3 text-sm text-slate-700 hover:text-[#071426]"
-          >
-            <Mail className="h-5 w-5" strokeWidth={1.5} />
-            {email}
-          </a>
-
-          <div className="flex items-center gap-3 text-sm text-slate-700">
-            <Globe className="h-5 w-5" strokeWidth={1.5} />
-            www.tridentrisk.org
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
+  return null;
 }

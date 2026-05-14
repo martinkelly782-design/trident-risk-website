@@ -24,7 +24,6 @@ import {
   Flag,
   Eye,
   MapPin,
-  Briefcase,
   Radar,
 } from "lucide-react";
 
@@ -428,7 +427,11 @@ const pillars = [
     intro:
       "Maritime cyber services address real world vulnerabilities in navigation, tracking and onboard systems where digital disruption can directly impact operational safety.",
     hero: "/cyberheader.png",
-    services: cyberServices.map((item) => [item.title, imageBank.cyber, item.text]),
+    services: cyberServices.map((item) => [
+      item.title,
+      imageBank.cyber,
+      item.text,
+    ]),
   },
   {
     id: "geopolitical-analysis",
@@ -514,7 +517,11 @@ const pillars = [
     intro:
       "Trident provides operationally grounded legal and expert witness support across maritime security, war risk, charterparty disputes and vessel exposure analysis. Support is delivered by government and military advisors, intelligence specialists and maritime risk professionals with experience across high threat operating environments.",
     hero: "/legalheader.png",
-    services: legalServices.map((item) => [item.title, imageBank.legal, item.text]),
+    services: legalServices.map((item) => [
+      item.title,
+      imageBank.legal,
+      item.text,
+    ]),
   },
 ];
 
@@ -693,19 +700,7 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
             className="min-h-[360px] bg-cover bg-center"
             style={{ backgroundImage: "url('/maritime-threat-map.png')" }}
           >
-            <div className="flex h-full min-h-[360px] items-end bg-gradient-to-t from-[#071426]/70 via-transparent to-transparent p-6">
-              <div className="grid w-full grid-cols-2 gap-3 text-xs text-white md:grid-cols-5">
-                {
-                  .map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-md border border-white/15 bg-[#071426]/75 px-3 py-2 backdrop-blur"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <div className="h-full min-h-[360px] bg-gradient-to-t from-[#071426]/35 via-transparent to-transparent" />
           </div>
         </div>
       </section>

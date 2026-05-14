@@ -18,6 +18,14 @@ import {
   Target,
   Mail,
   Globe,
+  Anchor,
+  Radio,
+  Network,
+  Flag,
+  Eye,
+  MapPin,
+  Briefcase,
+  Radar,
 } from "lucide-react";
 
 const Button = ({ children, asChild, className = "", ...props }) => {
@@ -67,6 +75,8 @@ function slugify(value) {
 
 const imageBank = {
   vessel: "/productAISLarge.webp",
+  maritimeIntelligenceHero: "/maritime-intelligence-header.png",
+  maritimeThreat: "/maritime-threat-map.png",
   ship:
     "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1800&q=85",
   cyber: "/Cyber.webp",
@@ -160,6 +170,102 @@ const caseExperience = [
     "Maritime Incident Reconstruction",
     "Operational reconstruction of events to support legal and insurance outcomes.",
     Clock,
+  ],
+];
+
+const maritimeIntelligenceServices = [
+  {
+    icon: Ship,
+    title: "Vessel Affiliation Checks",
+    text:
+      "Assessment of ownership, management, beneficial control, commercial history and trading behaviour to identify exposure and risk linkages.",
+  },
+  {
+    icon: FileText,
+    title: "Sanctions Exposure Analysis",
+    text:
+      "Screening of vessels, ownership, cargo, routing and counterparties against sanctions regimes and enforcement trends.",
+  },
+  {
+    icon: MapPin,
+    title: "Port Call Risk History",
+    text:
+      "Analysis of historical and recent port calls to identify exposure to high risk jurisdictions, conflict areas and sensitive trading patterns.",
+  },
+  {
+    icon: Target,
+    title: "AIS Manipulation Analysis",
+    text:
+      "Detection of AIS spoofing, dark activity, identity masking and abnormal vessel behaviour patterns.",
+  },
+  {
+    icon: Eye,
+    title: "Dark Activity Assessment",
+    text:
+      "Investigation of AIS silence, loitering, ship to ship activity and suspicious routing behaviour.",
+  },
+  {
+    icon: Flag,
+    title: "Flag and Registry Profiling",
+    text:
+      "Evaluation of flag state risk, registry quality, enforcement posture, ownership jurisdiction and reputational exposure.",
+  },
+  {
+    icon: Users,
+    title: "Counterparty Intelligence",
+    text:
+      "Screening of commercial counterparties, managers, operators and associated entities before engagement.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Pre Charter Risk Intelligence",
+    text:
+      "Decision ready intelligence before fixture, voyage approval, contracting or insurance placement.",
+  },
+  {
+    icon: Anchor,
+    title: "Fleet Exposure Analysis",
+    text:
+      "Assessment of fleet wide exposure to sanctions, dark activity, high risk ports and geopolitical targeting criteria.",
+  },
+  {
+    icon: Globe2,
+    title: "Maritime Threat Assessments",
+    text:
+      "Tailored assessments of regional threats impacting vessels, routes, ports and commercial operations.",
+  },
+];
+
+const maritimeIntelligenceCases = [
+  [
+    "Red Sea Vessel Exposure Reviews",
+    "Threat and exposure assessments for vessels transiting the Red Sea.",
+    Target,
+  ],
+  [
+    "Strait of Hormuz Threat Screening",
+    "Risk screening for vessels operating in the Strait of Hormuz.",
+    Radio,
+  ],
+  [
+    "Israeli Affiliation Assessments",
+    "Affiliation and linkage analysis for Israel related exposure.",
+    Network,
+  ],
+  [
+    "Sanctions Risk Reviews",
+    "Vessel, entity and voyage screening against global sanctions.",
+    Shield,
+  ],
+  [
+    "Dark Fleet Behaviour Analysis",
+    "Behavioural analysis on high risk and dark fleet operations.",
+    Landmark,
+  ],
+  [
+    "Maritime Insurance Support",
+    "Intelligence support for underwriters, P&I clubs and legal teams.",
+    Umbrella,
   ],
 ];
 
@@ -265,44 +371,12 @@ const pillars = [
     title: "Maritime Intelligence",
     intro:
       "Maritime intelligence services are used to understand vessel exposure, ownership risk, sanctions linkage and behavioural indicators before commercial or operational decisions are made.",
-    hero: imageBank.vessel,
-    services: [
-      [
-        "Vessel Affiliation Check",
-        imageBank.vessel,
-        "A structured review of ownership, management, beneficial control and trading behaviour to determine whether a vessel aligns with known targeting profiles or politically sensitive exposure. Used before chartering, insurance placement or transit through high risk regions.",
-      ],
-      [
-        "Sanctions Exposure Analysis",
-        imageBank.port,
-        "Assessment of vessel, ownership, cargo, routing and counterparties against sanctions regimes and enforcement trends. Supports pre fixture checks, compliance validation and avoidance of regulatory or reputational exposure.",
-      ],
-      [
-        "Counterparty Risk Intelligence",
-        imageBank.buildings,
-        "Due diligence on counterparties, ownership structures, operating history and reputational exposure before engagement. Used to identify hidden links, politically exposed interests or adverse reporting.",
-      ],
-      [
-        "Port Call Risk History Analysis",
-        imageBank.port,
-        "Review of recent and historic port calls to identify exposure to sanctioned jurisdictions, conflict areas, high risk ports or politically sensitive trading patterns.",
-      ],
-      [
-        "Dark Activity and AIS Manipulation Analysis",
-        imageBank.map,
-        "Assessment of AIS gaps, spoofing, routing anomalies and suspicious behaviour, including ship to ship transfer indicators. Used to identify sanctions evasion, grey fleet activity and deliberate concealment.",
-      ],
-      [
-        "Flag and Registry Risk Profiling",
-        imageBank.ship,
-        "Assessment of flag state, registry history, ownership jurisdiction and compliance exposure where identity, flag changes or registry selection may affect risk perception.",
-      ],
-      [
-        "Pre Charter Risk Intelligence Reports",
-        imageBank.vessel,
-        "Client ready reporting before fixture or voyage approval, combining vessel profile, route risk, ownership exposure and commercial sensitivity.",
-      ],
-    ],
+    hero: imageBank.maritimeIntelligenceHero,
+    services: maritimeIntelligenceServices.map((item) => [
+      item.title,
+      imageBank.maritimeIntelligenceHero,
+      item.text,
+    ]),
   },
   {
     id: "maritime-security",
@@ -354,11 +428,7 @@ const pillars = [
     intro:
       "Maritime cyber services address real world vulnerabilities in navigation, tracking and onboard systems where digital disruption can directly impact operational safety.",
     hero: "/cyberheader.png",
-    services: cyberServices.map((item) => [
-      item.title,
-      imageBank.cyber,
-      item.text,
-    ]),
+    services: cyberServices.map((item) => [item.title, imageBank.cyber, item.text]),
   },
   {
     id: "geopolitical-analysis",
@@ -444,11 +514,7 @@ const pillars = [
     intro:
       "Trident provides operationally grounded legal and expert witness support across maritime security, war risk, charterparty disputes and vessel exposure analysis. Support is delivered by government and military advisors, intelligence specialists and maritime risk professionals with experience across high threat operating environments.",
     hero: "/legalheader.png",
-    services: legalServices.map((item) => [
-      item.title,
-      imageBank.legal,
-      item.text,
-    ]),
+    services: legalServices.map((item) => [item.title, imageBank.legal, item.text]),
   },
 ];
 
@@ -512,6 +578,220 @@ const homeCards = [
   },
 ];
 
+function CapabilityStrip({ items }) {
+  return (
+    <section className="border-b border-slate-200 bg-white">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-7 md:grid-cols-4 lg:px-8">
+        {items.map(([Icon, text]) => (
+          <div
+            key={text}
+            className="flex items-center gap-5 border-slate-200 md:border-r last:border-r-0"
+          >
+            <Icon className="h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+            <p className="max-w-[190px] text-sm font-medium leading-6 text-[#071426]">
+              {text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function MaritimeIntelligencePage({ onHome, onRequest }) {
+  return (
+    <main className="bg-[#f7f8fa] text-[#071426]">
+      <section
+        className="relative min-h-[580px] bg-cover bg-center"
+        style={{ backgroundImage: "url('/maritime-intelligence-header.png')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/92 via-[#061426]/58 to-[#061426]/12" />
+        <div className="absolute inset-0 bg-[#061426]/10" />
+
+        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
+          <button
+            type="button"
+            onClick={onHome}
+            className="mb-8 text-sm text-white/85 hover:text-white"
+          >
+            Home <span className="mx-2 text-white/40">›</span>
+            <span className="text-[#c4933a]">Maritime Intelligence</span>
+          </button>
+
+          <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
+            Maritime <br /> Intelligence
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
+            Intelligence led vessel, ownership and operational risk analysis for
+            ship owners, charterers, insurers, legal teams and maritime
+            operators.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-5">
+            <Button
+              type="button"
+              onClick={() => onRequest("Maritime Intelligence Support")}
+              className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
+            >
+              Request Intelligence Support →
+            </Button>
+
+            <a
+              href={emailHref}
+              className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"
+            >
+              Speak to an Analyst →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <CapabilityStrip
+        items={[
+          [Ship, "Vessel Intelligence Specialists"],
+          [Scale, "Sanctions and Compliance Analysis"],
+          [Radio, "AIS and Behavioural Monitoring"],
+          [Globe2, "Global Maritime Threat Monitoring"],
+        ]}
+      />
+
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
+          <div className="mb-5 flex items-center gap-4">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+              Threat Landscape
+            </p>
+            <div className="h-px w-10 bg-[#c4933a]" />
+          </div>
+
+          <h2 className="text-4xl font-light leading-tight tracking-tight text-[#071426]">
+            The maritime threat environment is evolving
+          </h2>
+
+          <div className="mt-7 space-y-5 text-sm leading-7 text-slate-700">
+            <p>
+              Vessels are increasingly exposed to a range of risks including
+              ownership linkages, sanctions, AIS manipulation, geopolitical
+              targeting, port call exposure and state or non state threats.
+            </p>
+            <p>
+              Maritime intelligence capability integrates multiple data sources,
+              behavioural analytics, open source intelligence and proprietary
+              monitoring to deliver timely, actionable risk insight.
+            </p>
+            <p>
+              The output supports commercial decisions before fixture, voyage
+              approval, insurance placement, legal review or entry into high
+              risk maritime regions.
+            </p>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
+          <div
+            className="min-h-[360px] bg-cover bg-center"
+            style={{ backgroundImage: "url('/maritime-threat-map.png')" }}
+          >
+            <div className="flex h-full min-h-[360px] items-end bg-gradient-to-t from-[#071426]/70 via-transparent to-transparent p-6">
+              <div className="grid w-full grid-cols-2 gap-3 text-xs text-white md:grid-cols-5">
+                {[
+                  "High Risk Route",
+                  "Sanctioned Port",
+                  "Vessel of Interest",
+                  "AIS Gap",
+                  "Port Call",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-md border border-white/15 bg-[#071426]/75 px-3 py-2 backdrop-blur"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-12 lg:px-8">
+        <div className="mb-5 flex items-center gap-4">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+            Services
+          </p>
+          <div className="h-px w-10 bg-[#c4933a]" />
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {maritimeIntelligenceServices.map(({ icon: Icon, title, text }) => (
+            <article
+              key={title}
+              id={`maritime-intelligence-${slugify(title)}`}
+              className="rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <Icon className="mb-8 h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+              <h3 className="text-lg font-semibold leading-6 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-5 text-sm leading-7 text-slate-700">{text}</p>
+              <button
+                type="button"
+                onClick={() => onRequest(title)}
+                className="mt-7 text-sm font-semibold text-[#b5832f]"
+              >
+                Request this service →
+              </button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
+        <div className="mb-5 flex flex-wrap items-center gap-6">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#071426]">
+            Case Experience
+          </p>
+          <div className="h-px w-10 bg-[#c4933a]" />
+          <p className="text-sm text-slate-500">
+            Operational intelligence and risk support delivered across key
+            maritime environments.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 rounded-md border border-slate-200 bg-white md:grid-cols-3 xl:grid-cols-6">
+          {maritimeIntelligenceCases.map(([title, text, Icon]) => (
+            <div
+              key={title}
+              className="border-b border-slate-200 p-6 text-center md:border-r xl:border-b-0 last:border-r-0"
+            >
+              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-white">
+                <Icon className="h-7 w-7 text-[#071426]" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-sm font-semibold leading-5 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-3 text-xs leading-6 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <BottomCta
+        title="Need maritime intelligence support?"
+        text="24/7 operational intelligence support for ship owners, charterers, insurers and legal teams operating in complex maritime environments."
+        items={[
+          [Radar, "Global Monitoring 24/7"],
+          [Network, "Multi Source Intelligence"],
+          [UserRound, "Expert Analyst Support"],
+        ]}
+        buttonText="Contact Trident →"
+        onClick={() => onRequest("Maritime Intelligence Support")}
+      />
+    </main>
+  );
+}
+
 function LegalPage({ onHome, onRequest }) {
   return (
     <main className="bg-[#f7f8fa] text-[#071426]">
@@ -559,26 +839,14 @@ function LegalPage({ onHome, onRequest }) {
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-7 md:grid-cols-4 lg:px-8">
-          {[
-            [ShieldCheck, "Government and Military Advisors"],
-            [Compass, "Maritime Intelligence Specialists"],
-            [Globe2, "Global Operational Experience"],
-            [Scale, "Court and Arbitration Support"],
-          ].map(([Icon, text]) => (
-            <div
-              key={text}
-              className="flex items-center gap-5 border-slate-200 md:border-r last:border-r-0"
-            >
-              <Icon className="h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
-              <p className="max-w-[190px] text-sm font-medium leading-6 text-[#071426]">
-                {text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <CapabilityStrip
+        items={[
+          [ShieldCheck, "Government and Military Advisors"],
+          [Compass, "Maritime Intelligence Specialists"],
+          [Globe2, "Global Operational Experience"],
+          [Scale, "Court and Arbitration Support"],
+        ]}
+      />
 
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-14 lg:grid-cols-[300px_1fr] lg:px-8">
         <aside className="border-r border-slate-200 pr-8">
@@ -716,26 +984,14 @@ function CyberPage({ onHome, onRequest }) {
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-7 md:grid-cols-4 lg:px-8">
-          {[
-            [ShieldCheck, "Maritime Cyber Specialists"],
-            [Compass, "GNSS and AIS Risk Analysis"],
-            [Target, "Operational Technology Security"],
-            [Globe2, "Global Maritime Threat Monitoring"],
-          ].map(([Icon, text]) => (
-            <div
-              key={text}
-              className="flex items-center gap-5 border-slate-200 md:border-r last:border-r-0"
-            >
-              <Icon className="h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
-              <p className="max-w-[190px] text-sm font-medium leading-6 text-[#071426]">
-                {text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <CapabilityStrip
+        items={[
+          [ShieldCheck, "Maritime Cyber Specialists"],
+          [Compass, "GNSS and AIS Risk Analysis"],
+          [Target, "Operational Technology Security"],
+          [Globe2, "Global Maritime Threat Monitoring"],
+        ]}
+      />
 
       <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
         <div>
@@ -993,6 +1249,10 @@ function Header({ onHome, onOpenPage }) {
 }
 
 function PillarPage({ pillar, onHome, onRequest }) {
+  if (pillar.id === "maritime-intelligence") {
+    return <MaritimeIntelligencePage onHome={onHome} onRequest={onRequest} />;
+  }
+
   if (pillar.id === "legal") {
     return <LegalPage onHome={onHome} onRequest={onRequest} />;
   }

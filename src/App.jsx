@@ -325,38 +325,51 @@ function HeroSection({
   onPrimary,
   onHome,
 }) {
-  return (
-    <section className="relative min-h-[580px] bg-cover bg-center" style={{ backgroundImage: `url('${image}')` }}>
-            <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-        <didiv>
+ return (
+  <section
+    className="relative min-h-[580px] bg-cover bg-center"
+    style={{ backgroundImage: `url('${image}')` }}
+  >
+    <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/90 to-[#061426]/65" />
+    <div className="absolute inset-0 bg-black/25" />
 
-      <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
-        <button
+    <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
+      <button
+        type="button"
+        onClick={onHome}
+        className="mb-8 text-sm text-white/85 hover:text-white"
+      >
+        Home <span className="mx-2 text-white/40">›</span>
+        <span className="text-[#c4933a]">{label}</span>
+      </button>
+
+      <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
+        {title}
+      </h1>
+
+      <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
+        {subtitle}
+      </p>
+
+      <div className="mt-8 flex flex-wrap gap-5">
+        <Button
           type="button"
-          onClick={onHome}
-          className="mb-8 text-sm text-white/85 hover:text-white"
+          onClick={onPrimary}
+          className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
         >
-          Home <span className="mx-2 text-white/40">›</span>
-          <span className="text-[#c4933a]">{label}</span>
-        </button>
+          {primaryText} →
+        </Button>
 
-        <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
-          {title}
-        </h1>
-
-        <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
-          {subtitle}
-        </p>
-
-        <div className="mt-8 flex flex-wrap gap-5">
-          <Button
-            type="button"
-            onClick={onPrimary}
-            className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
-          >
-            {primaryText} →
-          </Button>
-
+        <a
+          href={emailHref}
+          className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"
+        >
+          Speak to an Analyst →
+        </a>
+      </div>
+    </div>
+  </section>
+);
           <a
             href={emailHref}
             className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"

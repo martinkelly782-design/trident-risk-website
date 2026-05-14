@@ -328,7 +328,7 @@ function HeroSection({
   return (
     <section className="relative min-h-[580px] bg-cover bg-center" style={{ backgroundImage: `url('${image}')` }}>
             <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-        <div>
+        <didiv>
 
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
         <button

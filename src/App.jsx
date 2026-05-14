@@ -1,4 +1,24 @@
 import React, { useState } from "react";
+import {
+  ShieldCheck,
+  Compass,
+  Globe2,
+  Scale,
+  UserRound,
+  FileText,
+  Shield,
+  Umbrella,
+  ClipboardCheck,
+  Landmark,
+  Users,
+  Mic,
+  Ship,
+  Search,
+  Clock,
+  Target,
+  Mail,
+  Globe,
+} from "lucide-react";
 
 const Button = ({ children, asChild, className = "", ...props }) => {
   if (asChild && React.isValidElement(children)) {
@@ -58,6 +78,90 @@ const imageBank = {
   port:
     "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=85",
 };
+
+const legalServices = [
+  {
+    icon: UserRound,
+    title: "Expert Witness",
+    text:
+      "Independent expert opinion on maritime security exposure, targeting risk and operational decision making.",
+  },
+  {
+    icon: FileText,
+    title: "Charterparty Dispute Support",
+    text:
+      "Support relating to war risk clauses, deviation, delay, unsafe ports and routing decisions.",
+  },
+  {
+    icon: Shield,
+    title: "War Risk and Real Danger Assessments",
+    text:
+      "Assessment of real danger thresholds affecting vessels, ports and operating areas.",
+  },
+  {
+    icon: Umbrella,
+    title: "P&I and Insurance Claim Support",
+    text:
+      "Operational analysis supporting P&I, H&M, war risk and business interruption claims.",
+  },
+  {
+    icon: ClipboardCheck,
+    title: "Standard of Care Analysis",
+    text:
+      "Assessment of whether reasonable maritime security precautions were implemented.",
+  },
+  {
+    icon: Landmark,
+    title: "Court and Arbitration Support",
+    text:
+      "Technical reports, counsel briefings and evidential support for court or arbitration proceedings.",
+  },
+  {
+    icon: Users,
+    title: "Joint Expert Meetings",
+    text:
+      "Issue narrowing, agreed statements and professional engagement with opposing experts.",
+  },
+  {
+    icon: Mic,
+    title: "Oral Evidence Preparation",
+    text:
+      "Preparation for cross examination and technical explanation of complex maritime risk matters.",
+  },
+];
+
+const caseExperience = [
+  [
+    "War Risk and Real Danger Assessments",
+    "Credible risk evaluations for vessels, ports and operating areas.",
+    Target,
+  ],
+  [
+    "Houthi and Red Sea Exposure Analysis",
+    "Operational analysis of threat activity, targeting and vessel exposure.",
+    Ship,
+  ],
+  [
+    "Strait of Hormuz Transit Risk",
+    "Risk assessments relating to transit, military activity and regional tensions.",
+    Compass,
+  ],
+  [
+    "Vessel Attribution and Ownership Analysis",
+    "Support in establishing vessel identity, affiliation and beneficial ownership.",
+    Search,
+  ],
+  [
+    "Insurance and Charterparty Support",
+    "Assistance in claims, disputes and coverage related matters.",
+    FileText,
+  ],
+  [
+    "Maritime Incident Reconstruction",
+    "Operational reconstruction of events to support legal and insurance outcomes.",
+    Clock,
+  ],
+];
 
 const pillars = [
   {
@@ -267,52 +371,15 @@ const pillars = [
   },
   {
     id: "legal",
-  title: "Legal",
-  intro:
-    "Trident’s legal and expert witness capability is delivered by former US Navy specialists, intelligence advisors and maritime risk professionals with global operational experience across high risk environments. The service supports counsel, insurers and commercial stakeholders with clear, defensible opinion grounded in real world operational context.",
-  hero: "/legalheader.png",
-    services: [
-      [
-        "Expert Witness",
-        imageBank.legal,
-        "Independent expert opinion grounded in operational maritime experience, supporting proceedings involving war risk, vessel exposure and security decision making.",
-      ],
-      [
-        "Charterparty Dispute Support",
-        imageBank.ship,
-        "Support in disputes involving voyage risk, routing decisions, war risk clauses, port safety, deviation, delay and exposure to armed threat.",
-      ],
-      [
-        "War Risk and Real Danger Assessments",
-        imageBank.map,
-        "Structured assessment of whether a vessel, voyage, port or operating area faced a credible risk threshold at a material time.",
-      ],
-      [
-        "P and I Claim Support",
-        imageBank.buildings,
-        "Analysis supporting P and I, hull and machinery, war risk, kidnap and ransom or business interruption claims linked to maritime security events.",
-      ],
-      [
-        "Standard of Care Analysis",
-        imageBank.legal,
-        "Assessment of whether actions taken before, during or after an incident aligned with accepted maritime security practice and reasonable precautions.",
-      ],
-      [
-        "Court and Arbitration Support",
-        imageBank.legal,
-        "Preparation of expert reports, technical notes, counsel briefings and evidential material for court or arbitration proceedings.",
-      ],
-      [
-        "Joint Expert Meetings",
-        imageBank.legal,
-        "Support for joint expert discussions, issue narrowing, agreed statements and professional engagement with opposing experts.",
-      ],
-      [
-        "Oral Evidence Preparation",
-        imageBank.legal,
-        "Preparation for oral evidence, cross examination, technical explanation and clear presentation of complex maritime risk matters.",
-      ],
-    ],
+    title: "Legal",
+    intro:
+      "Trident provides operationally grounded legal and expert witness support across maritime security, war risk, charterparty disputes and vessel exposure analysis. Support is delivered by government and military advisors, intelligence specialists and maritime risk professionals with experience across high threat operating environments.",
+    hero: "/legalheader.png",
+    services: legalServices.map((item) => [
+      item.title,
+      imageBank.legal,
+      item.text,
+    ]),
   },
 ];
 
@@ -360,9 +427,9 @@ const homeCards = [
     pillarId: "legal",
   },
   {
-      icon: "⚓︎",
-  title: "Ports and Infrastructure",
-       text:
+    icon: "⚓︎",
+    title: "Ports and Infrastructure",
+    text:
       "Assess and manage risk to ports, infrastructure and maritime operations across critical environments.",
     pillarId: "maritime-security",
   },
@@ -375,6 +442,194 @@ const homeCards = [
     anchorId: "maritime-security-crisis-response-and-incident-management",
   },
 ];
+
+function LegalPage({ onHome, onRequest }) {
+  return (
+    <main className="bg-[#f7f8fa] text-[#071426]">
+      <section
+        className="relative min-h-[520px] bg-cover bg-center"
+        style={{ backgroundImage: "url('/legalheader.png')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/88 via-[#061426]/58 to-[#061426]/12" />
+
+        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
+          <button
+            type="button"
+            onClick={onHome}
+            className="mb-8 text-sm text-white/85 hover:text-white"
+          >
+            Home <span className="mx-2 text-white/40">›</span>
+            <span className="text-[#c4933a]">Legal</span>
+          </button>
+
+          <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
+            Legal and <br /> Expert Witness Support
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
+            Operationally grounded maritime legal advisory for insurers, counsel
+            and commercial stakeholders operating in complex environments.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-5">
+            <Button
+              type="button"
+              onClick={() => onRequest("Legal and Expert Witness Support")}
+              className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
+            >
+              Request Advisory Support →
+            </Button>
+
+            <a
+              href={emailHref}
+              className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"
+            >
+              Speak to an Analyst →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-7 md:grid-cols-4 lg:px-8">
+          {[
+            [ShieldCheck, "Government and Military Advisors"],
+            [Compass, "Maritime Intelligence Specialists"],
+            [Globe2, "Global Operational Experience"],
+            [Scale, "Court and Arbitration Support"],
+          ].map(([Icon, text]) => (
+            <div
+              key={text}
+              className="flex items-center gap-5 border-slate-200 md:border-r last:border-r-0"
+            >
+              <Icon className="h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+              <p className="max-w-[190px] text-sm font-medium leading-6 text-[#071426]">
+                {text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-14 lg:grid-cols-[300px_1fr] lg:px-8">
+        <aside className="border-r border-slate-200 pr-8">
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+            Overview
+          </p>
+          <p className="text-sm leading-7 text-slate-700">
+            Trident provides operationally grounded legal and expert witness
+            support across maritime security, war risk, charterparty disputes
+            and vessel exposure analysis. Support is delivered by government
+            and military advisors, intelligence specialists and maritime risk
+            advisors with experience across high threat operating environments.
+          </p>
+        </aside>
+
+        <div>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+            Services
+          </p>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {legalServices.map(({ icon: Icon, title, text }) => (
+              <article
+                key={title}
+                id={`legal-${slugify(title)}`}
+                className="rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              >
+                <Icon className="mb-8 h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+                <h3 className="text-lg font-semibold leading-6 text-[#071426]">
+                  {title}
+                </h3>
+                <p className="mt-5 text-sm leading-7 text-slate-700">{text}</p>
+                <button
+                  type="button"
+                  onClick={() => onRequest(title)}
+                  className="mt-7 text-sm font-semibold text-[#b5832f]"
+                >
+                  Request this service →
+                </button>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
+        <div className="mb-5 flex flex-wrap items-center gap-6">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#071426]">
+            Case Experience
+          </p>
+          <div className="h-px w-10 bg-[#c4933a]" />
+          <p className="text-sm text-slate-500">
+            Support provided across a wide range of complex maritime matters.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 rounded-md border border-slate-200 bg-white md:grid-cols-3 xl:grid-cols-6">
+          {caseExperience.map(([title, text, Icon]) => (
+            <div
+              key={title}
+              className="border-b border-slate-200 p-6 text-center md:border-r xl:border-b-0 last:border-r-0"
+            >
+              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#071426]">
+                <Icon className="h-6 w-6 text-white" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-sm font-semibold leading-5 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-3 text-xs leading-6 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-14 lg:px-8">
+        <div className="relative overflow-hidden rounded-xl bg-[#071426] px-8 py-10 shadow-2xl">
+          <div className="absolute left-0 bottom-0 h-full w-[36%] bg-[url('/globe.png')] bg-cover bg-left opacity-80" />
+          <div className="relative ml-auto max-w-4xl">
+            <h2 className="text-3xl font-light text-white">
+              Need operational legal support?
+            </h2>
+            <p className="mt-3 text-sm text-white/85">
+              24/7 analyst support for legal teams, insurers and commercial
+              operators.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr_1fr_auto]">
+              <div className="flex items-center gap-3 text-white">
+                <Clock className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
+                <span className="text-sm">Rapid Global Response</span>
+              </div>
+
+              <div className="flex items-center gap-3 text-white">
+                <Target className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
+                <span className="text-sm">
+                  Operationally Grounded Analysis
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3 text-white">
+                <Users className="h-7 w-7 text-[#c4933a]" strokeWidth={1.5} />
+                <span className="text-sm">
+                  Support for Legal Teams, Insurers and Commercial Operators
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => onRequest("Operational Legal Support")}
+                className="rounded-md bg-[#c4933a] px-8 py-4 text-center text-sm font-semibold text-white hover:bg-[#ad7f2e]"
+              >
+                Contact Trident →
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
 
 function ServiceCard({ service, pillarId, onRequest }) {
   const [title, image, summary] = service;
@@ -488,6 +743,10 @@ function Header({ onHome, onOpenPage }) {
 }
 
 function PillarPage({ pillar, onHome, onRequest }) {
+  if (pillar.id === "legal") {
+    return <LegalPage onHome={onHome} onRequest={onRequest} />;
+  }
+
   return (
     <main>
       <section className="relative overflow-hidden border-b border-slate-200">
@@ -907,21 +1166,32 @@ export default function App() {
         <RequestPage service={requestedService} onBack={goHome} />
       )}
 
-      <footer className="bg-[#111827] px-6 py-12 text-white lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <div className="text-xl font-semibold tracking-tight">TRIDENT</div>
-            <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#d6b25e]">
-              Risk and Advisory
+      <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-4">
+            <img src="/logo.png" alt="Trident Risk and Advisory" className="h-12 w-auto" />
+            <div>
+              <div className="text-xl font-semibold tracking-[0.25em]">
+                TRIDENT
+              </div>
+              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#071426]">
+                Risk and Advisory
+              </div>
             </div>
           </div>
 
           <a
             href={emailHref}
-            className="text-sm text-slate-300 hover:text-white"
+            className="flex items-center gap-3 text-sm text-slate-700 hover:text-[#071426]"
           >
+            <Mail className="h-5 w-5" strokeWidth={1.5} />
             {email}
           </a>
+
+          <div className="flex items-center gap-3 text-sm text-slate-700">
+            <Globe className="h-5 w-5" strokeWidth={1.5} />
+            www.tridentrisk.org
+          </div>
         </div>
       </footer>
     </div>

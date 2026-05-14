@@ -327,8 +327,8 @@ function HeroSection({
 }) {
   return (
     <section className="relative min-h-[580px] bg-cover bg-center" style={{ backgroundImage: `url('${image}')` }}>
-      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/90 to-[#061426]/65" />
-<div className="absolute inset-0 bg-black/25" />
+            <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
 
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
         <button
@@ -742,7 +742,7 @@ function CyberPage({ onHome, onRequest }) {
         ]}
       />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div>
           <p className="mb-5 text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
             Threat Landscape

@@ -1628,4 +1628,3 @@ function HomePage({ onOpenPage }) {
     </main>
   );
 }
-}

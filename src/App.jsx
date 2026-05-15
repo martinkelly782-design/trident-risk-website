@@ -1616,7 +1616,29 @@ function HomePage({ onOpenPage }) {
     </main>
   );
 }
+function LegalInfoPage({ title, children, onHome }) {
+  return (
+    <main className="bg-[#f7f8fa] text-[#071426]">
+      <section className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
+        <button
+          type="button"
+          onClick={onHome}
+          className="mb-8 text-sm font-semibold text-[#b5832f]"
+        >
+          Back to Home
+        </button>
 
+        <h1 className="text-4xl font-light tracking-tight text-[#071426] md:text-5xl">
+          {title}
+        </h1>
+
+        <div className="mt-10 space-y-6 text-sm leading-7 text-slate-700">
+          {children}
+        </div>
+      </section>
+    </main>
+  );
+}
 export default function App() {
   const [page, setPage] = useState("home");
   const [requestedService, setRequestedService] = useState(null);
@@ -1636,7 +1658,11 @@ export default function App() {
       }
     }, 100);
   }
-
+function openLegalPage(pageName) {
+  setRequestedService(null);
+  setPage(pageName);
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
   function goHome() {
     setRequestedService(null);
     setPage("home");
@@ -1670,7 +1696,21 @@ export default function App() {
       {page === "request" && (
         <RequestPage service={requestedService} onBack={goHome} />
       )}
+{page === "legal" && (
+  <LegalPage />
+)}
 
+{page === "privacy" && (
+  <LegalInfoPage title="Privacy Policy" onHome={goHome}>
+    ...
+  </LegalInfoPage>
+)}
+
+{page === "terms" && (
+  <LegalInfoPage title="Terms and Conditions" onHome={goHome}>
+    ...
+  </LegalInfoPage>
+)}
       <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
@@ -1702,6 +1742,20 @@ export default function App() {
             www.tridentrisk.org
           </div>
         </div>
+        <div className="flex flex-wrap gap-5 text-sm text-slate-600">
+  <button type="button" onClick={() => openLegalPage("privacy")}>
+    Privacy Policy
+  </button>
+  <button type="button" onClick={() => openLegalPage("terms")}>
+    Terms and Conditions
+  </button>
+  <button type="button" onClick={() => openLegalPage("cookies")}>
+    Cookie Policy
+  </button>
+  <button type="button" onClick={() => openLegalPage("disclaimer")}>
+    Disclaimer
+  </button>
+</div>
       </footer>
     </div>
   );

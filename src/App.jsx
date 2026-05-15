@@ -868,8 +868,6 @@ function CyberPage({ onHome, onRequest }) {
     </main>
   );
 }
-function CyberPage({ onHome, onRequest }) {
-}
 
 function MarketEntryPage({ onHome, onRequest }) {
   return (
@@ -878,8 +876,6 @@ function MarketEntryPage({ onHome, onRequest }) {
   );
 }
 
-function ServiceCard({ service, pillarId, onRequest }) {
-}
 function ServiceCard({ service, pillarId, onRequest }) {
   const [title, image, summary] = service;
 

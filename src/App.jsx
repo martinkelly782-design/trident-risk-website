@@ -1406,7 +1406,7 @@ function RequestPage({ service, onBack }) {
   <input
     type="hidden"
     name="access_key"
-    value="YOUR_WEB3FORMS_KEY_HERE"
+    value="3ed4af11-82d6-4509-a547-158e82711f20"
   />
 
   <input
@@ -1414,11 +1414,29 @@ function RequestPage({ service, onBack }) {
     name="service_requested"
     id="service_requested"
   />
-                  <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Name" />
-                  <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Company" />
-                  <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Email" />
-                  <input className="rounded-2xl border border-slate-300 bg-white p-4" value={service || ""} readOnly />
-                  <select className="rounded-2xl border border-slate-300 bg-white p-4 text-slate-700" defaultValue="">
+                  <input
+  name="name"
+  className="rounded-2xl border border-slate-300 bg-white p-4"
+  placeholder="Name"
+/>
+                  <input
+  name="company"
+  className="rounded-2xl border border-slate-300 bg-white p-4"
+  placeholder="Company"
+/>
+                  <input
+  name="email"
+  type="email"
+  className="rounded-2xl border border-slate-300 bg-white p-4"
+  placeholder="Email"
+/>
+                  <input
+  name="service_display"
+  className="rounded-2xl border border-slate-300 bg-white p-4"
+  value={service || ""}
+  readOnly
+/>
+                  <select name="urgency" className="rounded-2xl border border-slate-300 bg-white p-4 text-slate-700" defaultValue="">
                     <option value="" disabled>
                       Urgency
                     </option>
@@ -1427,6 +1445,7 @@ function RequestPage({ service, onBack }) {
                     <option>Urgent</option>
                   </select>
                   <textarea
+  name="message"
                     className="rounded-2xl border border-slate-300 bg-white p-4"
                     rows={7}
                     placeholder="Briefly describe the requirement, geography, vessel, route, legal issue or market entry question"

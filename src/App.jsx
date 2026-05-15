@@ -716,14 +716,13 @@ function MaritimeSecurityPage({ onHome, onRequest }) {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
-          <div
-            className="min-h-[360px] bg-cover bg-center"
-            style={{ backgroundImage: "url('/maritime-security-threat.png')" }}
-          >
-            <div className="h-full min-h-[360px] bg-gradient-to-t from-[#071426]/35 via-transparent to-transparent" />
-          </div>
-        </div>
+        <div className="overflow-hidden rounded-xl border border-slate-200 shadow-xl">
+  <img
+    src="/maritime-security-threat.png"
+    alt="Maritime security threat environment"
+    className="h-full min-h-[360px] w-full object-cover object-center"
+  />
+</div>
       </section>
 
       <ServicesGrid
@@ -1634,7 +1633,7 @@ export default function App() {
           block: "start",
         });
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
     }, 100);
   }
@@ -1642,7 +1641,9 @@ export default function App() {
   function goHome() {
     setRequestedService(null);
     setPage("home");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+  window.scrollTo({ top: 0, behavior: "auto" });
+}, 50);
   }
 
   function requestService(service) {

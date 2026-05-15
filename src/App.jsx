@@ -1007,7 +1007,8 @@ function MarketEntryPage({ onHome, onRequest }) {
         className="relative min-h-[580px] bg-cover bg-center"
         style={{ backgroundImage: "url('/market-entry-header.png')" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/96 via-[#061426]/72 to-[#061426]/28" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/88 to-[#061426]/60" />
+<div className="absolute inset-0 bg-black/35" />
 
         <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
           <button

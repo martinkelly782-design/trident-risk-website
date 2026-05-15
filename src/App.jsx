@@ -871,11 +871,31 @@ function CyberPage({ onHome, onRequest }) {
 
 function MarketEntryPage({ onHome, onRequest }) {
   return (
-    <main>
+    <main className="bg-[#f7f8fa] text-[#071426]">
+      <section className="px-6 py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <button
+            type="button"
+            onClick={onHome}
+            className="mb-8 text-sm text-[#071426]"
+          >
+            Home › Market Entry
+          </button>
+
+          <h1 className="text-6xl font-light text-[#071426]">
+            Market Entry
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
+            Market entry services support organisations entering complex
+            environments by identifying risk, shaping strategy and avoiding
+            exposure before commitment.
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
-
 function ServiceCard({ service, pillarId, onRequest }) {
   const [title, image, summary] = service;
 

@@ -212,11 +212,75 @@ const cyberCases = [
   ["Maritime Cyber Incident Response", "Support during live incidents affecting vessels, networks or critical operations.", Clock],
 ];
 const marketEntryServices = [
-  ...
+  {
+    icon: Globe2,
+    title: "Country Entry Risk Assessments",
+    text:
+      "Assessment of political, security, regulatory and reputational risk prior to market entry, investment, mobilisation or commercial commitment.",
+  },
+  {
+    icon: Anchor,
+    title: "Port and Infrastructure Feasibility Studies",
+    text:
+      "Risk led review of ports, terminals, logistics corridors, energy infrastructure and physical operating environments before investment or mobilisation.",
+  },
+  {
+    icon: Scale,
+    title: "Regulatory and Compliance Mapping",
+    text:
+      "Mapping of regulatory requirements, licensing exposure, sanctions considerations, local constraints and compliance pressure points.",
+  },
+  {
+    icon: Users,
+    title: "Local Partner Due Diligence",
+    text:
+      "Intelligence led review of local partners, agents, suppliers, owners, politically exposed persons and reputational risk indicators.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Security Framework Design for New Operations",
+    text:
+      "Design of practical security frameworks for new offices, sites, port operations, offshore activity, project teams and executive travel.",
+  },
+  {
+    icon: Network,
+    title: "Supply Chain Risk Mapping",
+    text:
+      "Assessment of supply chain vulnerabilities, chokepoints, political exposure, transport disruption and third party dependency risk.",
+  },
 ];
 
 const marketEntryCases = [
-  ...
+  [
+    "Country Entry Reviews",
+    "Pre entry risk assessments for complex or unstable markets.",
+    Globe2,
+  ],
+  [
+    "Port and Logistics Access",
+    "Review of operating conditions around ports, terminals and logistics routes.",
+    Anchor,
+  ],
+  [
+    "Partner Risk Screening",
+    "Due diligence on agents, suppliers, partners and local counterparties.",
+    Users,
+  ],
+  [
+    "Regulatory Exposure",
+    "Mapping of licensing, sanctions, compliance and political constraints.",
+    Scale,
+  ],
+  [
+    "Operational Security Design",
+    "Security planning for new offices, sites and project activity.",
+    ShieldCheck,
+  ],
+  [
+    "Supply Chain Resilience",
+    "Assessment of disruption exposure across routes, suppliers and chokepoints.",
+    Network,
+  ],
 ];
 const pillars = [
   {

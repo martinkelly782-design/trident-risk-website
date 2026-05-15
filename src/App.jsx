@@ -1701,6 +1701,7 @@ function openLegalPage(pageName) {
   <RequestPage service={requestedService} onBack={goHome} />
 )}
 
+      
 {page === "privacy" && (
   <LegalInfoPage title="Privacy Policy" onHome={goHome}>
     <p>

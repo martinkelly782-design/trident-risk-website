@@ -509,15 +509,12 @@ function ServicesGrid({ services, prefix, onRequest, columns = "xl:grid-cols-4" 
             </h3>
             <p className="mt-5 text-sm leading-7 text-slate-700">{text}</p>
             <button
-              type="button"
-              onClick={() => {
-  document.getElementById("service_requested").value = title;
-  document.getElementById("request-form").scrollIntoView();
-}}
-              className="mt-7 text-sm font-semibold text-[#b5832f]"
-            >
-              Request this service →
-            </button>
+  type="button"
+  onClick={() => onRequest(title)}
+  className="mt-7 text-sm font-semibold text-[#b5832f]"
+>
+  Request this service →
+</button>
           </article>
         ))}
       </div>

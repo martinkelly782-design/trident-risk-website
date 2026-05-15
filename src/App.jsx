@@ -1397,6 +1397,7 @@ function RequestPage({ service, onBack }) {
                     secure email.
                   </p>
                 </div>
+      ) : (
             <form
   action="https://api.web3forms.com/submit"
   method="POST"

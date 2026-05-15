@@ -1728,11 +1728,7 @@ function openLegalPage(pageName) {
     <p>...</p>
   </LegalInfoPage>
 )}
-
-<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">     
-
-<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
-{page === "legal" && (
+      {page === "legal" && (
   <LegalPage />
 )}
 
@@ -1820,3 +1816,8 @@ function openLegalPage(pageName) {
     </div>
   );
 }
+
+
+<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">     
+
+<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">

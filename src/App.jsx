@@ -1503,183 +1503,7 @@ function HomePage({ onOpenPage }) {
     });
   }
 
-  return (
-    <main>
-      <section className="relative h-[88vh] w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/ship.png')" }}
-        />
-        <div className="absolute inset-0 bg-black/5" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/45 via-[#111827]/20 to-transparent" />
-
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
-          <div className="max-w-3xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Trident Risk and Advisory
-            </div>
-
-            <h1 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-              Intelligence led advisory for maritime, geopolitical and legal
-              risk.
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-lg">
-              Supporting shipping, insurance, corporate and legal clients with
-              clear, defensible analysis in complex and high risk environments.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button
-                asChild
-                className="rounded-2xl bg-[#d6b25e] px-8 py-4 text-base font-semibold text-[#111827] hover:bg-[#c19d4a]"
-              >
-                <a href={emailHref}>Ask an Analyst</a>
-              </Button>
-
-              <Button
-                type="button"
-                onClick={scrollToHomeServices}
-                className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
-              >
-                Explore Services
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-[1700px]">
-          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative flex items-center bg-white px-8 py-16 lg:px-14">
-              <div className="max-w-xl">
-                <div className="text-xs uppercase tracking-[0.32em] text-[#b5893d]">
-                  Global Monitoring Centre
-                </div>
-
-                <div className="mt-5 h-px w-20 bg-[#b5893d]" />
-
-                <h2 className="mt-7 text-3xl font-light leading-tight tracking-tight text-[#0f172a] md:text-5xl">
-                  24/7 oversight.
-                  <br />
-                  Real time insight.
-                  <br />
-                  Confident decisions.
-                </h2>
-
-                <p className="mt-6 text-base leading-7 text-slate-700">
-                  Trident operates a 24/7 Global Monitoring Centre providing
-                  continuous oversight of vessel activity, geopolitical
-                  developments and emerging threats.
-                </p>
-              </div>
-
-              <div className="absolute right-0 top-0 hidden h-full w-32 bg-gradient-to-r from-white to-transparent lg:block" />
-            </div>
-
-            <div className="relative min-h-[480px]">
-              <img
-                src="/opr2.png"
-                alt="Global Monitoring Centre operations room"
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-black/10" />
-            </div>
-          </div>
-
-          <div className="grid border-t border-slate-200 bg-white lg:grid-cols-4">
-            {[
-              ["24/7 Vessel Tracking", "Continuous monitoring of global vessel movements, routing and behavioural indicators."],
-              ["Real Time Incident Monitoring", "Live monitoring of geopolitical escalation, maritime incidents and emerging threats."],
-              ["Direct Analyst Support", "Immediate access to experienced analysts during operational or crisis situations."],
-              ["Crisis Response Capability", "Support during rapidly evolving incidents affecting vessels, personnel or operations."],
-            ].map(([title, text]) => (
-              <div
-                key={title}
-                className="border-b border-slate-200 px-6 py-8 lg:border-b-0 lg:border-r last:border-r-0"
-              >
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
-                  {title}
-                </div>
-
-                <p className="mt-4 text-sm leading-6 text-slate-700">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HomeServicesGrid onOpenPage={onOpenPage} />
-    </main>
-  );
-}
-function LegalInfoPage({ title, children, onHome }) {
-  return (
-    <main className="bg-[#f7f8fa] text-[#071426]">
-      <section className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
-        <button
-          type="button"
-          onClick={onHome}
-          className="mb-8 text-sm font-semibold text-[#b5832f]"
-        >
-          Back to Home
-        </button>
-
-        <h1 className="text-4xl font-light tracking-tight text-[#071426] md:text-5xl">
-          {title}
-        </h1>
-
-        <div className="mt-10 space-y-6 text-sm leading-7 text-slate-700">
-          {children}
-        </div>
-      </section>
-    </main>
-  );
-}
-export default function App() {
-  const [page, setPage] = useState("home");
-  const [requestedService, setRequestedService] = useState(null);
-
-  function openPage(pillarId, anchorId) {
-    setRequestedService(null);
-    setPage(pillarId);
-
-    setTimeout(() => {
-      if (anchorId) {
-        document.getElementById(anchorId)?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      } else {
-        window.scrollTo({ top: 0, behavior: "auto" });
-      }
-    }, 100);
-  }
-function openLegalPage(pageName) {
-  setRequestedService(null);
-  setPage(pageName);
-  window.scrollTo({ top: 0, behavior: "auto" });
-}
-  function goHome() {
-    setRequestedService(null);
-    setPage("home");
-    setTimeout(() => {
-  window.scrollTo({ top: 0, behavior: "auto" });
-}, 50);
-  }
-
-  function requestService(service) {
-    setRequestedService(service);
-    setPage("request");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  const activePillar = pillars.find((pillar) => pillar.id === page);
-
-  return (
+    return (
     <div className="min-h-screen bg-[#f6f3ec] text-slate-950">
       <Header onHome={goHome} onOpenPage={openPage} />
 
@@ -1697,76 +1521,104 @@ function openLegalPage(pageName) {
         <RequestPage service={requestedService} onBack={goHome} />
       )}
 
-      {page === "request" && (
-  <RequestPage service={requestedService} onBack={goHome} />
-)}
+      {page === "privacy" && (
+        <LegalInfoPage title="Privacy Policy" onHome={goHome}>
+          <p>
+            Trident Risk and Advisory respects the privacy of individuals and
+            organisations that engage with this website. Information submitted
+            through this website may include names, email addresses, company
+            details and information provided in enquiry forms.
+          </p>
+          <p>
+            This information is used to respond to enquiries, provide requested
+            services, manage client communications and maintain appropriate
+            business records. Trident does not sell personal information to third
+            parties.
+          </p>
+          <p>
+            Reasonable technical and organisational measures are used to protect
+            information submitted to Trident. Users may contact Trident to
+            request access, correction or deletion of their personal information
+            where applicable.
+          </p>
+          <p>Contact: intelligence@tridentrisk.org</p>
+        </LegalInfoPage>
+      )}
 
- {page === "request" && (
-  <RequestPage service={requestedService} onBack={goHome} />
-)}
+      {page === "terms" && (
+        <LegalInfoPage title="Terms and Conditions" onHome={goHome}>
+          <p>
+            This website is provided for general information about Trident Risk
+            and Advisory and its services. Use of this website does not create a
+            client, advisory, contractual or professional relationship unless
+            separately agreed in writing.
+          </p>
+          <p>
+            Content on this website is provided for general informational
+            purposes only and should not be relied upon as specific security,
+            legal, insurance, operational or commercial advice.
+          </p>
+          <p>
+            Trident Risk and Advisory reserves the right to amend, update or
+            remove website content without notice.
+          </p>
+          <p>
+            Users should obtain tailored professional advice before making
+            security, operational, legal or commercial decisions based on
+            information presented on this website.
+          </p>
+          <p>Contact: intelligence@tridentrisk.org</p>
+        </LegalInfoPage>
+      )}
 
-{page === "privacy" && (
-  <LegalInfoPage title="Privacy Policy" onHome={goHome}>
-    <p>...</p>
-  </LegalInfoPage>
-)}
+      {page === "cookies" && (
+        <LegalInfoPage title="Cookie Policy" onHome={goHome}>
+          <p>
+            This website may use cookies and similar technologies to support site
+            functionality, improve user experience and understand website usage.
+          </p>
+          <p>
+            Cookies may be used for performance monitoring, analytics, security
+            and operational functionality.
+          </p>
+          <p>
+            Users can control or disable cookies through their browser settings.
+            Disabling cookies may affect the functionality or performance of
+            certain sections of the website.
+          </p>
+          <p>
+            If third party analytics or advertising tools are added in the
+            future, this policy may be updated accordingly.
+          </p>
+          <p>Contact: intelligence@tridentrisk.org</p>
+        </LegalInfoPage>
+      )}
 
-{page === "terms" && (
-  <LegalInfoPage title="Terms and Conditions" onHome={goHome}>
-    <p>...</p>
-  </LegalInfoPage>
-)}
+      {page === "disclaimer" && (
+        <LegalInfoPage title="Disclaimer" onHome={goHome}>
+          <p>
+            Information presented on this website is provided for general
+            awareness and informational purposes only.
+          </p>
+          <p>
+            The content does not constitute legal advice, insurance advice,
+            operational instruction, cyber security advice or a formal risk
+            assessment unless separately commissioned and delivered under written
+            agreement.
+          </p>
+          <p>
+            Maritime, geopolitical, cyber and security conditions can change
+            rapidly. Users should obtain specific professional advice before
+            making operational, commercial or security decisions.
+          </p>
+          <p>
+            Trident Risk and Advisory accepts no liability for reliance placed on
+            general website content without a separate advisory engagement.
+          </p>
+          <p>Contact: intelligence@tridentrisk.org</p>
+        </LegalInfoPage>
+      )}
 
-{page === "cookies" && (
-  <LegalInfoPage title="Cookie Policy" onHome={goHome}>
-    <p>...</p>
-  </LegalInfoPage>
-)}
-
-{page === "disclaimer" && (
-  <LegalInfoPage title="Disclaimer" onHome={goHome}>
-    <p>...</p>
-  </LegalInfoPage>
-)}
-      {page === "legal" && (
-  <LegalPage />
-)}
-
-
-
-{page === "terms" && (
-  <LegalInfoPage title="Terms and Conditions" onHome={goHome}>
-    <p>
-      This website is provided for general information about Trident Risk and
-      Advisory and its services. Use of this website does not create a client,
-      advisory, contractual or professional relationship unless separately agreed
-      in writing.
-    </p>
-
-    <p>
-      Content on this website is provided for general informational purposes
-      only and should not be relied upon as specific security, legal,
-      insurance, operational or commercial advice.
-    </p>
-
-    <p>
-      Trident Risk and Advisory reserves the right to amend, update or remove
-      website content without notice.
-    </p>
-
-    <p>
-      Users should obtain tailored professional advice before making security,
-      operational, legal or commercial decisions based on information presented
-      on this website.
-    </p>
-
-    <p>
-      Contact: intelligence@tridentrisk.org
-    </p>
-  </LegalInfoPage>
-)}
-  </LegalInfoPage>
-)}
       <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
@@ -1798,26 +1650,22 @@ function openLegalPage(pageName) {
             www.tridentrisk.org
           </div>
         </div>
-        <div className="flex flex-wrap gap-5 text-sm text-slate-600">
-  <button type="button" onClick={() => openLegalPage("privacy")}>
-    Privacy Policy
-  </button>
-  <button type="button" onClick={() => openLegalPage("terms")}>
-    Terms and Conditions
-  </button>
-  <button type="button" onClick={() => openLegalPage("cookies")}>
-    Cookie Policy
-  </button>
-  <button type="button" onClick={() => openLegalPage("disclaimer")}>
-    Disclaimer
-  </button>
-</div>
+
+        <div className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-5 border-t border-slate-200 pt-6 text-sm text-slate-600">
+          <button type="button" onClick={() => openLegalPage("privacy")}>
+            Privacy Policy
+          </button>
+          <button type="button" onClick={() => openLegalPage("terms")}>
+            Terms and Conditions
+          </button>
+          <button type="button" onClick={() => openLegalPage("cookies")}>
+            Cookie Policy
+          </button>
+          <button type="button" onClick={() => openLegalPage("disclaimer")}>
+            Disclaimer
+          </button>
+        </div>
       </footer>
     </div>
   );
 }
-
-
-<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">     
-
-<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">

@@ -1402,18 +1402,17 @@ function RequestPage({ service, onBack }) {
   method="POST"
   className="grid gap-3"
 >
+  <input
+    type="hidden"
+    name="access_key"
+    value="YOUR_WEB3FORMS_KEY_HERE"
+  />
 
-<input
-  type="hidden"
-  name="access_key"
-  value="PASTE_YOUR_WEB3FORMS_KEY_HERE"
-/>
-
-<input
-  type="hidden"
-  name="service_requested"
-  id="service_requested"
-/>
+  <input
+    type="hidden"
+    name="service_requested"
+    id="service_requested"
+  />
                   <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Name" />
                   <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Company" />
                   <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Email" />

@@ -250,6 +250,53 @@ const marketEntryServices = [
   },
 ];
 
+const geopoliticalServices = [
+  {
+    icon: Globe2,
+    title: "Regional Risk Reports",
+    text:
+      "Structured reporting on political, security and conflict developments affecting maritime and commercial operations.",
+  },
+  {
+    icon: Target,
+    title: "Conflict Impact Assessments",
+    text:
+      "Assessment of how conflict, military escalation, proxy activity or state action may affect assets, personnel, supply chains and operations.",
+  },
+  {
+    icon: Ship,
+    title: "Energy and Shipping Disruption Analysis",
+    text:
+      "Analysis of disruption to ports, chokepoints, energy infrastructure, freight routes, offshore operations and regional logistics networks.",
+  },
+  {
+    icon: Scale,
+    title: "Sanctions Forecasting",
+    text:
+      "Forward looking assessment of potential sanctions, regulatory tightening, enforcement trends and likely commercial impact.",
+  },
+  {
+    icon: Landmark,
+    title: "Election and Political Stability Monitoring",
+    text:
+      "Monitoring of election cycles, public order risk, governance stability, policy direction and business disruption indicators.",
+  },
+  {
+    icon: Network,
+    title: "Forward Looking Risk Scenarios",
+    text:
+      "Scenario based analysis to help leadership teams prepare for deterioration, escalation, stabilisation or market access changes.",
+  },
+];
+
+const geopoliticalCases = [
+  ["Middle East Escalation Monitoring", "Assessment of conflict, proxy activity and maritime spillover risk.", Target],
+  ["Energy Infrastructure Risk", "Analysis of risks affecting oil, gas, ports and offshore infrastructure.", Ship],
+  ["Sanctions and Policy Forecasting", "Forward looking regulatory and sanctions exposure analysis.", Scale],
+  ["Election Stability Monitoring", "Political risk monitoring around election cycles and governance change.", Landmark],
+  ["Supply Chain Disruption", "Assessment of trade, logistics and transport disruption.", Network],
+  ["Executive Decision Support", "Briefings and scenarios for leadership teams operating in complex markets.", Users],
+];
 const marketEntryCases = [
   [
     "Country Entry Reviews",
@@ -706,6 +753,90 @@ function MaritimeSecurityPage({ onHome, onRequest }) {
   );
 }
 
+function GeopoliticalAnalysisPage({ onHome, onRequest }) {
+  return (
+    <main className="bg-[#f7f8fa] text-[#071426]">
+      <HeroSection
+        title={<>Geopolitical <br /> Analysis</>}
+        subtitle="Forward looking geopolitical analysis for organisations exposed to conflict, political instability, regulatory pressure, sanctions risk and market disruption."
+        image="/geopolitical-header.png"
+        label="Geopolitical Analysis"
+        primaryText="Request Geopolitical Support"
+        onPrimary={() => onRequest("Geopolitical Analysis Support")}
+        onHome={onHome}
+      />
+
+      <CapabilityStrip
+        items={[
+          [Globe2, "Global Risk Monitoring"],
+          [Target, "Conflict Impact Assessment"],
+          [Scale, "Sanctions and Policy Analysis"],
+          [Network, "Market Disruption Insight"],
+        ]}
+      />
+
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
+          <div className="mb-5 flex items-center gap-4">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+              Strategic Risk Landscape
+            </p>
+            <div className="h-px w-10 bg-[#c4933a]" />
+          </div>
+
+          <h2 className="text-4xl font-light leading-tight tracking-tight text-[#071426]">
+            Political risk is now operational risk
+          </h2>
+
+          <div className="mt-7 space-y-5 text-sm leading-7 text-slate-700">
+            <p>
+              Conflict, sanctions, elections, public unrest and state policy shifts increasingly affect commercial operations, maritime activity, energy markets and market access.
+            </p>
+            <p>
+              Geopolitical analysis supports decision makers by translating strategic events into practical commercial, operational and security consequences.
+            </p>
+            <p>
+              Trident provides forward looking analysis to help clients understand exposure, identify warning indicators and prepare for disruption before it becomes operationally critical.
+            </p>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
+          <div
+            className="min-h-[360px] bg-cover bg-center"
+            style={{ backgroundImage: "url('/geopolitical-threat.png')" }}
+          >
+            <div className="h-full min-h-[360px] bg-gradient-to-t from-[#071426]/35 via-transparent to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      <ServicesGrid
+        services={geopoliticalServices}
+        prefix="geopolitical-analysis"
+        onRequest={onRequest}
+        columns="xl:grid-cols-3"
+      />
+
+      <CaseGrid
+        cases={geopoliticalCases}
+        description="Strategic risk analysis supporting commercial, maritime, legal and operational decision making."
+      />
+
+      <BottomCta
+        title="Need geopolitical analysis support?"
+        text="Forward looking intelligence support for organisations exposed to political, regulatory, security and market disruption."
+        items={[
+          [Globe2, "Global Monitoring"],
+          [Target, "Scenario Analysis"],
+          [Users, "Leadership Briefings"],
+        ]}
+        buttonText="Contact Trident →"
+        onClick={() => onRequest("Geopolitical Analysis Support")}
+      />
+    </main>
+  );
+}
 function LegalPage({ onHome, onRequest }) {
   return (
     <main className="bg-[#f7f8fa] text-[#071426]">
@@ -1165,6 +1296,10 @@ function PillarPage({ pillar, onHome, onRequest }) {
     return <MaritimeSecurityPage onHome={onHome} onRequest={onRequest} />;
   }
 
+  if (pillar.id === "geopolitical-analysis") {
+  return <GeopoliticalAnalysisPage onHome={onHome} onRequest={onRequest} />;
+}
+  
   if (pillar.id === "legal") {
     return <LegalPage onHome={onHome} onRequest={onRequest} />;
   }

@@ -1397,14 +1397,23 @@ function RequestPage({ service, onBack }) {
                     secure email.
                   </p>
                 </div>
-              ) : (
-                <form
-                  className="grid gap-3"
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    setSubmitted(true);
-                  }}
-                >
+            <form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  className="grid gap-3"
+>
+
+<input
+  type="hidden"
+  name="access_key"
+  value="PASTE_YOUR_WEB3FORMS_KEY_HERE"
+/>
+
+<input
+  type="hidden"
+  name="service_requested"
+  id="service_requested"
+/>
                   <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Name" />
                   <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Company" />
                   <input className="rounded-2xl border border-slate-300 bg-white p-4" placeholder="Email" />

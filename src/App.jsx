@@ -74,7 +74,7 @@ function slugify(value) {
 
 const imageBank = {
   vessel: "/productAISLarge.webp",
-  maritimeIntelligenceHero: "/maritime-intelligence-header.png",
+  maritimeIntelligenceHero: "/maritime-intelligence-header.webp",
   maritimeThreat: "/maritime-threat-map.png",
   ship:
     "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1800&q=85",
@@ -347,10 +347,10 @@ const pillars = [
     title: "Maritime Security",
     intro:
       "Maritime security services provide practical, operationally grounded support to reduce risk to vessels, crews and assets operating in high threat or unstable environments.",
-    hero: "/maritime-security-header.png",
+    hero: "/maritime-security-header.webp",
     services: maritimeSecurityServices.map((item) => [
       item.title,
-      "/maritime-security-header.png",
+      "/maritime-security-header.webp",
       item.text,
     ]),
   },
@@ -359,7 +359,7 @@ const pillars = [
     title: "Maritime Cyber",
     intro:
       "Maritime cyber services address real world vulnerabilities in navigation, tracking and onboard systems where digital disruption can directly impact operational safety.",
-    hero: "/cyberheader.png",
+    hero: "/cyberheader.webp",
     services: cyberServices.map((item) => [item.title, imageBank.cyber, item.text]),
   },
   {
@@ -382,10 +382,10 @@ const pillars = [
   title: "Market Entry",
   intro:
     "Market entry services support organisations entering complex environments by identifying risk, shaping strategy and avoiding exposure before commitment.",
-  hero: "/market-entry-header.png",
+  hero: "/market-entry-header.webp",
   services: marketEntryServices.map((item) => [
     item.title,
-    "/market-entry-header.png",
+    "/market-entry-header.webp",
     item.text,
   ]),
 },
@@ -394,7 +394,7 @@ const pillars = [
     title: "Legal",
     intro:
       "Trident provides operationally grounded legal and expert witness support across maritime security, war risk, charterparty disputes and vessel exposure analysis. Support is delivered by government and military advisors, intelligence specialists and maritime risk professionals with experience across high threat operating environments.",
-    hero: "/legalheader.png",
+    hero: "/legalheader.webp",
     services: legalServices.map((item) => [item.title, imageBank.legal, item.text]),
   },
 ];
@@ -589,7 +589,7 @@ function MaritimeIntelligencePage({ onHome, onRequest }) {
       <HeroSection
         title={<>Maritime <br /> Intelligence</>}
         subtitle="Intelligence led vessel, ownership and operational risk analysis for ship owners, charterers, insurers, legal teams and maritime operators."
-        image="/maritime-intelligence-header.png"
+        image="/maritime-intelligence-header.webp"
         label="Maritime Intelligence"
         primaryText="Request Intelligence Support"
         onPrimary={() => onRequest("Maritime Intelligence Support")}
@@ -673,7 +673,7 @@ function MaritimeSecurityPage({ onHome, onRequest }) {
       <HeroSection
         title={<>Maritime <br /> Security</>}
         subtitle="Operational security advisory for vessels, ports, offshore assets and crews operating in high threat or unstable maritime environments."
-        image="/maritime-security-header.png"
+        image="/maritime-security-header.webp"
         label="Maritime Security"
         primaryText="Request Security Support"
         onPrimary={() => onRequest("Maritime Security Support")}
@@ -757,7 +757,7 @@ function GeopoliticalAnalysisPage({ onHome, onRequest }) {
       <HeroSection
         title={<>Geopolitical <br /> Analysis</>}
         subtitle="Forward looking geopolitical analysis for organisations exposed to conflict, political instability, regulatory pressure, sanctions risk and market disruption."
-        image="/geopolitical-header.png"
+        image="/geopolitical-header.webp"
         label="Geopolitical Analysis"
         primaryText="Request Geopolitical Support"
         onPrimary={() => onRequest("Geopolitical Analysis Support")}
@@ -841,7 +841,7 @@ function LegalPage({ onHome, onRequest }) {
       <HeroSection
         title={<>Legal and <br /> Expert Witness Support</>}
         subtitle="Operationally grounded maritime legal advisory for insurers, counsel and commercial stakeholders operating in complex environments."
-        image="/legalheader.png"
+        image="/legalheader.webp"
         label="Legal"
         primaryText="Request Advisory Support"
         onPrimary={() => onRequest("Legal and Expert Witness Support")}
@@ -923,7 +923,7 @@ function CyberPage({ onHome, onRequest }) {
       <HeroSection
         title="Maritime Cyber and Electronic Risk"
         subtitle="Operational cyber advisory addressing vessel systems, navigation disruption, AIS manipulation and maritime operational technology risk."
-        image="/cyberheader.png"
+        image="/cyberheader.webp"
         label="Maritime Cyber"
         primaryText="Request Cyber Support"
         onPrimary={() => onRequest("Maritime Cyber Support")}
@@ -1003,7 +1003,7 @@ function MarketEntryPage({ onHome, onRequest }) {
     <main className="bg-[#f7f8fa] text-[#071426]">
       <section
         className="relative min-h-[580px] bg-cover bg-center"
-        style={{ backgroundImage: "url('/market-entry-header.png')" }}
+        style={{ backgroundImage: "url('/market-entry-header.webp')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/98 via-[#061426]/88 to-[#061426]/60" />
 <div className="absolute inset-0 bg-black/35" />

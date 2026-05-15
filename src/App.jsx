@@ -869,13 +869,11 @@ function CyberPage({ onHome, onRequest }) {
   );
 }
 function CyberPage({ onHome, onRequest }) {
-  ...
 }
 
 function MarketEntryPage({ onHome, onRequest }) {
   return (
     <main>
-      ...
     </main>
   );
 }

@@ -211,7 +211,13 @@ const cyberCases = [
   ["Offshore Infrastructure Resilience", "Cyber security reviews for rigs, platforms and offshore support operations.", Landmark],
   ["Maritime Cyber Incident Response", "Support during live incidents affecting vessels, networks or critical operations.", Clock],
 ];
+const marketEntryServices = [
+  ...
+];
 
+const marketEntryCases = [
+  ...
+];
 const pillars = [
   {
     id: "maritime-intelligence",
@@ -261,20 +267,17 @@ const pillars = [
     ],
   },
   {
-    id: "market-entry",
-    title: "Market Entry",
-    intro:
-      "Market entry services support organisations entering complex environments by identifying risk, shaping strategy and avoiding exposure before commitment.",
-    hero: imageBank.buildings,
-    services: [
-      ["Country Entry Risk Assessments", imageBank.buildings, "Assessment of political, security, regulatory and reputational risk prior to market entry."],
-      ["Port and Infrastructure Feasibility Studies", imageBank.port, "Risk led review of ports, terminals, logistics corridors, energy infrastructure and physical operating environments before investment or mobilisation."],
-      ["Regulatory and Compliance Mapping", imageBank.legal, "Mapping of regulatory requirements, licensing exposure, sanctions considerations, local constraints and compliance pressure points."],
-      ["Local Partner Due Diligence", imageBank.buildings, "Intelligence led review of local partners, agents, suppliers, owners, politically exposed persons and reputational risk indicators."],
-      ["Security Framework Design for New Operations", imageBank.buildings, "Design of practical security frameworks for new offices, sites, port operations, offshore activity, project teams and executive travel."],
-      ["Supply Chain Risk Mapping", imageBank.map, "Assessment of supply chain vulnerabilities, chokepoints, political exposure, transport disruption and third party dependency risk."],
-    ],
-  },
+  id: "market-entry",
+  title: "Market Entry",
+  intro:
+    "Market entry services support organisations entering complex environments by identifying risk, shaping strategy and avoiding exposure before commitment.",
+  hero: "/market-entry-header.png",
+  services: marketEntryServices.map((item) => [
+    item.title,
+    "/market-entry-header.png",
+    item.text,
+  ]),
+},
   {
     id: "legal",
     title: "Legal",
@@ -801,7 +804,21 @@ function CyberPage({ onHome, onRequest }) {
     </main>
   );
 }
+function CyberPage({ onHome, onRequest }) {
+  ...
+}
 
+function MarketEntryPage({ onHome, onRequest }) {
+  return (
+    <main>
+      ...
+    </main>
+  );
+}
+
+function ServiceCard({ service, pillarId, onRequest }) {
+  ...
+}
 function ServiceCard({ service, pillarId, onRequest }) {
   const [title, image, summary] = service;
 
@@ -929,7 +946,9 @@ function PillarPage({ pillar, onHome, onRequest }) {
   if (pillar.id === "maritime-cyber") {
     return <CyberPage onHome={onHome} onRequest={onRequest} />;
   }
-
+if (pillar.id === "market-entry") {
+  return <MarketEntryPage onHome={onHome} onRequest={onRequest} />;
+}
   return (
     <main>
       <section className="relative overflow-hidden border-b border-slate-200">

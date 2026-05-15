@@ -1068,7 +1068,7 @@ function PillarPage({ pillar, onHome, onRequest }) {
           </div>
         </div>
       </section>
-    </main>
+     </main>
   );
 }
 

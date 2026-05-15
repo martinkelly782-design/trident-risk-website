@@ -872,27 +872,176 @@ function CyberPage({ onHome, onRequest }) {
 function MarketEntryPage({ onHome, onRequest }) {
   return (
     <main className="bg-[#f7f8fa] text-[#071426]">
-      <section className="px-6 py-24 lg:px-8">
-        <div className="mx-auto max-w-7xl">
+      <section
+        className="relative min-h-[580px] bg-cover bg-center"
+        style={{ backgroundImage: "url('/market-entry-header.png')" }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/96 via-[#061426]/72 to-[#061426]/28" />
+
+        <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
           <button
             type="button"
             onClick={onHome}
-            className="mb-8 text-sm text-[#071426]"
+            className="mb-8 text-sm text-white/85 hover:text-white"
           >
-            Home › Market Entry
+            Home <span className="mx-2 text-white/40">›</span>
+            <span className="text-[#c4933a]">Market Entry</span>
           </button>
 
-          <h1 className="text-6xl font-light text-[#071426]">
-            Market Entry
+          <h1 className="max-w-3xl text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
+            Market <br /> Entry
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">
+          <p className="mt-6 max-w-xl text-lg leading-8 text-white/90">
             Market entry services support organisations entering complex
             environments by identifying risk, shaping strategy and avoiding
             exposure before commitment.
           </p>
+
+          <div className="mt-8 flex flex-wrap gap-5">
+            <Button
+              type="button"
+              onClick={() => onRequest("Market Entry Support")}
+              className="rounded-md bg-[#c4933a] px-7 py-4 text-sm font-semibold text-white shadow-lg hover:bg-[#ad7f2e]"
+            >
+              Request Market Entry Support →
+            </Button>
+
+            <a
+              href={emailHref}
+              className="rounded-md border border-white/60 px-7 py-4 text-sm font-semibold text-white hover:bg-white hover:text-[#071426]"
+            >
+              Speak to an Analyst →
+            </a>
+          </div>
         </div>
       </section>
+
+      <CapabilityStrip
+        items={[
+          [Globe2, "Country Risk Assessment"],
+          [Scale, "Regulatory and Compliance Review"],
+          [Users, "Partner Due Diligence"],
+          [Network, "Supply Chain Risk Mapping"],
+        ]}
+      />
+
+      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-14 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+        <div>
+          <div className="mb-5 flex items-center gap-4">
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+              Operating Environment
+            </p>
+            <div className="h-px w-10 bg-[#c4933a]" />
+          </div>
+
+          <h2 className="text-4xl font-light leading-tight tracking-tight text-[#071426]">
+            Entering complex markets requires informed commitment
+          </h2>
+
+          <div className="mt-7 space-y-5 text-sm leading-7 text-slate-700">
+            <p>
+              New market entry exposes organisations to political uncertainty,
+              regulatory complexity, local partner risk, security threats,
+              reputational exposure and supply chain disruption.
+            </p>
+            <p>
+              Early stage decisions often determine whether a project is
+              commercially viable, legally defensible and operationally
+              sustainable. Trident supports clients before commitment, before
+              mobilisation and before exposure becomes embedded.
+            </p>
+            <p>
+              Market entry advisory combines country risk, local operating
+              conditions, partner intelligence, infrastructure assessment and
+              practical security planning to support confident decision making.
+            </p>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-[#071426] shadow-xl">
+          <div
+            className="min-h-[360px] bg-cover bg-center"
+            style={{ backgroundImage: "url('/market-entry-threat.png')" }}
+          >
+            <div className="h-full min-h-[360px] bg-gradient-to-t from-[#071426]/35 via-transparent to-transparent" />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-12 lg:px-8">
+        <div className="mb-5 flex items-center gap-4">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#b5832f]">
+            Services
+          </p>
+          <div className="h-px w-10 bg-[#c4933a]" />
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {marketEntryServices.map(({ icon: Icon, title, text }) => (
+            <article
+              key={title}
+              id={`market-entry-${slugify(title)}`}
+              className="rounded-md border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+            >
+              <Icon className="mb-8 h-9 w-9 text-[#c4933a]" strokeWidth={1.5} />
+              <h3 className="text-lg font-semibold leading-6 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-5 text-sm leading-7 text-slate-700">{text}</p>
+              <button
+                type="button"
+                onClick={() => onRequest(title)}
+                className="mt-7 text-sm font-semibold text-[#b5832f]"
+              >
+                Request this service →
+              </button>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-10 lg:px-8">
+        <div className="mb-5 flex flex-wrap items-center gap-6">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#071426]">
+            Case Experience
+          </p>
+          <div className="h-px w-10 bg-[#c4933a]" />
+          <p className="text-sm text-slate-500">
+            Support for clients entering new markets, operating environments and
+            complex jurisdictions.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 rounded-md border border-slate-200 bg-white md:grid-cols-3 xl:grid-cols-6">
+          {marketEntryCases.map(([title, text, Icon]) => (
+            <div
+              key={title}
+              className="border-b border-slate-200 p-6 text-center md:border-r xl:border-b-0 last:border-r-0"
+            >
+              <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#071426]">
+                <Icon className="h-6 w-6 text-white" strokeWidth={1.5} />
+              </div>
+              <h3 className="text-sm font-semibold leading-5 text-[#071426]">
+                {title}
+              </h3>
+              <p className="mt-3 text-xs leading-6 text-slate-600">{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <BottomCta
+        title="Need market entry support?"
+        text="Risk led advisory for organisations entering complex markets, mobilising new operations or assessing commercial exposure before commitment."
+        items={[
+          [Globe2, "Country Risk"],
+          [Users, "Partner Intelligence"],
+          [ShieldCheck, "Operational Security"],
+        ]}
+        buttonText="Contact Trident →"
+        onClick={() => onRequest("Market Entry Support")}
+      />
     </main>
   );
 }

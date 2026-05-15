@@ -1003,10 +1003,13 @@ function PillarPage({ pillar, onHome, onRequest }) {
   if (pillar.id === "maritime-cyber") {
     return <CyberPage onHome={onHome} onRequest={onRequest} />;
   }
-if (pillar.id === "market-entry") {
-  return <MarketEntryPage onHome={onHome} onRequest={onRequest} />;
+
+  if (pillar.id === "market-entry") {
+    return <MarketEntryPage onHome={onHome} onRequest={onRequest} />;
+  }
+
+  return null;
 }
-  return (
     <main>
       <section className="relative overflow-hidden border-b border-slate-200">
         <div

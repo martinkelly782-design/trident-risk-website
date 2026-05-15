@@ -1010,68 +1010,6 @@ function PillarPage({ pillar, onHome, onRequest }) {
 
   return null;
 }
-    <main>
-      <section className="relative overflow-hidden border-b border-slate-200">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${pillar.hero})` }}
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/95 via-[#111827]/80 to-transparent" />
-
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
-          <Button
-            type="button"
-            onClick={onHome}
-            className="mb-8 rounded-2xl bg-white/90 px-5 py-3 text-slate-900 hover:bg-white"
-          >
-            Back to Home
-          </Button>
-
-          <Badge className="mb-6 inline-block rounded-full border border-white/30 bg-white/15 px-4 py-1 text-white backdrop-blur-sm">
-            {pillar.title}
-          </Badge>
-
-          <h1 className="text-5xl font-light leading-tight tracking-tight text-white md:text-6xl">
-            {pillar.title}
-          </h1>
-
-          <p className="mt-6 max-w-3xl text-base leading-8 text-slate-100 md:text-lg">
-            {pillar.intro}
-          </p>
-        </div>
-      </section>
-
-      <section className="bg-[#f6f3ec] px-6 py-16 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl space-y-3">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#9b7a2f]">
-              Services
-            </div>
-            <h2 className="text-3xl font-light tracking-tight text-slate-950 md:text-5xl">
-              Explore {pillar.title}
-            </h2>
-            <p className="text-sm leading-7 text-slate-700 md:text-base">
-              {pillar.intro}
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {pillar.services.map((service) => (
-              <ServiceCard
-                key={service[0]}
-                service={service}
-                pillarId={pillar.id}
-                onRequest={onRequest}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-     </main>
-  );
-}
-
 function RequestPage({ service, onBack }) {
   const [submitted, setSubmitted] = useState(false);
 

@@ -444,7 +444,7 @@ function HeroSection({
       className="relative min-h-[580px] bg-cover bg-center"
       style={{ backgroundImage: `url('${image}')` }}
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/78 via-[#061426]/45 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/95 via-[#061426]/78 to-[#061426]/32" />
 
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-20 lg:px-8">
         <button

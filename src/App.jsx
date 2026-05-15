@@ -1701,102 +1701,35 @@ function openLegalPage(pageName) {
   <RequestPage service={requestedService} onBack={goHome} />
 )}
 
-      
+ {page === "request" && (
+  <RequestPage service={requestedService} onBack={goHome} />
+)}
+
 {page === "privacy" && (
   <LegalInfoPage title="Privacy Policy" onHome={goHome}>
-    <p>
-      Trident Risk and Advisory respects the privacy of individuals and
-      organisations that engage with this website. Information submitted through
-      this website may include names, email addresses, company details and
-      information provided in enquiry forms.
-    </p>
-    <p>
-      This information is used to respond to enquiries, provide requested
-      services, manage client communications and maintain appropriate business
-      records. Trident does not sell personal information to third parties.
-    </p>
-    <p>
-      Reasonable technical and organisational measures are used to protect
-      information submitted to Trident. Users may contact Trident to request
-      access, correction or deletion of their personal information where
-      applicable.
-    </p>
-    <p>Contact: intelligence@tridentrisk.org</p>
+    <p>...</p>
   </LegalInfoPage>
 )}
 
 {page === "terms" && (
   <LegalInfoPage title="Terms and Conditions" onHome={goHome}>
-    <p>
-      This website is provided for general information about Trident Risk and
-      Advisory and its services. Use of this website does not create a client,
-      advisory, contractual or professional relationship unless separately agreed
-      in writing.
-    </p>
-    <p>
-      Content on this website is provided for general informational purposes
-      only and should not be relied upon as specific security, legal, insurance,
-      operational or commercial advice.
-    </p>
-    <p>
-      Trident Risk and Advisory reserves the right to amend, update or remove
-      website content without notice.
-    </p>
-    <p>
-      Users should obtain tailored professional advice before making security,
-      operational, legal or commercial decisions based on information presented
-      on this website.
-    </p>
-    <p>Contact: intelligence@tridentrisk.org</p>
+    <p>...</p>
   </LegalInfoPage>
 )}
 
 {page === "cookies" && (
   <LegalInfoPage title="Cookie Policy" onHome={goHome}>
-    <p>
-      This website may use cookies and similar technologies to support site
-      functionality, improve user experience and understand website usage.
-    </p>
-    <p>
-      Cookies may be used for performance monitoring, analytics, security and
-      operational functionality.
-    </p>
-    <p>
-      Users can control or disable cookies through their browser settings.
-      Disabling cookies may affect the functionality or performance of certain
-      sections of the website.
-    </p>
-    <p>
-      If third party analytics or advertising tools are added in the future,
-      this policy may be updated accordingly.
-    </p>
-    <p>Contact: intelligence@tridentrisk.org</p>
+    <p>...</p>
   </LegalInfoPage>
 )}
 
 {page === "disclaimer" && (
   <LegalInfoPage title="Disclaimer" onHome={goHome}>
-    <p>
-      Information presented on this website is provided for general awareness
-      and informational purposes only.
-    </p>
-    <p>
-      The content does not constitute legal advice, insurance advice,
-      operational instruction, cyber security advice or a formal risk assessment
-      unless separately commissioned and delivered under written agreement.
-    </p>
-    <p>
-      Maritime, geopolitical, cyber and security conditions can change rapidly.
-      Users should obtain specific professional advice before making
-      operational, commercial or security decisions.
-    </p>
-    <p>
-      Trident Risk and Advisory accepts no liability for reliance placed on
-      general website content without a separate advisory engagement.
-    </p>
-    <p>Contact: intelligence@tridentrisk.org</p>
+    <p>...</p>
   </LegalInfoPage>
 )}
+
+<footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">     
 
 <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
 {page === "legal" && (

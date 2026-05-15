@@ -879,7 +879,6 @@ function MarketEntryPage({ onHome, onRequest }) {
 }
 
 function ServiceCard({ service, pillarId, onRequest }) {
-  ...
 }
 function ServiceCard({ service, pillarId, onRequest }) {
   const [title, image, summary] = service;

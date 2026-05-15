@@ -1410,10 +1410,10 @@ function RequestPage({ service, onBack }) {
   />
 
   <input
-    type="hidden"
-    name="service_requested"
-    id="service_requested"
-  />
+  type="hidden"
+  name="service_requested"
+  value={service || ""}
+/>
                   <input
   name="name"
   className="rounded-2xl border border-slate-300 bg-white p-4"

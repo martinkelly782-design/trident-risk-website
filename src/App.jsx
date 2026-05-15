@@ -1505,7 +1505,7 @@ function HomePage({ onOpenPage }) {
 
   return (
     <main>
-      <section className="relative h-[88vh] w-full overflow-hidden">
+      <section className="relative h-[74vh] w-full overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: "url('/ship.png')" }}

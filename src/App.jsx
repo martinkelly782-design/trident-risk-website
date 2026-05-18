@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
+
 import {
   ShieldCheck,
   Compass,
@@ -1653,14 +1655,20 @@ function LegalInfoPage({ title, children, onHome }) {
 }
 
 export default function App() {
-  const [page, setPage] = useState("home");
+
+  const navigate = useNavigate();
+
   const [requestedService, setRequestedService] = useState(null);
 
-  const activePillar = pillars.find((pillar) => pillar.id === page);
+  const activePillar = pillars.find(
+    (pillar) => pillar.id === window.location.pathname.replace("/", "")
+  );
 
   function openPage(pillarId, anchorId) {
+
     setRequestedService(null);
-    setPage(pillarId);
+
+    navigate(`/${pillarId}`);
 
     setTimeout(() => {
       if (anchorId) {
@@ -1696,166 +1704,97 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f6f3ec] text-slate-950">
-      <Header onHome={goHome} onOpenPage={openPage} />
 
-      {page === "home" && <HomePage onOpenPage={openPage} />}
+  <Header onHome={goHome} onOpenPage={openPage} />
 
-      {activePillar && (
+  <Routes>
+
+    <Route
+      path="/"
+      element={
+        <HomePage onOpenPage={openPage} />
+      }
+    />
+
+    <Route
+      path="/maritime-intelligence"
+      element={
         <PillarPage
-          pillar={activePillar}
+          pillar={pillars.find(p => p.id === "maritime-intelligence")}
           onHome={goHome}
           onRequest={requestService}
         />
-      )}
+      }
+    />
 
-      {page === "request" && (
-        <RequestPage service={requestedService} onBack={goHome} />
-      )}
+    <Route
+      path="/maritime-security"
+      element={
+        <PillarPage
+          pillar={pillars.find(p => p.id === "maritime-security")}
+          onHome={goHome}
+          onRequest={requestService}
+        />
+      }
+    />
 
-      {page === "privacy" && (
-        <LegalInfoPage title="Privacy Policy" onHome={goHome}>
-          <p>
-            Trident Risk and Advisory respects the privacy of individuals and
-            organisations that engage with this website. Information submitted
-            through this website may include names, email addresses, company
-            details and information provided in enquiry forms.
-          </p>
-          <p>
-            This information is used to respond to enquiries, provide requested
-            services, manage client communications and maintain appropriate
-            business records. Trident does not sell personal information to third
-            parties.
-          </p>
-          <p>
-            Reasonable technical and organisational measures are used to protect
-            information submitted to Trident. Users may contact Trident to
-            request access, correction or deletion of their personal information
-            where applicable.
-          </p>
-          <p>Contact: intelligence@tridentrisk.org</p>
-        </LegalInfoPage>
-      )}
+    <Route
+      path="/maritime-cyber"
+      element={
+        <PillarPage
+          pillar={pillars.find(p => p.id === "maritime-cyber")}
+          onHome={goHome}
+          onRequest={requestService}
+        />
+      }
+    />
 
-      {page === "terms" && (
-        <LegalInfoPage title="Terms and Conditions" onHome={goHome}>
-          <p>
-            This website is provided for general information about Trident Risk
-            and Advisory and its services. Use of this website does not create a
-            client, advisory, contractual or professional relationship unless
-            separately agreed in writing.
-          </p>
-          <p>
-            Content on this website is provided for general informational
-            purposes only and should not be relied upon as specific security,
-            legal, insurance, operational or commercial advice.
-          </p>
-          <p>
-            Trident Risk and Advisory reserves the right to amend, update or
-            remove website content without notice.
-          </p>
-          <p>
-            Users should obtain tailored professional advice before making
-            security, operational, legal or commercial decisions based on
-            information presented on this website.
-          </p>
-          <p>Contact: intelligence@tridentrisk.org</p>
-        </LegalInfoPage>
-      )}
+    <Route
+      path="/geopolitical-analysis"
+      element={
+        <PillarPage
+          pillar={pillars.find(p => p.id === "geopolitical-analysis")}
+          onHome={goHome}
+          onRequest={requestService}
+        />
+      }
+    />
 
-      {page === "cookies" && (
-        <LegalInfoPage title="Cookie Policy" onHome={goHome}>
-          <p>
-            This website may use cookies and similar technologies to support site
-            functionality, improve user experience and understand website usage.
-          </p>
-          <p>
-            Cookies may be used for performance monitoring, analytics, security
-            and operational functionality.
-          </p>
-          <p>
-            Users can control or disable cookies through their browser settings.
-            Disabling cookies may affect the functionality or performance of
-            certain sections of the website.
-          </p>
-          <p>
-            If third party analytics or advertising tools are added in the
-            future, this policy may be updated accordingly.
-          </p>
-          <p>Contact: intelligence@tridentrisk.org</p>
-        </LegalInfoPage>
-      )}
+    <Route
+      path="/market-entry"
+      element={
+        <PillarPage
+          pillar={pillars.find(p => p.id === "market-entry")}
+          onHome={goHome}
+          onRequest={requestService}
+        />
+      }
+    />
 
-      {page === "disclaimer" && (
-        <LegalInfoPage title="Disclaimer" onHome={goHome}>
-          <p>
-            Information presented on this website is provided for general
-            awareness and informational purposes only.
-          </p>
-          <p>
-            The content does not constitute legal advice, insurance advice,
-            operational instruction, cyber security advice or a formal risk
-            assessment unless separately commissioned and delivered under written
-            agreement.
-          </p>
-          <p>
-            Maritime, geopolitical, cyber and security conditions can change
-            rapidly. Users should obtain specific professional advice before
-            making operational, commercial or security decisions.
-          </p>
-          <p>
-            Trident Risk and Advisory accepts no liability for reliance placed on
-            general website content without a separate advisory engagement.
-          </p>
-          <p>Contact: intelligence@tridentrisk.org</p>
-        </LegalInfoPage>
-      )}
+    <Route
+      path="/legal"
+      element={
+        <PillarPage
+          pillar={pillars.find(p => p.id === "legal")}
+          onHome={goHome}
+          onRequest={requestService}
+        />
+      }
+    />
+
+    <Route
+      path="/request"
+      element={
+        <RequestPage
+          service={requestedService}
+          onBack={goHome}
+        />
+      }
+    />
+
+  </Routes>
 
       <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 border-t border-slate-200 pt-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <img
-              src="/logo.png"
-              alt="Trident Risk and Advisory"
-              className="h-12 w-auto"
-            />
-            <div>
-              <div className="text-xl font-semibold tracking-[0.25em]">
-                TRIDENT
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-[0.3em] text-[#071426]">
-                Risk and Advisory
-              </div>
-            </div>
-          </div>
-
-          <a
-            href={emailHref}
-            className="flex items-center gap-3 text-sm text-slate-700 hover:text-[#071426]"
-          >
-            <Mail className="h-5 w-5" strokeWidth={1.5} />
-            {email}
-          </a>
-
-          <div className="flex items-center gap-3 text-sm text-slate-700">
-            <Globe className="h-5 w-5" strokeWidth={1.5} />
-            www.tridentrisk.org
-          </div>
-        </div>
-
-        <div className="mx-auto mt-8 flex max-w-7xl flex-wrap gap-5 border-t border-slate-200 pt-6 text-sm text-slate-600">
-          <button type="button" onClick={() => openLegalPage("privacy")}>
-            Privacy Policy
-          </button>
-          <button type="button" onClick={() => openLegalPage("terms")}>
-            Terms and Conditions
-          </button>
-          <button type="button" onClick={() => openLegalPage("cookies")}>
-            Cookie Policy
-          </button>
-          <button type="button" onClick={() => openLegalPage("disclaimer")}>
-            Disclaimer
-          </button>
-        </div>
       </footer>
     </div>
   );

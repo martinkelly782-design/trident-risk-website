@@ -1696,10 +1696,10 @@ export default function App() {
 
   
   function requestService(service) {
-    setRequestedService(service);
-    setPage("request");
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }
+  setRequestedService(service);
+  navigate("/request");
+  window.scrollTo({ top: 0, behavior: "auto" });
+}
 
   return (
     <div className="min-h-screen bg-[#f6f3ec] text-slate-950">

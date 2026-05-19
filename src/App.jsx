@@ -1658,6 +1658,12 @@ export default function App() {
 
   const navigate = useNavigate();
 
+  const goHome = () => {
+    setRequestedService(null);
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
   const [requestedService, setRequestedService] = useState(null);
 
   const activePillar = pillars.find(

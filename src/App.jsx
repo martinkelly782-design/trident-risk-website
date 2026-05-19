@@ -1694,14 +1694,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
-  function goHome() {
-    setRequestedService(null);
-    setPage("home");
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }, 50);
-  }
-
+  
   function requestService(service) {
     setRequestedService(service);
     setPage("request");

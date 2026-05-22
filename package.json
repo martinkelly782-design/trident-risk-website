@@ -16,13 +16,14 @@
     "autoprefixer": "^10.4.20",
     "framer-motion": "latest",
     "lucide-react": "latest",
+    "maplibre-gl": "^5.24.0",
     "postcss": "^8.4.49",
     "react": "latest",
     "react-dom": "latest",
+    "react-map-gl": "^8.1.1",
     "react-router-dom": "^7.15.1",
     "recharts": "latest",
     "tailwindcss": "^3.4.17",
     "vite": "latest"
-  },
-  "devDependencies": {}
+  }
 }

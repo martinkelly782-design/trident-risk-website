@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+
+import Map, { Marker, NavigationControl, Popup } from "react-map-gl/maplibre";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 import {
   ShieldCheck,
@@ -1256,6 +1259,8 @@ function NavDropdown({ pillar, onOpenPage }) {
 }
 
 function Header({ onHome, onOpenPage }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
@@ -1267,7 +1272,7 @@ function Header({ onHome, onOpenPage }) {
           />
         </button>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-6 xl:flex">
           {pillars.map((pillar) => (
             <NavDropdown
               key={pillar.id}
@@ -1275,15 +1280,51 @@ function Header({ onHome, onOpenPage }) {
               onOpenPage={onOpenPage}
             />
           ))}
+
+          <a
+            href={emailHref}
+            className="rounded-full bg-[#071426] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#12345a]"
+          >
+            Ask an Analyst
+          </a>
         </nav>
 
-        <a
-          href={emailHref}
-          className="rounded-2xl bg-[#111827] px-5 py-3 text-sm font-semibold text-white hover:bg-[#2b3443]"
+        <button
+          type="button"
+          className="flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-[#071426] shadow-sm xl:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Open mobile menu"
         >
-          Ask an Analyst
-        </a>
+          <span className="text-2xl font-bold leading-none">MENU</span>
+        </button>
       </div>
+
+      {mobileMenuOpen && (
+        <div className="border-t border-slate-200 bg-white px-6 py-5 xl:hidden">
+          <div className="flex flex-col gap-4 text-[#071426]">
+            {pillars.map((pillar) => (
+              <button
+                key={pillar.id}
+                type="button"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenPage(pillar.id);
+                }}
+                className="text-left text-base font-semibold"
+              >
+                {pillar.title}
+              </button>
+            ))}
+
+            <a
+              href={emailHref}
+              className="mt-2 rounded-full bg-[#071426] px-5 py-3 text-center text-sm font-semibold text-white"
+            >
+              Ask an Analyst
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
@@ -1551,6 +1592,8 @@ function HomePage({ onOpenPage }) {
         </div>
       </section>
 
+<MaritimeLiveMapSection />
+
       <section className="relative overflow-hidden border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-[1700px]">
           <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
@@ -1654,10 +1697,213 @@ function LegalInfoPage({ title, children, onHome }) {
   );
 }
 
+function MaritimeLiveMapSection() {
+  const [activeIncident, setActiveIncident] = useState(null);
+  const [popupIncident, setPopupIncident] = useState(null);
+  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [filtersOpen, setFiltersOpen] = useState(false);
+
+  const [incidents, setIncidents] = useState([]);
+
+  useEffect(() => {
+  const loadIncidents = () => {
+    fetch(`/incidents.json?ts=${Date.now()}`)
+      .then((response) => response.json())
+      .then((data) => setIncidents(data))
+      .catch((error) =>
+        console.error("Failed to load incidents:", error)
+      );
+  };
+
+  loadIncidents();
+
+  const interval = setInterval(loadIncidents, 1800000);
+
+  return () => clearInterval(interval);
+}, []);
+
+  const filteredIncidents =
+    selectedFilter === "All"
+      ? incidents
+      : incidents.filter(
+          (incident) => incident.type === selectedFilter
+        );
+
+  return (
+    <section className="bg-[#f3f6f8] px-4 py-10 lg:px-8">
+      <div className="mx-auto mb-4 max-w-[1800px] overflow-hidden rounded-2xl border border-slate-200 bg-[#071426] px-4 py-3 text-white shadow-lg">
+        <div className="flex items-center gap-4">
+          <span className="shrink-0 rounded-full bg-[#b5893d] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white">
+            Live
+          </span>
+
+          <div className="overflow-hidden whitespace-nowrap text-xs text-slate-200">
+            <div className="animate-[ticker_28s_linear_infinite]">
+              UKMTO suspicious approach reported near Red Sea · GPS interference reported near Strait of Hormuz · ReCAAP boarding activity reported in Singapore Strait · MDAT GoG piracy warning remains active · Black Sea conflict disruption affecting commercial routes
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-[1800px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+        <div className="grid min-h-[760px] grid-cols-[300px_1fr]">
+
+          <aside className="border-r border-slate-200 bg-white">
+            <div className="border-b border-slate-200 bg-white px-5 py-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#b5893d]">
+                Trident Live
+              </p>
+
+              <h2 className="mt-3 text-3xl font-light tracking-tight text-[#071426]">
+                Recent Incidents
+              </h2>
+
+              <p className="mt-2 text-sm text-slate-500">
+                ({filteredIncidents.length}) live markers
+              </p>
+            </div>
+
+            <div className="h-[660px] overflow-y-auto px-4 py-4">
+              <div className="space-y-4">
+                {filteredIncidents.map((incident, index) => (
+                  <article
+                    key={incident.id}
+                    onMouseEnter={() => setActiveIncident(incident.id)}
+                    onMouseLeave={() => setActiveIncident(null)}
+                    className={`rounded-2xl border p-4 shadow-sm transition ${
+                      activeIncident === incident.id
+                        ? "border-[#b5893d] bg-[#fff8e8] shadow-lg"
+                        : "border-slate-200 bg-white hover:shadow-lg"
+                    }`}
+                  >
+                    <h3 className="text-base font-semibold text-slate-900">
+                      #{index + 1} {incident.type}
+                    </h3>
+
+                    <p className="mt-2 text-xs font-semibold text-[#b5893d]">
+                      {incident.source} · {incident.region}
+                    </p>
+
+                    <p className="mt-4 text-sm leading-6 text-slate-600">
+                      {incident.summary}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </aside>
+
+          <div className="relative min-h-[760px] overflow-hidden">
+
+            <Map
+              initialViewState={{
+                longitude: 45,
+                latitude: 18,
+                zoom: 2.1,
+              }}
+              mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
+              style={{ width: "100%", height: "760px" }}
+            >
+              <NavigationControl position="top-right" />
+
+              {filteredIncidents.map((incident) => (
+                <Marker
+                  key={incident.id}
+                  longitude={incident.longitude}
+                  latitude={incident.latitude}
+                  anchor="center"
+                >
+                  <button
+  type="button"
+  onMouseEnter={() => setActiveIncident(incident.id)}
+  onMouseLeave={() => setActiveIncident(null)}
+  onClick={() => {
+    setActiveIncident(incident.id);
+    setPopupIncident(incident);
+  }}
+  className="relative flex h-7 w-7 items-center justify-center rounded-full bg-[#b5893d] text-xs font-bold text-white shadow-xl ring-2 ring-white"
+>
+  <span className="absolute h-7 w-7 animate-ping rounded-full bg-[#d6b25e] opacity-60" />
+  <span className="relative z-10">{incident.id}</span>
+</button>
+                </Marker>
+              ))}
+
+              {popupIncident && (
+                <Popup
+                  longitude={popupIncident.longitude}
+                  latitude={popupIncident.latitude}
+                  anchor="top"
+                  closeButton={true}
+                  closeOnClick={false}
+                  onClose={() => setPopupIncident(null)}
+                >
+                  <div className="max-w-[240px] p-1 text-[#071426]">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
+                      {popupIncident.source}
+                    </p>
+
+                    <h3 className="mt-1 text-sm font-semibold">
+                      {popupIncident.type}
+                    </h3>
+
+                    <p className="mt-1 text-xs font-medium text-slate-600">
+                      {popupIncident.region}
+                    </p>
+
+                    <p className="mt-3 text-xs leading-5 text-slate-700">
+                      {popupIncident.summary}
+                    </p>
+                  </div>
+                </Popup>
+              )}
+            </Map>
+
+            <div className="absolute left-3 top-3 z-20 w-[240px] rounded-xl border border-slate-200 bg-white/90 text-[#071426] shadow-lg backdrop-blur">
+              <button
+                type="button"
+                onClick={() => setFiltersOpen(!filtersOpen)}
+                className="flex w-full items-center justify-between px-4 py-3 text-left"
+              >
+                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
+                  Filters
+                </span>
+
+                <span className="text-sm font-semibold text-slate-500">
+                  {filtersOpen ? "−" : "+"}
+                </span>
+              </button>
+
+              {filtersOpen && (
+                <div className="border-t border-slate-200 px-3 pb-3 pt-3">
+                  <select
+                    value={selectedFilter}
+                    onChange={(e) =>
+                      setSelectedFilter(e.target.value)
+                    }
+                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-700"
+                  >
+                    <option>All</option>
+                    <option>Suspicious Approach</option>
+                    <option>GPS Interference</option>
+                    <option>Boarding</option>
+                    <option>Piracy Warning</option>
+                    <option>Conflict Disruption</option>
+                  </select>
+                </div>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
 
   const navigate = useNavigate();
-
   const goHome = () => {
     setRequestedService(null);
     navigate("/");
@@ -1793,8 +2039,51 @@ export default function App() {
 
   </Routes>
 
-      <footer className="bg-white px-6 py-10 text-[#071426] lg:px-8">
+      <footer className="bg-white border-t border-slate-200 px-6 py-10 text-[#071426] lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
+
+          <div>
+            <h3 className="text-lg font-semibold">
+              Trident Risk and Advisory
+            </h3>
+
+            <p className="mt-2 text-sm text-slate-500">
+              Intelligence led maritime, geopolitical and legal advisory support.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+
+            <a href="/privacy-policy" className="hover:text-[#071426]">
+              Privacy Policy
+            </a>
+
+            <a href="/terms" className="hover:text-[#071426]">
+              Terms
+            </a>
+
+            <a href="/cookies" className="hover:text-[#071426]">
+              Cookies
+            </a>
+
+            <a
+              href="mailto:intelligence@tridentrisk.org"
+              className="hover:text-[#071426]"
+            >
+              intelligence@tridentrisk.org
+            </a>
+
+            <a
+              href="https://www.tridentrisk.org"
+              className="hover:text-[#071426]"
+            >
+              www.tridentrisk.org
+            </a>
+
+          </div>
+        </div>
       </footer>
+
     </div>
   );
 }

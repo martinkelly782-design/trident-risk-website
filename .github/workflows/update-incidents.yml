@@ -1,0 +1,33 @@
+name: Update Maritime Incidents
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-incidents:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run incident update script
+        run: node scripts/update-incidents.js
+
+      - name: Commit updated incidents
+        run: |
+          git config user.name "trident-live-bot"
+          git config user.email "intelligence@tridentrisk.org"
+          git add public/incidents.json
+          git commit -m "Update maritime incidents" || echo "No changes"
+          git push

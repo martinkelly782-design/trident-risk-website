@@ -1380,7 +1380,7 @@ function RequestPage({ service, onBack }) {
     <main>
       <section className="relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-[72%_center] md:bg-center"
           style={{
             backgroundImage: `linear-gradient(90deg, rgba(17,24,39,0.90), rgba(17,24,39,0.62), rgba(17,24,39,0.90)), url(${imageBank.port})`,
           }}
@@ -1567,9 +1567,12 @@ function HomePage({ onOpenPage }) {
     <main>
       <section className="relative h-[74vh] w-full overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/ship.png')" }}
-        />
+  className="absolute inset-0 bg-cover md:bg-center"
+  style={{
+    backgroundImage: "url('/ship.png')",
+    backgroundPosition: "78% center",
+  }}
+/>
         <div className="absolute inset-0 bg-black/5" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/45 via-[#111827]/20 to-transparent" />
 
@@ -1636,15 +1639,13 @@ function HomePage({ onOpenPage }) {
                   developments and emerging threats.
                 </p>
               </div>
-
-              <div className="absolute right-0 top-0 hidden h-full w-32 bg-gradient-to-r from-white to-transparent lg:block" />
-            </div>
+             </div>
 
             <div className="relative min-h-[480px]">
               <img
                 src="/opr2.png"
                 alt="Global Monitoring Centre operations room"
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-left md:object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-black/10" />
             </div>
@@ -1771,9 +1772,9 @@ function MaritimeLiveMapSection() {
       </div>
 
       <div className="mx-auto max-w-[1800px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
-        <div className="grid min-h-[760px] grid-cols-[300px_1fr]">
+        <div className="grid min-h-[520px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[300px_1fr]">
 
-          <aside className="border-r border-slate-200 bg-white">
+          <aside className="max-h-[320px] overflow-hidden border-b border-slate-200 bg-white lg:max-h-none lg:border-b-0 lg:border-r">
             <div className="border-b border-slate-200 bg-white px-5 py-5">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#b5893d]">
                 Trident Live
@@ -1788,7 +1789,7 @@ function MaritimeLiveMapSection() {
               </p>
             </div>
 
-            <div className="h-[660px] overflow-y-auto px-4 py-4">
+            <div className="max-h-[230px] overflow-y-auto px-4 py-4 lg:h-[660px] lg:max-h-none">
               <div className="space-y-4">
                 {filteredIncidents.map((incident, index) => (
                   <article
@@ -1818,7 +1819,7 @@ function MaritimeLiveMapSection() {
             </div>
           </aside>
 
-          <div className="relative min-h-[760px] overflow-hidden">
+          <div className="relative h-[520px] min-h-[520px] overflow-hidden md:h-[760px]">
 
             <Map
               initialViewState={{
@@ -1827,7 +1828,7 @@ function MaritimeLiveMapSection() {
                 zoom: 2.1,
               }}
               mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
-              style={{ width: "100%", height: "760px" }}
+              style={{ width: "100%", height: "100%" }}
             >
               <NavigationControl position="top-right" />
 

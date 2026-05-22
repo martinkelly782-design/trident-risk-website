@@ -120,7 +120,7 @@ export default function IranLegalBriefingPage() {
 <input
   type="hidden"
   name="redirect"
-  value="http://localhost:5173/Iran-Maritime-Legal-Risk-Briefing-2026.pdf"
+  value="https://www.tridentrisk.org/Iran-Maritime-Legal-Risk-Briefing-2026.pdf"
 />
 
 <input

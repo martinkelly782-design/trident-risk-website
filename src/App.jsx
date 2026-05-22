@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from "react";
-function getLiveBannerIncident(incidents) {
-  if (!incidents || incidents.length === 0) return null;
-
-  const now = Date.now();
-  const fortyEightHours = 48 * 60 * 60 * 1000;
-
-  const sorted = [...incidents].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
-
-  const recentIncident = sorted.find((incident) => {
-    const incidentTime = new Date(incident.date).getTime();
-    return now - incidentTime <= fortyEightHours;
-  });
-
-  return recentIncident || sorted[0];
-}
 import { Routes, Route, useNavigate } from "react-router-dom";
+import RedSeaLegalBriefingPage from "./RedSeaLegalBriefingPage";
 
-import Map, { Marker, NavigationControl, Popup } from "react-map-gl/maplibre";
+import Map, {
+  Marker,
+  NavigationControl,
+  Popup,
+} from "react-map-gl/maplibre";
+
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import {
@@ -48,6 +37,25 @@ import {
   MapPin,
   Radar,
 } from "lucide-react";
+
+function getLiveBannerIncident(incidents) {
+  if (!incidents || incidents.length === 0) return null;
+
+  const now = Date.now();
+  const fortyEightHours = 48 * 60 * 60 * 1000;
+
+  const sorted = [...incidents].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+
+  const recentIncident = sorted.find((incident) => {
+    const incidentTime = new Date(incident.date).getTime();
+
+    return now - incidentTime <= fortyEightHours;
+  });
+
+  return recentIncident || sorted[0];
+}
 
 const email = "intelligence@tridentrisk.org";
 const emailHref = `mailto:${email}`;
@@ -1974,142 +1982,138 @@ export default function App() {
 }
 
   return (
-    <div className="min-h-screen bg-[#f6f3ec] text-slate-950">
+  <div className="min-h-screen bg-[#f6f3ec] text-slate-950">
+    <Header onHome={goHome} onOpenPage={openPage} />
 
-  <Header onHome={goHome} onOpenPage={openPage} />
+    <Routes>
+      <Route
+        path="/"
+        element={<HomePage onOpenPage={openPage} />}
+      />
 
-  <Routes>
+      <Route
+        path="/red-sea-maritime-legal-risk-briefing"
+        element={<RedSeaLegalBriefingPage />}
+      />
 
-    <Route
-      path="/"
-      element={
-        <HomePage onOpenPage={openPage} />
-      }
-    />
+      <Route
+        path="/maritime-intelligence"
+        element={
+          <PillarPage
+            pillar={pillars.find(p => p.id === "maritime-intelligence")}
+            onHome={goHome}
+            onRequest={requestService}
+          />
+        }
+      />
 
-    <Route
-      path="/maritime-intelligence"
-      element={
-        <PillarPage
-          pillar={pillars.find(p => p.id === "maritime-intelligence")}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      }
-    />
+      <Route
+        path="/maritime-security"
+        element={
+          <PillarPage
+            pillar={pillars.find(p => p.id === "maritime-security")}
+            onHome={goHome}
+            onRequest={requestService}
+          />
+        }
+      />
 
-    <Route
-      path="/maritime-security"
-      element={
-        <PillarPage
-          pillar={pillars.find(p => p.id === "maritime-security")}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      }
-    />
+      <Route
+        path="/maritime-cyber"
+        element={
+          <PillarPage
+            pillar={pillars.find(p => p.id === "maritime-cyber")}
+            onHome={goHome}
+            onRequest={requestService}
+          />
+        }
+      />
 
-    <Route
-      path="/maritime-cyber"
-      element={
-        <PillarPage
-          pillar={pillars.find(p => p.id === "maritime-cyber")}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      }
-    />
+      <Route
+        path="/geopolitical-analysis"
+        element={
+          <PillarPage
+            pillar={pillars.find(p => p.id === "geopolitical-analysis")}
+            onHome={goHome}
+            onRequest={requestService}
+          />
+        }
+      />
 
-    <Route
-      path="/geopolitical-analysis"
-      element={
-        <PillarPage
-          pillar={pillars.find(p => p.id === "geopolitical-analysis")}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      }
-    />
+      <Route
+        path="/market-entry"
+        element={
+          <PillarPage
+            pillar={pillars.find(p => p.id === "market-entry")}
+            onHome={goHome}
+            onRequest={requestService}
+          />
+        }
+      />
 
-    <Route
-      path="/market-entry"
-      element={
-        <PillarPage
-          pillar={pillars.find(p => p.id === "market-entry")}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      }
-    />
+      <Route
+        path="/legal"
+        element={
+          <PillarPage
+            pillar={pillars.find(p => p.id === "legal")}
+            onHome={goHome}
+            onRequest={requestService}
+          />
+        }
+      />
 
-    <Route
-      path="/legal"
-      element={
-        <PillarPage
-          pillar={pillars.find(p => p.id === "legal")}
-          onHome={goHome}
-          onRequest={requestService}
-        />
-      }
-    />
+      <Route
+        path="/request"
+        element={
+          <RequestPage
+            service={requestedService}
+            onBack={goHome}
+          />
+        }
+      />
+    </Routes>
 
-    <Route
-      path="/request"
-      element={
-        <RequestPage
-          service={requestedService}
-          onBack={goHome}
-        />
-      }
-    />
+    <footer className="bg-white border-t border-slate-200 px-6 py-10 text-[#071426] lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
+        <div>
+          <h3 className="text-lg font-semibold">
+            Trident Risk and Advisory
+          </h3>
 
-  </Routes>
-
-      <footer className="bg-white border-t border-slate-200 px-6 py-10 text-[#071426] lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
-
-          <div>
-            <h3 className="text-lg font-semibold">
-              Trident Risk and Advisory
-            </h3>
-
-            <p className="mt-2 text-sm text-slate-500">
-              Intelligence led maritime, geopolitical and legal advisory support.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-
-            <a href="/privacy-policy" className="hover:text-[#071426]">
-              Privacy Policy
-            </a>
-
-            <a href="/terms" className="hover:text-[#071426]">
-              Terms
-            </a>
-
-            <a href="/cookies" className="hover:text-[#071426]">
-              Cookies
-            </a>
-
-            <a
-              href="mailto:intelligence@tridentrisk.org"
-              className="hover:text-[#071426]"
-            >
-              intelligence@tridentrisk.org
-            </a>
-
-            <a
-              href="https://www.tridentrisk.org"
-              className="hover:text-[#071426]"
-            >
-              www.tridentrisk.org
-            </a>
-
-          </div>
+          <p className="mt-2 text-sm text-slate-500">
+            Intelligence led maritime, geopolitical and legal advisory support.
+          </p>
         </div>
-      </footer>
 
-    </div>
-  );
+        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
+          <a href="/privacy-policy" className="hover:text-[#071426]">
+            Privacy Policy
+          </a>
+
+          <a href="/terms" className="hover:text-[#071426]">
+            Terms
+          </a>
+
+          <a href="/cookies" className="hover:text-[#071426]">
+            Cookies
+          </a>
+
+          <a
+            href="mailto:intelligence@tridentrisk.org"
+            className="hover:text-[#071426]"
+          >
+            intelligence@tridentrisk.org
+          </a>
+
+          <a
+            href="https://www.tridentrisk.org"
+            className="hover:text-[#071426]"
+          >
+            www.tridentrisk.org
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+);
 }

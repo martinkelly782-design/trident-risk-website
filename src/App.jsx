@@ -1749,7 +1749,7 @@ function MaritimeLiveMapSection() {
         );
 
   return (
-    <section className="bg-[#f3f6f8] px-4 py-10 lg:px-8">
+    <section className="bg-[#f3f6f8] py-10">
       <div className="mx-auto mb-4 max-w-[1800px] overflow-hidden rounded-2xl border border-slate-200 bg-[#071426] px-4 py-3 text-white shadow-lg">
         <div className="flex items-center gap-4">
           <span className="shrink-0 rounded-full bg-[#b5893d] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white">
@@ -1771,8 +1771,8 @@ function MaritimeLiveMapSection() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1800px] border border-slate-200 bg-white">
-        <div className="grid min-h-[520px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[300px_1fr]">
+      <div className="overflow-hidden border-y border-slate-200 bg-white">
+  <div className="grid min-h-[520px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[340px_1fr]">
 
           <aside className="max-h-[320px] overflow-hidden border-b-4 border-[#b5893d] bg-white lg:max-h-none lg:border-b-0 lg:border-r lg:border-slate-200">
             <div className="border-b border-slate-200 bg-white px-5 py-5">

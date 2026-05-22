@@ -6,8 +6,8 @@
     "region": "Red Sea",
     "longitude": 43.3,
     "latitude": 12.6,
-    "summary": "Suspicious maritime activity reported near the southern Red Sea and Bab al Mandeb area.",
-    "date": "2026-05-20T23:52:42.609Z",
+    "summary": "UKMTO received a report of suspicious maritime activity near the southern Red Sea.",
+    "date": "2026-05-22T11:37:13.176Z",
     "markerColour": "bg-[#b5832f]",
     "pulseColour": "bg-[#d6b25e]"
   },
@@ -18,9 +18,21 @@
     "region": "Strait of Hormuz",
     "longitude": 56.3,
     "latitude": 26.6,
-    "summary": "Electronic interference and degraded positioning reported near the Strait of Hormuz.",
-    "date": "2026-05-20T23:52:42.615Z",
+    "summary": "Masters reported intermittent GPS disruption and electronic interference.",
+    "date": "2026-05-22T11:37:13.176Z",
     "markerColour": "bg-[#2563eb]",
     "pulseColour": "bg-[#60a5fa]"
+  },
+  {
+    "id": 3,
+    "type": "Boarding",
+    "source": "ReCAAP",
+    "region": "Singapore Strait",
+    "longitude": 104.1,
+    "latitude": 1.2,
+    "summary": "ReCAAP reported unauthorised boarding activity involving small craft.",
+    "date": "2026-05-22T11:37:13.176Z",
+    "markerColour": "bg-[#c2410c]",
+    "pulseColour": "bg-[#fb923c]"
   }
 ]

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import RedSeaLegalBriefingPage from "./RedSeaLegalBriefingPage";
+import IranLegalBriefingPage from "./IranLegalBriefingPage";
 
 import Map, {
   Marker,
@@ -1992,9 +1992,9 @@ export default function App() {
       />
 
       <Route
-        path="/red-sea-maritime-legal-risk-briefing"
-        element={<RedSeaLegalBriefingPage />}
-      />
+  path="/iran-maritime-legal-risk-briefing"
+  element={<IranLegalBriefingPage />}
+/>
 
       <Route
         path="/maritime-intelligence"

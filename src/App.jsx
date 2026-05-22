@@ -1,4 +1,21 @@
 import React, { useEffect, useState } from "react";
+function getLiveBannerIncident(incidents) {
+  if (!incidents || incidents.length === 0) return null;
+
+  const now = Date.now();
+  const fortyEightHours = 48 * 60 * 60 * 1000;
+
+  const sorted = [...incidents].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
+
+  const recentIncident = sorted.find((incident) => {
+    const incidentTime = new Date(incident.date).getTime();
+    return now - incidentTime <= fortyEightHours;
+  });
+
+  return recentIncident || sorted[0];
+}
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Map, { Marker, NavigationControl, Popup } from "react-map-gl/maplibre";
@@ -1262,13 +1279,13 @@ function Header({ onHome, onOpenPage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <button type="button" onClick={onHome} className="flex items-center">
+    <header className="sticky top-0 z-[9999] border-b border-slate-200 bg-white/95 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <button type="button" onClick={onHome} className="flex shrink-0 items-center">
           <img
             src="/logo.png"
             alt="Trident Risk and Advisory"
-            className="h-12 w-auto"
+            className="h-10 w-auto sm:h-12"
           />
         </button>
 
@@ -1291,16 +1308,16 @@ function Header({ onHome, onOpenPage }) {
 
         <button
           type="button"
-          className="flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-[#071426] shadow-sm xl:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Open mobile menu"
+          className="ml-4 flex shrink-0 items-center justify-center rounded-md border border-[#071426] bg-[#071426] px-4 py-2 text-sm font-bold text-white shadow-md xl:hidden"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          aria-label="Toggle mobile menu"
         >
-          <span className="text-2xl font-bold leading-none">MENU</span>
+          MENU
         </button>
       </div>
 
       {mobileMenuOpen && (
-        <div className="border-t border-slate-200 bg-white px-6 py-5 xl:hidden">
+        <div className="absolute left-0 right-0 top-full z-[9999] border-t border-slate-200 bg-white px-6 py-5 shadow-xl xl:hidden">
           <div className="flex flex-col gap-4 text-[#071426]">
             {pillars.map((pillar) => (
               <button
@@ -1310,7 +1327,7 @@ function Header({ onHome, onOpenPage }) {
                   setMobileMenuOpen(false);
                   onOpenPage(pillar.id);
                 }}
-                className="text-left text-base font-semibold"
+                className="border-b border-slate-100 pb-3 text-left text-base font-semibold"
               >
                 {pillar.title}
               </button>
@@ -1704,12 +1721,13 @@ function MaritimeLiveMapSection() {
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   const [incidents, setIncidents] = useState([]);
+  const bannerIncident = getLiveBannerIncident(incidents);
 
   useEffect(() => {
   const loadIncidents = () => {
     fetch(`/incidents.json?ts=${Date.now()}`)
       .then((response) => response.json())
-      .then((data) => setIncidents(data))
+      .then((data) => setIncidents(Array.isArray(data) ? data : []))
       .catch((error) =>
         console.error("Failed to load incidents:", error)
       );
@@ -1717,7 +1735,7 @@ function MaritimeLiveMapSection() {
 
   loadIncidents();
 
-  const interval = setInterval(loadIncidents, 1800000);
+  const interval = setInterval(loadIncidents, 120000);
 
   return () => clearInterval(interval);
 }, []);
@@ -1739,8 +1757,15 @@ function MaritimeLiveMapSection() {
 
           <div className="overflow-hidden whitespace-nowrap text-xs text-slate-200">
             <div className="animate-[ticker_28s_linear_infinite]">
-              UKMTO suspicious approach reported near Red Sea · GPS interference reported near Strait of Hormuz · ReCAAP boarding activity reported in Singapore Strait · MDAT GoG piracy warning remains active · Black Sea conflict disruption affecting commercial routes
-            </div>
+               {bannerIncident ? (
+    <span>
+      LIVE MARITIME INCIDENT: {bannerIncident.region} ·{" "}
+      {bannerIncident.summary.split(".")[0]}.
+    </span>
+  ) : (
+    <span>LIVE MARITIME INCIDENT MONITORING ACTIVE</span>
+  )}
+</div>
           </div>
         </div>
       </div>

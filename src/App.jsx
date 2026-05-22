@@ -1771,7 +1771,7 @@ function MaritimeLiveMapSection() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1800px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
+      <div className="mx-auto max-w-[1800px] border border-slate-200 bg-white">
         <div className="grid min-h-[520px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[300px_1fr]">
 
           <aside className="max-h-[320px] overflow-hidden border-b-4 border-[#b5893d] bg-white lg:max-h-none lg:border-b-0 lg:border-r lg:border-slate-200">

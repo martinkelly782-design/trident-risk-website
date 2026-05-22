@@ -1774,7 +1774,7 @@ function MaritimeLiveMapSection() {
       <div className="mx-auto max-w-[1800px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
         <div className="grid min-h-[520px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[300px_1fr]">
 
-          <aside className="max-h-[320px] overflow-hidden border-b border-slate-200 bg-white lg:max-h-none lg:border-b-0 lg:border-r">
+          <aside className="max-h-[320px] overflow-hidden border-b-4 border-[#b5893d] bg-white lg:max-h-none lg:border-b-0 lg:border-r lg:border-slate-200">
             <div className="border-b border-slate-200 bg-white px-5 py-5">
               <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#b5893d]">
                 Trident Live
@@ -1819,7 +1819,7 @@ function MaritimeLiveMapSection() {
             </div>
           </aside>
 
-          <div className="relative h-[520px] min-h-[520px] overflow-hidden md:h-[760px]">
+          <div className="relative mt-3 h-[520px] min-h-[520px] overflow-hidden md:h-[760px] lg:mt-0">
 
             <Map
               initialViewState={{

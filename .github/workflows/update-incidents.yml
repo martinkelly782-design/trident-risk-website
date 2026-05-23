@@ -21,14 +21,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+      - name: Clean install dependencies
+        run: npm ci
 
-      - name: Install Playwright Chromium
-        run: npm exec playwright install chromium
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
 
-      - name: Install Playwright system dependencies
-        run: npm exec playwright install-deps chromium
+      - name: Fix Playwright permissions
+        run: chmod +x node_modules/.bin/playwright
 
       - name: Run incident update script
         run: node scripts/update-incidents.js

@@ -1,14 +1,32 @@
 [
   {
-    "id": 1,
-    "type": "Suspicious Approach",
+    "id": "ukmto-001",
     "source": "UKMTO",
-    "region": "Red Sea",
-    "longitude": 43.3,
-    "latitude": 12.6,
-    "summary": "Suspicious maritime activity reported near the southern Red Sea and Bab al Mandeb area.",
-    "date": "2026-05-21T10:00:00Z",
-    "markerColour": "bg-[#b5832f]",
-    "pulseColour": "bg-[#d6b25e]"
+    "type": "Suspicious Approach",
+    "region": "Southern Red Sea",
+    "latitude": 13.5,
+    "longitude": 42.8,
+    "summary": "Master reported suspicious small craft activity near vessel.",
+    "date": "2026-05-28T18:28:44.040Z"
+  },
+  {
+    "id": "ukmto-002",
+    "source": "UKMTO",
+    "type": "Boarding",
+    "region": "Gulf of Aden",
+    "latitude": 12.7,
+    "longitude": 45.1,
+    "summary": "Armed individuals reportedly attempted approach to merchant vessel.",
+    "date": "2026-05-28T18:28:44.045Z"
+  },
+  {
+    "id": "ukmto-003",
+    "source": "UKMTO",
+    "type": "GPS Interference",
+    "region": "Strait of Hormuz",
+    "latitude": 26.5,
+    "longitude": 56.3,
+    "summary": "Vessel reported GPS interference impacting bridge systems.",
+    "date": "2026-05-28T18:28:44.045Z"
   }
 ]

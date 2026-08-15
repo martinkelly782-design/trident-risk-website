@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import IranLegalBriefingPage from "./IranLegalBriefingPage";
-
-import Map, {
-  Marker,
-  NavigationControl,
-  Popup,
-} from "react-map-gl/maplibre";
-
-import "maplibre-gl/dist/maplibre-gl.css";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
+import ScrollToTop from "./components/layout/ScrollToTop";
+import AnalyticsRouteTracker from "./components/system/AnalyticsRouteTracker";
+import CookieConsent from "./components/system/CookieConsent";
+import AppRoutes from "./routes/AppRoutes";
+import { Button } from "./components/ui/Button";
+import { email, emailHref } from "./config/contact";
+import { trackEvent } from "./lib/analytics";
 
 import {
   ShieldCheck,
@@ -57,24 +57,6 @@ function getLiveBannerIncident(incidents) {
   return recentIncident || sorted[0];
 }
 
-const email = "intelligence@tridentrisk.org";
-const emailHref = `mailto:${email}`;
-
-const Button = ({ children, asChild, className = "", ...props }) => {
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children, {
-      className: `${className} ${children.props.className || ""}`,
-      ...props,
-    });
-  }
-
-  return (
-    <button className={className} {...props}>
-      {children}
-    </button>
-  );
-};
-
 const Card = ({ children, className = "", ...props }) => (
   <div className={className} {...props}>
     {children}
@@ -114,8 +96,10 @@ const imageBank = {
     "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=85",
   legal:
     "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=85",
-  port:
-    "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1800&q=85",
+  // Local, approved maritime asset (was an external Unsplash hotlink). Used by
+  // the live /request hero; keeping it local removes the only client-facing
+  // external image request on the site.
+  port: "/productAISLarge.webp",
 };
 
 const legalServices = [
@@ -179,7 +163,7 @@ const legalCases = [
 ];
 
 const maritimeIntelligenceServices = [
-  { icon: Ship, title: "Vessel Affiliation Checks", text: "Assessment of ownership, management, beneficial control, commercial history and trading behaviour to identify exposure and risk linkages." },
+  { icon: Ship, title: "Vessel Affiliation Assessment", text: "Vessel-specific intelligence assessing ownership, management, trading history, port calls and wider associations against the threat profile relevant to the operating environment." },
   { icon: FileText, title: "Sanctions Exposure Analysis", text: "Screening of vessels, ownership, cargo, routing and counterparties against sanctions regimes and enforcement trends." },
   { icon: MapPin, title: "Port Call Risk History", text: "Analysis of historical and recent port calls to identify exposure to high risk jurisdictions, conflict areas and sensitive trading patterns." },
   { icon: Target, title: "AIS Manipulation Analysis", text: "Detection of AIS spoofing, dark activity, identity masking and abnormal vessel behaviour patterns." },
@@ -204,6 +188,7 @@ const maritimeSecurityServices = [
   { icon: Anchor, title: "Port Vulnerability Assessment", text: "Assessment of port security posture, waterside exposure, access control, local crime, protest activity, ISPS implementation and resilience." },
   { icon: Ship, title: "Voyage Vulnerability Assessment", text: "Route based assessment combining vessel profile, cargo, ownership, recent trading pattern, threat environment and escalation indicators." },
   { icon: Compass, title: "High Risk Area Transit Planning", text: "Planning support for vessels entering exposed maritime corridors, including routing, reporting, watchkeeping and escalation triggers." },
+  { icon: UserRound, title: "Bridge Response Officer", text: "Onboard operational support for vessels transiting high-risk areas, including crew briefings, drills, threat updates and continuous liaison with the Trident GSOC." },
   { icon: ShieldCheck, title: "Embarked Security Coordination", text: "Coordination of armed or unarmed embarked security arrangements, provider selection, embarkation planning and reporting expectations." },
   { icon: Eye, title: "Stowaway Risk Mitigation", text: "Port and vessel level measures to reduce stowaway exposure through search planning, access control and gangway discipline." },
   { icon: Landmark, title: "Offshore Asset Protection", text: "Security advisory for offshore vessels, rigs, platforms, survey activity and energy infrastructure in exposed waters." },
@@ -359,7 +344,7 @@ const marketEntryCases = [
     Network,
   ],
 ];
-const pillars = [
+export const pillars = [
   {
     id: "maritime-intelligence",
     title: "Maritime Intelligence",
@@ -427,17 +412,6 @@ const pillars = [
     hero: "/legalheader.webp",
     services: legalServices.map((item) => [item.title, imageBank.legal, item.text]),
   },
-];
-
-const homeCards = [
-  { icon: "♔", title: "Maritime Intelligence", text: "Actionable intelligence on vessels, ownership, movements and activity to reduce exposure and support informed decisions.", pillarId: "maritime-intelligence" },
-  { icon: "◇", title: "Maritime Security", text: "Operationally grounded security support to protect people, assets and operations in high threat environments.", pillarId: "maritime-security" },
-  { icon: "⌬", title: "Maritime Cyber", text: "Identify and mitigate cyber risks to vessels, systems and operations in an increasingly connected maritime environment.", pillarId: "maritime-cyber" },
-  { icon: "◎", title: "Geopolitical Analysis", text: "Forward looking analysis of political, security and regulatory developments that shape maritime risk and opportunity.", pillarId: "geopolitical-analysis" },
-  { icon: "▥", title: "Market Entry", text: "Risk led market entry advisory to help organisations expand confidently and avoid costly exposure in new environments.", pillarId: "market-entry" },
-  { icon: "⚖", title: "Legal", text: "Expert witness and specialist legal support grounded in real world maritime and security experience.", pillarId: "legal" },
-  { icon: "⚓︎", title: "Ports and Infrastructure", text: "Assess and manage risk to ports, infrastructure and maritime operations across critical environments.", pillarId: "maritime-security" },
-  { icon: "☷", title: "Incident Response", text: "Rapid, discreet and effective support when incidents occur, helping you stabilise, respond and recover.", pillarId: "maritime-security", anchorId: "maritime-security-crisis-response-and-incident-management" },
 ];
 
 function CapabilityStrip({ items }) {
@@ -1239,122 +1213,8 @@ function ServiceCard({ service, pillarId, onRequest }) {
   );
 }
 
-function NavDropdown({ pillar, onOpenPage }) {
-  const [open, setOpen] = useState(false);
 
-  function handleSelect(anchorId) {
-    setOpen(false);
-    onOpenPage(pillar.id, anchorId);
-  }
-
-  return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        type="button"
-        onClick={() => onOpenPage(pillar.id)}
-        className="rounded-xl px-2 py-2 text-sm text-slate-700 hover:text-slate-950"
-      >
-        {pillar.title} <span className="text-xs">▾</span>
-      </button>
-
-      {open && (
-        <div className="absolute left-0 top-full z-50 w-96 pt-2">
-          <div className="rounded-3xl border border-slate-200 bg-white/95 p-3 shadow-2xl shadow-black/20 backdrop-blur-xl">
-            {pillar.services.map((service) => (
-              <button
-                key={service[0]}
-                type="button"
-                onClick={() =>
-                  handleSelect(`${pillar.id}-${slugify(service[0])}`)
-                }
-                className="block w-full rounded-2xl px-3 py-3 text-left text-sm text-slate-700 hover:bg-slate-100"
-              >
-                {service[0]}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Header({ onHome, onOpenPage }) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  return (
-    <header className="sticky top-0 z-[9999] border-b border-slate-200 bg-white/95 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <button type="button" onClick={onHome} className="flex shrink-0 items-center">
-          <img
-            src="/logo.png"
-            alt="Trident Risk and Advisory"
-            className="h-10 w-auto sm:h-12"
-          />
-        </button>
-
-        <nav className="hidden items-center gap-6 xl:flex">
-          {pillars.map((pillar) => (
-            <NavDropdown
-              key={pillar.id}
-              pillar={pillar}
-              onOpenPage={onOpenPage}
-            />
-          ))}
-
-          <a
-            href={emailHref}
-            className="rounded-full bg-[#071426] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#12345a]"
-          >
-            Ask an Analyst
-          </a>
-        </nav>
-
-        <button
-          type="button"
-          className="ml-4 flex shrink-0 items-center justify-center rounded-md border border-[#071426] bg-[#071426] px-4 py-2 text-sm font-bold text-white shadow-md xl:hidden"
-          onClick={() => setMobileMenuOpen((open) => !open)}
-          aria-label="Toggle mobile menu"
-        >
-          MENU
-        </button>
-      </div>
-
-      {mobileMenuOpen && (
-        <div className="absolute left-0 right-0 top-full z-[9999] border-t border-slate-200 bg-white px-6 py-5 shadow-xl xl:hidden">
-          <div className="flex flex-col gap-4 text-[#071426]">
-            {pillars.map((pillar) => (
-              <button
-                key={pillar.id}
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenPage(pillar.id);
-                }}
-                className="border-b border-slate-100 pb-3 text-left text-base font-semibold"
-              >
-                {pillar.title}
-              </button>
-            ))}
-
-            <a
-              href={emailHref}
-              className="mt-2 rounded-full bg-[#071426] px-5 py-3 text-center text-sm font-semibold text-white"
-            >
-              Ask an Analyst
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
-
-function PillarPage({ pillar, onHome, onRequest }) {
+export function PillarPage({ pillar, onHome, onRequest }) {
   if (pillar.id === "maritime-intelligence") {
     return <MaritimeIntelligencePage onHome={onHome} onRequest={onRequest} />;
   }
@@ -1381,8 +1241,15 @@ function PillarPage({ pillar, onHome, onRequest }) {
 
   return null;
 }
-function RequestPage({ service, onBack }) {
+export function RequestPage({ service, onBack }) {
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    trackEvent("request_support_start", {
+      content_type: "request",
+      service: service || undefined,
+    });
+  }, [service]);
 
   return (
     <main>
@@ -1452,12 +1319,12 @@ function RequestPage({ service, onBack }) {
               {submitted ? (
                 <div>
                   <h2 className="text-2xl font-light text-slate-950">
-                    Request captured
+                    Request received
                   </h2>
                   <p className="mt-4 leading-7 text-slate-700">
-                    This prototype has captured the request locally. In the live
-                    build, connect this form to Wix Forms, HubSpot, Zapier or
-                    secure email.
+                    Thank you — your request has been submitted. A member of the
+                    Trident team will review the requirement and respond with the
+                    proposed next step.
                   </p>
                 </div>
       ) : (
@@ -1465,6 +1332,12 @@ function RequestPage({ service, onBack }) {
   action="https://api.web3forms.com/submit"
   method="POST"
   className="grid gap-3"
+  onSubmit={() =>
+    trackEvent("request_support_submit", {
+      content_type: "request",
+      service: service || undefined,
+    })
+  }
 >
   <input
     type="hidden"
@@ -1479,27 +1352,31 @@ function RequestPage({ service, onBack }) {
 />
                   <input
   name="name"
+  aria-label="Name"
   className="rounded-2xl border border-slate-300 bg-white p-4"
   placeholder="Name"
 />
                   <input
   name="company"
+  aria-label="Company"
   className="rounded-2xl border border-slate-300 bg-white p-4"
   placeholder="Company"
 />
                   <input
   name="email"
   type="email"
+  aria-label="Email"
   className="rounded-2xl border border-slate-300 bg-white p-4"
   placeholder="Email"
 />
                   <input
   name="service_display"
+  aria-label="Service requested"
   className="rounded-2xl border border-slate-300 bg-white p-4"
   value={service || ""}
   readOnly
 />
-                  <select name="urgency" className="rounded-2xl border border-slate-300 bg-white p-4 text-slate-700" defaultValue="">
+                  <select name="urgency" aria-label="Urgency" className="rounded-2xl border border-slate-300 bg-white p-4 text-slate-700" defaultValue="">
                     <option value="" disabled>
                       Urgency
                     </option>
@@ -1509,6 +1386,7 @@ function RequestPage({ service, onBack }) {
                   </select>
                   <textarea
   name="message"
+  aria-label="Requirement details"
                     className="rounded-2xl border border-slate-300 bg-white p-4"
                     rows={7}
                     placeholder="Briefly describe the requirement, geography, vessel, route, legal issue or market entry question"
@@ -1519,6 +1397,13 @@ function RequestPage({ service, onBack }) {
                   >
                     Submit Request
                   </Button>
+                  <p className="text-xs leading-5 text-slate-500">
+                    Information you submit will be used to respond to your enquiry. See our{" "}
+                    <Link to="/privacy-policy" className="underline underline-offset-2 hover:text-slate-700">
+                      Privacy Policy
+                    </Link>
+                    .
+                  </p>
                 </form>
               )}
             </CardContent>
@@ -1529,176 +1414,6 @@ function RequestPage({ service, onBack }) {
   );
 }
 
-function HomeServicesGrid({ onOpenPage }) {
-  return (
-    <section id="home-services" className="bg-[#071827] px-6 py-16 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {homeCards.map((item) => (
-          <button
-            key={item.title}
-            type="button"
-            onClick={() => onOpenPage(item.pillarId, item.anchorId)}
-            className="min-h-[260px] rounded-md border border-white/10 bg-white px-7 py-8 text-left shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:shadow-2xl"
-          >
-            <div className="text-4xl leading-none text-[#b5893d]">
-              {item.icon}
-            </div>
-
-            <h3 className="mt-7 text-2xl font-light leading-tight tracking-tight text-[#0f172a]">
-              {item.title}
-            </h3>
-
-            <p className="mt-4 text-sm leading-7 text-slate-700">
-              {item.text}
-            </p>
-
-            <div className="mt-7 inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-[#0f172a]">
-              View Service
-              <span className="text-[#b5893d]">→</span>
-            </div>
-          </button>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function HomePage({ onOpenPage }) {
-  function scrollToHomeServices() {
-    document.getElementById("home-services")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-
-  return (
-    <main>
-      <section className="relative h-[74vh] w-full overflow-hidden">
-        <div
-  className="absolute inset-0 bg-cover md:bg-center"
-  style={{
-    backgroundImage: "url('/ship.png')",
-    backgroundPosition: "78% center",
-  }}
-/>
-        <div className="absolute inset-0 bg-black/5" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111827]/45 via-[#111827]/20 to-transparent" />
-
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 lg:px-8">
-          <div className="max-w-3xl text-white">
-            <div className="text-xs uppercase tracking-[0.35em] text-[#d6b25e]">
-              Trident Risk and Advisory
-            </div>
-
-            <h1 className="mt-6 text-4xl font-light leading-tight tracking-tight md:text-6xl">
-              Intelligence led advisory for maritime, geopolitical and legal
-              risk.
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-100 md:text-lg">
-              Supporting shipping, insurance, corporate and legal clients with
-              clear, defensible analysis in complex and high risk environments.
-            </p>
-
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button
-                asChild
-                className="rounded-2xl bg-[#d6b25e] px-8 py-4 text-base font-semibold text-[#111827] hover:bg-[#c19d4a]"
-              >
-                <a href={emailHref}>Ask an Analyst</a>
-              </Button>
-
-              <Button
-                type="button"
-                onClick={scrollToHomeServices}
-                className="rounded-2xl border border-white/70 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white/20"
-              >
-                Explore Services
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-<MaritimeLiveMapSection />
-
-      <section className="relative overflow-hidden border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-[1700px]">
-          <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative flex items-center bg-white px-8 py-16 lg:px-14">
-              <div className="max-w-xl">
-                <div className="text-xs uppercase tracking-[0.32em] text-[#b5893d]">
-                  Global Monitoring Centre
-                </div>
-
-                <div className="mt-5 h-px w-20 bg-[#b5893d]" />
-
-                <h2 className="mt-7 text-3xl font-light leading-tight tracking-tight text-[#0f172a] md:text-5xl">
-                  24/7 oversight.
-                  <br />
-                  Real time insight.
-                  <br />
-                  Confident decisions.
-                </h2>
-
-                <p className="mt-6 text-base leading-7 text-slate-700">
-                  Trident operates a 24/7 Global Monitoring Centre providing
-                  continuous oversight of vessel activity, geopolitical
-                  developments and emerging threats.
-                </p>
-              </div>
-             </div>
-
-            <div className="relative min-h-[480px]">
-              <img
-                src="/opr2.png"
-                alt="Global Monitoring Centre operations room"
-                className="absolute inset-0 h-full w-full object-cover object-left md:object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-black/10" />
-            </div>
-          </div>
-
-          <div className="grid border-t border-slate-200 bg-white lg:grid-cols-4">
-            {[
-              [
-                "24/7 Vessel Tracking",
-                "Continuous monitoring of global vessel movements, routing and behavioural indicators.",
-              ],
-              [
-                "Real Time Incident Monitoring",
-                "Live monitoring of geopolitical escalation, maritime incidents and emerging threats.",
-              ],
-              [
-                "Direct Analyst Support",
-                "Immediate access to experienced analysts during operational or crisis situations.",
-              ],
-              [
-                "Crisis Response Capability",
-                "Support during rapidly evolving incidents affecting vessels, personnel or operations.",
-              ],
-            ].map(([title, text]) => (
-              <div
-                key={title}
-                className="border-b border-slate-200 px-6 py-8 lg:border-b-0 lg:border-r last:border-r-0"
-              >
-                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
-                  {title}
-                </div>
-
-                <p className="mt-4 text-sm leading-6 text-slate-700">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <HomeServicesGrid onOpenPage={onOpenPage} />
-    </main>
-  );
-}
 function LegalInfoPage({ title, children, onHome }) {
   return (
     <main className="bg-[#f7f8fa] text-[#071426]">
@@ -1723,241 +1438,41 @@ function LegalInfoPage({ title, children, onHome }) {
   );
 }
 
-function MaritimeLiveMapSection() {
-  const [activeIncident, setActiveIncident] = useState(null);
-  const [popupIncident, setPopupIncident] = useState(null);
-  const [selectedFilter, setSelectedFilter] = useState("All");
-  const [filtersOpen, setFiltersOpen] = useState(false);
-  const [incidents, setIncidents] = useState([]);
-
-  useEffect(() => {
-    const loadIncidents = async () => {
-      try {
-        const response = await fetch(`/incidents.json?ts=${Date.now()}`);
-
-        if (!response.ok) {
-          throw new Error(`Failed to load incidents: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        const cleanData = Array.isArray(data)
-          ? data.filter(
-              (incident) =>
-                incident &&
-                Number.isFinite(Number(incident.latitude)) &&
-                Number.isFinite(Number(incident.longitude))
-            )
-          : [];
-
-        setIncidents(cleanData);
-      } catch (error) {
-        console.error("Failed to load incidents:", error);
-        setIncidents([]);
-      }
-    };
-
-    loadIncidents();
-
-    const interval = setInterval(loadIncidents, 120000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const filteredIncidents =
-    selectedFilter === "All"
-      ? incidents
-      : incidents.filter((incident) => incident.type === selectedFilter);
-
-  const bannerText =
-    filteredIncidents.length > 0
-      ? filteredIncidents
-          .map(
-            (incident) =>
-              `LIVE MARITIME INCIDENT: ${incident.region || "Region unknown"} · ${
-                incident.summary || incident.type || "Incident reported"
-              }`
-          )
-          .join("     |     ")
-      : "LIVE MARITIME INCIDENT MONITORING ACTIVE";
-
-  return (
-    <section className="bg-[#f3f6f8] py-10">
-      <div className="mx-auto mb-4 max-w-[1800px] overflow-hidden rounded-2xl border border-slate-200 bg-[#071426] py-3 text-white shadow-lg">
-        <div className="flex w-full items-center gap-4">
-          <span className="ml-4 shrink-0 rounded-full bg-[#b5893d] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-            Live
-          </span>
-
-          <div className="relative flex-1 overflow-hidden whitespace-nowrap text-xs text-slate-200">
-            <div className="inline-block min-w-full animate-[ticker_35s_linear_infinite] pr-16">
-              {bannerText}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="overflow-hidden border-y border-slate-200 bg-white">
-        <div className="grid min-h-[520px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[340px_1fr]">
-          <aside className="max-h-[320px] overflow-hidden border-b-4 border-[#b5893d] bg-white lg:max-h-none lg:border-b-0 lg:border-r lg:border-slate-200">
-            <div className="border-b border-slate-200 bg-white px-5 py-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#b5893d]">
-                Trident Live
-              </p>
-
-              <h2 className="mt-3 text-3xl font-light tracking-tight text-[#071426]">
-                Recent Incidents
-              </h2>
-
-              <p className="mt-2 text-sm text-slate-500">
-                ({filteredIncidents.length}) live markers
-              </p>
-            </div>
-
-            <div className="max-h-[230px] overflow-y-auto px-4 py-4 lg:h-[660px] lg:max-h-none">
-              <div className="space-y-4">
-                {filteredIncidents.length === 0 ? (
-                  <p className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-500">
-                    No live incidents currently loaded.
-                  </p>
-                ) : (
-                  filteredIncidents.map((incident, index) => (
-                    <article
-                      key={incident.id || index}
-                      onMouseEnter={() => setActiveIncident(incident.id || index)}
-                      onMouseLeave={() => setActiveIncident(null)}
-                      className={`rounded-2xl border p-4 shadow-sm transition ${
-                        activeIncident === (incident.id || index)
-                          ? "border-[#b5893d] bg-[#fff8e8] shadow-lg"
-                          : "border-slate-200 bg-white hover:shadow-lg"
-                      }`}
-                    >
-                      <h3 className="text-base font-semibold text-slate-900">
-                        #{index + 1} {incident.type || "Maritime Incident"}
-                      </h3>
-
-                      <p className="mt-2 text-xs font-semibold text-[#b5893d]">
-                        {incident.source || "UKMTO"} · {incident.region || "Region unknown"}
-                      </p>
-
-                      <p className="mt-4 text-sm leading-6 text-slate-600">
-                        {incident.summary || "Incident details unavailable."}
-                      </p>
-                    </article>
-                  ))
-                )}
-              </div>
-            </div>
-          </aside>
-
-          <div className="relative mt-3 h-[520px] min-h-[520px] overflow-hidden md:h-[760px] lg:mt-0">
-            <Map
-              initialViewState={{
-                longitude: 45,
-                latitude: 18,
-                zoom: 2.1,
-              }}
-              mapStyle="https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json"
-              style={{ width: "100%", height: "100%" }}
-            >
-              <NavigationControl position="top-right" />
-
-              {filteredIncidents.map((incident, index) => (
-                <Marker
-                  key={incident.id || index}
-                  longitude={Number(incident.longitude)}
-                  latitude={Number(incident.latitude)}
-                  anchor="center"
-                >
-                  <button
-                    type="button"
-                    onMouseEnter={() => setActiveIncident(incident.id || index)}
-                    onMouseLeave={() => setActiveIncident(null)}
-                    onClick={() => {
-                      setActiveIncident(incident.id || index);
-                      setPopupIncident(incident);
-                    }}
-                    className="relative flex h-7 w-7 items-center justify-center rounded-full bg-[#b5893d] text-xs font-bold text-white shadow-xl ring-2 ring-white"
-                  >
-                    <span className="absolute h-7 w-7 animate-ping rounded-full bg-[#d6b25e] opacity-60" />
-                    <span className="relative z-10">{index + 1}</span>
-                  </button>
-                </Marker>
-              ))}
-
-              {popupIncident && (
-                <Popup
-                  longitude={Number(popupIncident.longitude)}
-                  latitude={Number(popupIncident.latitude)}
-                  anchor="top"
-                  closeButton={true}
-                  closeOnClick={false}
-                  onClose={() => setPopupIncident(null)}
-                >
-                  <div className="max-w-[240px] p-1 text-[#071426]">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
-                      {popupIncident.source || "UKMTO"}
-                    </p>
-
-                    <h3 className="mt-1 text-sm font-semibold">
-                      {popupIncident.type || "Maritime Incident"}
-                    </h3>
-
-                    <p className="mt-1 text-xs font-medium text-slate-600">
-                      {popupIncident.region || "Region unknown"}
-                    </p>
-
-                    <p className="mt-3 text-xs leading-5 text-slate-700">
-                      {popupIncident.summary || "Incident details unavailable."}
-                    </p>
-                  </div>
-                </Popup>
-              )}
-            </Map>
-
-            <div className="absolute left-3 top-3 z-20 w-[240px] rounded-xl border border-slate-200 bg-white/90 text-[#071426] shadow-lg backdrop-blur">
-              <button
-                type="button"
-                onClick={() => setFiltersOpen(!filtersOpen)}
-                className="flex w-full items-center justify-between px-4 py-3 text-left"
-              >
-                <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#b5893d]">
-                  Filters
-                </span>
-
-                <span className="text-sm font-semibold text-slate-500">
-                  {filtersOpen ? "−" : "+"}
-                </span>
-              </button>
-
-              {filtersOpen && (
-                <div className="border-t border-slate-200 px-3 pb-3 pt-3">
-                  <select
-                    value={selectedFilter}
-                    onChange={(e) => setSelectedFilter(e.target.value)}
-                    className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs text-slate-700"
-                  >
-                    <option>All</option>
-                    <option>Suspicious Approach</option>
-                    <option>GPS Interference</option>
-                    <option>Boarding</option>
-                    <option>Piracy Warning</option>
-                    <option>Conflict Disruption</option>
-                    <option>UKMTO</option>
-                  </select>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function App() {
 
   const navigate = useNavigate();
+  const location = useLocation();
+  // Dark header on pages that open with a dark cinematic hero, so the masthead
+  // merges into the hero (homepage benchmark; all six discipline landing pages).
+  const DARK_HEADER_PATHS = new Set([
+    "/",
+    "/maritime-intelligence",
+    "/maritime-security",
+    "/maritime-cyber",
+    "/geopolitical-analysis",
+    "/market-entry",
+    "/legal-evidence",
+    // New primary-nav pages that open with a dark hero (Insights masthead is
+    // light, so it is deliberately excluded).
+    "/expertise",
+    "/services",
+    "/intelligence",
+    "/about",
+    "/contact",
+    "/privacy-policy",
+    "/terms",
+    "/cookies",
+    "/iran-maritime-legal-risk-briefing",
+  ]);
+  // Intelligence detail pages (/intelligence/:slug) and Insight article pages
+  // (/insights/:slug) also open with a dark masthead, so they take the dark
+  // header too. Note the trailing slash keeps the light /insights index light.
+  const headerVariant =
+    DARK_HEADER_PATHS.has(location.pathname) ||
+    location.pathname.startsWith("/intelligence/") ||
+    location.pathname.startsWith("/insights/")
+      ? "dark"
+      : "light";
   const goHome = () => {
     setRequestedService(null);
     navigate("/");
@@ -1988,13 +1503,6 @@ export default function App() {
     }, 100);
   }
 
-  function openLegalPage(pageName) {
-    setRequestedService(null);
-    setPage(pageName);
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }
-
-  
   function requestService(service) {
   setRequestedService(service);
   navigate("/request");
@@ -2002,138 +1510,20 @@ export default function App() {
 }
 
   return (
-  <div className="min-h-screen bg-[#f6f3ec] text-slate-950">
-    <Header onHome={goHome} onOpenPage={openPage} />
+  <div className="min-h-screen bg-canvas text-ink">
+    <ScrollToTop />
+    <AnalyticsRouteTracker />
+    <Header onHome={goHome} onOpenPage={openPage} variant={headerVariant} />
 
-    <Routes>
-      <Route
-        path="/"
-        element={<HomePage onOpenPage={openPage} />}
-      />
+    <AppRoutes
+      onHome={goHome}
+      onOpenPage={openPage}
+      onRequest={requestService}
+      requestedService={requestedService}
+    />
 
-      <Route
-  path="/iran-maritime-legal-risk-briefing"
-  element={<IranLegalBriefingPage />}
-/>
-
-      <Route
-        path="/maritime-intelligence"
-        element={
-          <PillarPage
-            pillar={pillars.find(p => p.id === "maritime-intelligence")}
-            onHome={goHome}
-            onRequest={requestService}
-          />
-        }
-      />
-
-      <Route
-        path="/maritime-security"
-        element={
-          <PillarPage
-            pillar={pillars.find(p => p.id === "maritime-security")}
-            onHome={goHome}
-            onRequest={requestService}
-          />
-        }
-      />
-
-      <Route
-        path="/maritime-cyber"
-        element={
-          <PillarPage
-            pillar={pillars.find(p => p.id === "maritime-cyber")}
-            onHome={goHome}
-            onRequest={requestService}
-          />
-        }
-      />
-
-      <Route
-        path="/geopolitical-analysis"
-        element={
-          <PillarPage
-            pillar={pillars.find(p => p.id === "geopolitical-analysis")}
-            onHome={goHome}
-            onRequest={requestService}
-          />
-        }
-      />
-
-      <Route
-        path="/market-entry"
-        element={
-          <PillarPage
-            pillar={pillars.find(p => p.id === "market-entry")}
-            onHome={goHome}
-            onRequest={requestService}
-          />
-        }
-      />
-
-      <Route
-        path="/legal"
-        element={
-          <PillarPage
-            pillar={pillars.find(p => p.id === "legal")}
-            onHome={goHome}
-            onRequest={requestService}
-          />
-        }
-      />
-
-      <Route
-        path="/request"
-        element={
-          <RequestPage
-            service={requestedService}
-            onBack={goHome}
-          />
-        }
-      />
-    </Routes>
-
-    <footer className="bg-white border-t border-slate-200 px-6 py-10 text-[#071426] lg:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 text-center lg:flex-row lg:text-left">
-        <div>
-          <h3 className="text-lg font-semibold">
-            Trident Risk and Advisory
-          </h3>
-
-          <p className="mt-2 text-sm text-slate-500">
-            Intelligence led maritime, geopolitical and legal advisory support.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
-          <a href="/privacy-policy" className="hover:text-[#071426]">
-            Privacy Policy
-          </a>
-
-          <a href="/terms" className="hover:text-[#071426]">
-            Terms
-          </a>
-
-          <a href="/cookies" className="hover:text-[#071426]">
-            Cookies
-          </a>
-
-          <a
-            href="mailto:intelligence@tridentrisk.org"
-            className="hover:text-[#071426]"
-          >
-            intelligence@tridentrisk.org
-          </a>
-
-          <a
-            href="https://www.tridentrisk.org"
-            className="hover:text-[#071426]"
-          >
-            www.tridentrisk.org
-          </a>
-        </div>
-      </div>
-    </footer>
+    <Footer />
+    <CookieConsent />
   </div>
 );
 }

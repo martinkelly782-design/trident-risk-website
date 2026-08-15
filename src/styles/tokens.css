@@ -1,0 +1,26 @@
+/* Trident Risk & Advisory — site-wide design tokens (Phase 6).
+   Single source of truth for the normalised colour and typography system.
+   Mirrored as named utilities in tailwind.config.js. */
+:root {
+  /* Colour — warm off-white canvases, charcoal ink, blue-black imagery,
+     a primary deep-red accent, a tertiary gold accent (used sparingly, see
+     --color-gold), and thin hairline rules. No teal. */
+  --color-canvas: #f4f3ee;        /* primary section background */
+  --color-canvas-raised: #f7f5f0; /* header / footer / raised surfaces */
+  --color-ink: #0f1b2d;           /* charcoal display + primary text */
+  --color-ink-soft: #475569;      /* secondary body text */
+  --color-ink-muted: #64748b;     /* metadata / supporting text */
+  --color-image-dark: #0b1622;    /* dark blue-black imagery base */
+  --color-accent: #c0492f;        /* restrained deep-red accent — PRIMARY operational/intelligence accent */
+  --color-hairline: #e2e8f0;      /* thin rules and dividers */
+  /* Tertiary premium accent. Gold is used sparingly for legal/evidence and a
+     single footer wordmark detail only. Never for alerts, severity ratings,
+     timestamps, intelligence metadata, operational status, or gradients, and
+     it never replaces the red accent. */
+  --color-gold: #b58a3d;
+
+  /* Typography — Newsreader (serif display) + Inter (sans body/interface),
+     with sensible system fallbacks. */
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}

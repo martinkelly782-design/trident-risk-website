@@ -4,7 +4,7 @@
 // choice itself is stored in localStorage (a strictly-necessary technology).
 
 const STORAGE_KEY = "trident-cookie-consent";
-const GA_ID = "G-5HWW9CEKW4";
+const GA_ID = "G-PJHP6CHR1Q";
 
 // Read the stored consent object, or null if the user has not chosen yet.
 export function getConsent() {

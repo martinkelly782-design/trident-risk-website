@@ -35,7 +35,7 @@ const sections = [
           rows: [
             ["trident-cookie-consent", "This website", "Remembers your cookie choice so we do not ask again", "Strictly necessary (browser local storage)", "Until you clear it or change your choice"],
             ["_ga", "Google Analytics", "Distinguishes visitors to measure how the site is used", "Analytics — loads only with consent", "Up to 2 years"],
-            ["_ga_G-5HWW9CEKW4", "Google Analytics", "Maintains analytics state for this website", "Analytics — loads only with consent", "Up to 2 years"],
+            ["_ga_G-PJHP6CHR1Q", "Google Analytics", "Maintains analytics state for this website", "Analytics — loads only with consent", "Up to 2 years"],
           ],
         },
       },

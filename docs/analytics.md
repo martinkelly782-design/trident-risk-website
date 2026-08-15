@@ -13,7 +13,7 @@ The only link between them is context (report + time + source page). Emails are
 
 ## GA property
 
-- GA4 Measurement ID: `G-5HWW9CEKW4` (defined in `src/lib/consent.js`).
+- GA4 Measurement ID: `G-PJHP6CHR1Q` (defined in `src/lib/consent.js`).
 - Config: `anonymize_ip: true`, `send_page_view: false` (page views are sent
   manually so SPA routes are counted exactly once).
 

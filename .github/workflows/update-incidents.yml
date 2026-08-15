@@ -1,8 +1,13 @@
 name: Update Maritime Incidents
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"
+  # Scheduled auto-updates DISABLED. This "Update maritime incidents" automation
+  # belongs to the old website; the current live site does not consume
+  # public/incidents.json (it is not referenced in the production bundle), so the
+  # 30-minute commits to main were obsolete. The workflow file and history are
+  # preserved, and manual runs remain possible via workflow_dispatch.
+  # schedule:
+  #   - cron: "*/30 * * * *"
   workflow_dispatch:
 
 permissions:

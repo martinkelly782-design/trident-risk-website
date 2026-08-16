@@ -45,6 +45,11 @@ export const insights = [
     title:
       "War Risk to Merchant Shipping Following the Houthi Blockade of Saudi Arabia",
     displayTitle: "Red Sea Maritime Threat Assessment",
+    // Browser/meta title (SEO) — intentionally differs from the editorial H1 to
+    // connect the assessment to how the risk is actually searched for. The H1
+    // above remains the on-page headline.
+    metaTitle:
+      "Red Sea Maritime Risk Assessment: Houthi Threat to Merchant Shipping | Trident Risk & Advisory",
     standfirst:
       "The Houthi blockade of Saudi Arabia has created a new affiliation-led threat to merchant shipping at the same time that disruption in the Strait of Hormuz has increased the strategic importance of Saudi Red Sea export routes.",
     dateLabel: "13 August 2026",
@@ -53,6 +58,12 @@ export const insights = [
     expertise: ["Maritime Security", "Geopolitical Analysis"],
     region: "Red Sea / Gulf of Aden",
     report: "red-sea",
+    // Commercial services this assessment leads into (internal-link authority).
+    relatedServiceIds: [
+      "ms-high-risk-area-transit-planning",
+      "ms-bridge-response-officer",
+      "mi-vessel-affiliation-checks",
+    ],
     keyJudgement:
       "The operative question for owners and operators is increasingly not vessel type, but affiliation. Saudi-linked shipping sits inside the primary declared target set, while vessels with historic or misidentified Saudi, Israeli, US or UK associations may retain material exposure even where their current commercial profile appears clean.",
     sections: [

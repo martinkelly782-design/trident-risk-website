@@ -119,9 +119,9 @@ export const maritimeSecurityServices = [
     relatedAnalysisIds: ["iran-maritime-legal-risk-briefing"],
     ctaLabel: CTA,
     seoTitle:
-      "High Risk Area Transit Planning — Maritime Security | Trident Risk & Advisory",
+      "Strait of Hormuz Risk Assessment & High-Risk Transit Planning | Trident Risk & Advisory",
     seoDescription:
-      "Planning support for vessels entering exposed maritime corridors, including routing, reporting, watchkeeping and escalation triggers.",
+      "Vessel- and voyage-specific maritime security risk assessment and high-risk transit planning for commercial shipping through the Strait of Hormuz, Persian Gulf, Gulf of Oman and Red Sea — threat assessment, routing, reporting and operational support from Trident.",
     image: IMAGE,
     imageAlt: IMAGE_ALT,
     publicationStatus: "draft",
@@ -180,9 +180,9 @@ export const maritimeSecurityServices = [
     relatedAnalysisIds: [],
     ctaLabel: CTA,
     seoTitle:
-      "Bridge Response Officer — Maritime Security | Trident Risk & Advisory",
+      "Bridge Response Officer — Onboard Maritime Security Adviser | Trident Risk & Advisory",
     seoDescription:
-      "Onboard advisory, coordination and escalation support for vessels transiting high-risk areas, with continuous liaison to the Trident GSOC. Not armed security.",
+      "Trident's Bridge Response Officer is an experienced onboard maritime security adviser supporting the Master and bridge team through high-risk transits — Red Sea, Bab el-Mandeb, Gulf of Aden and Strait of Hormuz. Advisory support and GSOC liaison, not armed security.",
     image: IMAGE,
     imageAlt: IMAGE_ALT,
     publicationStatus: "published",

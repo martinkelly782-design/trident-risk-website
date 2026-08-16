@@ -478,3 +478,30 @@ export function MidCta({ prompt, label, onClick, gold }) {
     </section>
   );
 }
+
+// Restrained editorial FAQ (light hairline band). Visible question/answer prose
+// in the approved voice — no accordion, no FAQPage rich-result schema. Answers
+// must use approved, existing service capability only. `items`: [{ q, a }].
+export function Faq({ eyebrow = "Common questions", heading, items = [], gold }) {
+  if (!items.length) return null;
+  return (
+    <section className="bg-canvas-raised">
+      <div className="mx-auto max-w-[1100px] px-5 py-16 lg:px-8 lg:py-20">
+        <p className={`text-[11px] font-semibold uppercase tracking-[0.24em] ${acc(gold)}`}>{eyebrow}</p>
+        {heading && (
+          <h2 className="mt-5 max-w-2xl font-display text-3xl font-light leading-[1.12] tracking-tight text-ink sm:text-[2.4rem]">
+            {heading}
+          </h2>
+        )}
+        <div className="mt-9 border-t border-hairline">
+          {items.map((item) => (
+            <div key={item.q} className="grid gap-2 border-b border-hairline py-7 md:grid-cols-[0.9fr_1.4fr] md:gap-10">
+              <h3 className="font-display text-lg font-normal leading-snug text-ink sm:text-xl">{item.q}</h3>
+              <p className="max-w-2xl text-[15px] leading-7 text-ink-soft">{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

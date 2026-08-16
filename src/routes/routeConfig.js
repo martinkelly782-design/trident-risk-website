@@ -327,7 +327,9 @@ function dynamicRoute(pathname) {
     ];
     return {
       path,
-      title: record.title,
+      // SEO/browser title may differ from the editorial headline (record.title)
+      // to match how the risk is searched for; the on-page H1 stays editorial.
+      title: record.metaTitle || record.title,
       description: record.standfirst,
       image: record.image || DEFAULT_OG_IMAGE,
       robots: "index, follow",

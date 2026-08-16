@@ -7,8 +7,36 @@ import {
   RelatedServices,
   RelatedIntelligence,
   EnquiryBand,
+  Faq,
 } from "../serviceKit";
 import { insightsById } from "../../../data/insights";
+
+// Restrained FAQ — visible question/answer prose using approved capability only.
+// Adds the natural vocabulary (maritime expert witness, charterparty, maritime
+// arbitration, Red Sea, Strait of Hormuz) without keyword insertion, and makes no
+// promise of appointment or admissibility.
+const FAQ = [
+  {
+    q: "What does a maritime expert witness do?",
+    a: "A maritime expert witness provides independent expert opinion to assist a court or arbitral tribunal on operational or technical questions in dispute. Trident's expertise is the maritime-security environment — exposure, vessel targeting risk and the reasonableness of the operational decisions taken at the relevant time. The expert's duty is to the tribunal or court, not to the instructing party.",
+  },
+  {
+    q: "Can Trident provide expert evidence in charterparty disputes?",
+    a: "Where the issue falls within maritime-security expertise — for example war-risk, “real danger” and unsafe-port questions arising under a charterparty, or the security conditions on a route at a particular time. Trident provides independent expert opinion on those security and operational questions, not legal advice or advocacy.",
+  },
+  {
+    q: "Can Trident assess the maritime-security environment at a historic date?",
+    a: "Yes. Establishing the threat and operating conditions prevailing at the relevant time is central to the opinion, and draws on contemporaneous intelligence, official maritime guidance and the operational record for the route and period in question.",
+  },
+  {
+    q: "Does Trident give expert evidence on Red Sea or Strait of Hormuz war risk?",
+    a: "These are areas of genuine specialism. Trident can address the war-risk and targeting environment in the Red Sea, Bab el-Mandeb, Gulf of Aden and the Strait of Hormuz, and how a specific vessel or voyage was exposed at the relevant time, in charterparty disputes and maritime arbitration.",
+  },
+  {
+    q: "What material is reviewed when preparing an expert opinion?",
+    a: "Typically the relevant operational, intelligence and documentary material for the vessel, voyage and period — routing, reporting, communications, official guidance and contemporaneous threat reporting. The issues and material are confirmed for each instruction.",
+  },
+];
 
 // Expert Witness — Legal & Evidence. Deliberately different in character and the
 // only flagship page using restrained GOLD. Independence-led. Grounded in the
@@ -105,6 +133,12 @@ export default function ExpertWitnessPage({ service, discipline, onRequest }) {
       />
 
       <RelatedIntelligence heading="Related analysis" analysis={[iran].filter(Boolean)} />
+
+      <Faq
+        heading="Maritime expert witness — common questions."
+        items={FAQ}
+        gold
+      />
 
       <RelatedServices ids={service.relatedServiceIds} />
 

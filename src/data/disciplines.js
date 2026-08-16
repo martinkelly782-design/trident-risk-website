@@ -51,7 +51,7 @@ export const disciplines = [
     primaryCtaLabel: "Request security support",
     seoTitle: "Maritime Security | Trident Risk & Advisory",
     seoDescription:
-      "Port and voyage vulnerability assessment, high risk transit planning, onboard response and crisis support for vessels, crews and offshore assets.",
+      "Maritime security for commercial shipping — vessel and voyage vulnerability assessment, high-risk transit planning and onboard response through the Red Sea, Strait of Hormuz and other high-risk areas, with crisis support for vessels, crews and offshore assets.",
     serviceIds: [
       "ms-port-vulnerability-assessment",
       "ms-voyage-vulnerability-assessment",

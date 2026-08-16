@@ -8,9 +8,36 @@ import {
   RelatedServices,
   RelatedIntelligence,
   EnquiryBand,
+  Faq,
 } from "../serviceKit";
 import { insightsById } from "../../../data/insights";
 import { getPublishedIntelligenceBySlug } from "../../../data/intelligence";
+
+// Restrained FAQ — visible Q&A using approved capability only. Teaches the
+// semantic relationship (Bridge Response Officer = experienced onboard maritime
+// security adviser) and the approved regions, with no invented guarantees.
+const FAQ = [
+  {
+    q: "What is a Bridge Response Officer?",
+    a: "A Bridge Response Officer is an experienced onboard maritime security adviser placed with the vessel to work alongside the Master and bridge team through a high-risk-area transit — strengthening preparedness, response and decision-making, with continuous liaison to the Trident Global Security Operations Centre (GSOC) ashore.",
+  },
+  {
+    q: "When should a vessel consider a Bridge Response Officer?",
+    a: "Typically before entering an elevated or high-risk maritime area, where an owner, operator, charterer or insurer wants additional onboard maritime-security advice and operational support for the transit, alongside shore-based monitoring.",
+  },
+  {
+    q: "Is a Bridge Response Officer an armed security guard?",
+    a: "No. The role is advisory only — not armed security, an armed guard team or an embarked military detachment, and not a riding squad. It provides onboard advisory, coordination and escalation support.",
+  },
+  {
+    q: "Does a Bridge Response Officer replace the Master or company procedures?",
+    a: "No. The Bridge Response Officer supports but does not replace the Master and does not assume command. It does not replace the Company Security Officer or the vessel's ISPS responsibilities, and does not transfer the vessel's duty of care.",
+  },
+  {
+    q: "Can Trident support Red Sea and Strait of Hormuz transits?",
+    a: "Yes. Bridge Response Officer support and high-risk area transit planning are used for merchant shipping operating through the Red Sea, Bab el-Mandeb, Gulf of Aden and the Strait of Hormuz. The exact scope is agreed during operational planning for the vessel and voyage.",
+  },
+];
 
 // Bridge Response Officer — deliberately the most OPERATIONAL of the flagship
 // pages: an around-the-transit BEFORE / DURING / AFTER rhythm rather than a
@@ -106,6 +133,8 @@ export default function BridgeResponseOfficerPage({ service, discipline, onReque
         analysis={[redSea].filter(Boolean)}
         intel={[hormuz].filter(Boolean)}
       />
+
+      <Faq heading="Bridge Response Officer — common questions." items={FAQ} />
 
       <EnquiryBand
         id="bro-enquiries"

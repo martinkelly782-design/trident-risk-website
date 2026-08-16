@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { getArticleInsightBySlug } from "../data/insights";
 import { publishedIntelligence, reportFor } from "../data/intelligence";
+import { servicesById } from "../data/serviceIndex";
+import { servicePath } from "../routes/routeConfig";
 import { emailHref } from "../config/contact";
 import DownloadReport from "../components/system/DownloadReport";
 import { trackEvent } from "../lib/analytics";
@@ -41,6 +43,11 @@ export default function InsightArticlePage() {
 
   const expertise = Array.isArray(item.expertise) ? item.expertise : item.expertise ? [item.expertise] : [];
   const related = publishedIntelligence.filter((r) => r.relatedInsight === item.slug);
+  const relatedServices = (item.relatedServiceIds || [])
+    .map((id) => servicesById[id])
+    .filter(Boolean)
+    .map((s) => ({ title: s.title, summary: s.summary, path: servicePath(s) }))
+    .filter((s) => s.path);
   const report = reportFor(item.report);
   const downloadLabel = item.report === "red-sea" ? "Download full assessment" : "Download full report";
 
@@ -155,6 +162,37 @@ export default function InsightArticlePage() {
                     <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">{r.category}</p>
                     <h3 className="mt-1 max-w-2xl font-display text-lg font-normal leading-snug text-ink transition-colors group-hover:text-accent sm:text-xl">{r.headline}</h3>
                   </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Operational support — the assessment leads into commissionable services.
+          Descriptive anchors (service name + one line) rather than "view service". */}
+      {relatedServices.length > 0 && (
+        <section className="bg-canvas-raised">
+          <div className="mx-auto max-w-[1100px] px-5 py-14 lg:px-8 lg:py-16">
+            <h2 className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-ink">
+              <span aria-hidden="true" className="h-3 w-[3px] bg-accent" />
+              How Trident supports vessels on this route
+            </h2>
+            <div className="mt-6 grid gap-px bg-hairline sm:grid-cols-3">
+              {relatedServices.map((s) => (
+                <Link
+                  key={s.path}
+                  to={s.path}
+                  className="group flex flex-col bg-canvas p-6 transition-colors hover:bg-canvas-raised"
+                >
+                  <h3 className="font-display text-lg font-normal leading-snug text-ink transition-colors group-hover:text-accent">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-[13px] leading-6 text-ink-soft">{s.summary}</p>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+                    View service
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
+                  </span>
                 </Link>
               ))}
             </div>

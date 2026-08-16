@@ -45,9 +45,9 @@ export const legalEvidenceServices = [
     relatedAnalysisIds: ["iran-maritime-legal-risk-briefing"],
     ctaLabel: CTA,
     seoTitle:
-      "Expert Witness — Legal & Evidence | Trident Risk & Advisory",
+      "Maritime Expert Witness — Charterparty & War Risk Disputes | Trident Risk & Advisory",
     seoDescription:
-      "Independent expert opinion on maritime security exposure, targeting risk and operational decision making for dispute resolution.",
+      "Independent maritime expert witness and expert evidence for charterparty and war-risk disputes and maritime arbitration — the security environment at the relevant date, real danger, unsafe-port and vessel targeting questions. Trident's duty is to the tribunal or court.",
     image: IMAGE,
     imageAlt: IMAGE_ALT,
     publicationStatus: "draft",

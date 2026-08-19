@@ -32,6 +32,11 @@ function upsertMeta(attr, key, content) {
   el.setAttribute("content", content);
 }
 
+function removeMeta(attr, key) {
+  const el = document.head.querySelector(`meta[${attr}="${key}"]`);
+  if (el) el.remove();
+}
+
 function upsertLink(rel, href) {
   if (!href) return;
   const selector = `link[rel="${rel}"]`;
@@ -85,6 +90,16 @@ export default function Seo({
   const resolvedImage = image
     ? absoluteUrl(image)
     : base?.image || absoluteUrl(SEO_DEFAULTS.image);
+  // Image metadata. When an explicit image prop is given (no route model), fall
+  // back to the site defaults for type/dimensions; the route model already
+  // carries per-page values (see routeConfig getHead).
+  const resolvedImageSecureUrl = image
+    ? resolvedImage
+    : base?.imageSecureUrl || resolvedImage;
+  const resolvedImageType = base?.imageType || SEO_DEFAULTS.imageType;
+  const resolvedImageWidth = base?.imageWidth || SEO_DEFAULTS.imageWidth;
+  const resolvedImageHeight = base?.imageHeight || SEO_DEFAULTS.imageHeight;
+  const resolvedImageAlt = base?.imageAlt || null;
   const resolvedRobots = robots || base?.robots || SEO_DEFAULTS.robots;
   const resolvedOgType = ogType || base?.ogType || SEO_DEFAULTS.ogType;
   const resolvedSchemas = schemas || base?.schemas || [];
@@ -106,6 +121,14 @@ export default function Seo({
     upsertMeta("property", "og:type", resolvedOgType);
     upsertMeta("property", "og:url", resolvedCanonical);
     upsertMeta("property", "og:image", resolvedImage);
+    upsertMeta("property", "og:image:secure_url", resolvedImageSecureUrl);
+    upsertMeta("property", "og:image:type", resolvedImageType);
+    upsertMeta("property", "og:image:width", String(resolvedImageWidth));
+    upsertMeta("property", "og:image:height", String(resolvedImageHeight));
+    // og:image:alt is page-specific: set it when present, clear it otherwise so
+    // client-side navigation never leaves a stale alt on a page without one.
+    if (resolvedImageAlt) upsertMeta("property", "og:image:alt", resolvedImageAlt);
+    else removeMeta("property", "og:image:alt");
     upsertMeta("property", "og:site_name", SEO_DEFAULTS.siteName);
     upsertMeta("property", "og:locale", SEO_DEFAULTS.locale);
 
@@ -114,6 +137,8 @@ export default function Seo({
     upsertMeta("name", "twitter:title", resolvedTitle);
     upsertMeta("name", "twitter:description", resolvedDescription);
     upsertMeta("name", "twitter:image", resolvedImage);
+    if (resolvedImageAlt) upsertMeta("name", "twitter:image:alt", resolvedImageAlt);
+    else removeMeta("name", "twitter:image:alt");
 
     // Structured data
     setJsonLd(resolvedSchemas);
@@ -122,6 +147,11 @@ export default function Seo({
     resolvedDescription,
     resolvedCanonical,
     resolvedImage,
+    resolvedImageSecureUrl,
+    resolvedImageType,
+    resolvedImageWidth,
+    resolvedImageHeight,
+    resolvedImageAlt,
     resolvedRobots,
     resolvedOgType,
     schemaKey,

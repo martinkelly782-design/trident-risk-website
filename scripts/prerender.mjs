@@ -45,12 +45,18 @@ function applyHead($, route) {
   upsertMeta("property", "og:type", head.ogType);
   upsertMeta("property", "og:url", head.canonical);
   upsertMeta("property", "og:image", head.image);
+  upsertMeta("property", "og:image:secure_url", head.imageSecureUrl);
+  upsertMeta("property", "og:image:type", head.imageType);
+  upsertMeta("property", "og:image:width", head.imageWidth == null ? null : String(head.imageWidth));
+  upsertMeta("property", "og:image:height", head.imageHeight == null ? null : String(head.imageHeight));
+  upsertMeta("property", "og:image:alt", head.imageAlt);
   upsertMeta("property", "og:site_name", SEO_DEFAULTS.siteName);
   upsertMeta("property", "og:locale", SEO_DEFAULTS.locale);
   upsertMeta("name", "twitter:card", SEO_DEFAULTS.twitterCard);
   upsertMeta("name", "twitter:title", title);
   upsertMeta("name", "twitter:description", head.description);
   upsertMeta("name", "twitter:image", head.image);
+  upsertMeta("name", "twitter:image:alt", head.imageAlt);
 
   // canonical
   const canon = $('link[rel="canonical"]');

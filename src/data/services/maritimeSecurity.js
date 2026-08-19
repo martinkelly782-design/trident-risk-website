@@ -185,10 +185,17 @@ export const maritimeSecurityServices = [
       "Trident's Bridge Response Officer is an experienced onboard maritime security adviser supporting the Master and bridge team through high-risk transits — Red Sea, Bab el-Mandeb, Gulf of Aden and Strait of Hormuz. Advisory support and GSOC liaison, not armed security.",
     image: IMAGE,
     imageAlt: IMAGE_ALT,
-    // Page-specific social/OG image: the approved BRO photograph (adviser with
-    // the bridge team) rather than the shared discipline header, so shared links
-    // represent the Bridge Response Officer service accurately.
-    ogImage: "/service-bridge-response-officer.webp",
+    // Page-specific social/OG image: a dedicated 1200x630 WebP cropped from the
+    // approved BRO photograph (adviser with the bridge team) rather than the
+    // shared discipline header, so shared links represent the Bridge Response
+    // Officer service accurately. The unique filename also cache-busts external
+    // scrapers that had cached the previous shared image.
+    ogImage: "/service-bridge-response-officer-og.webp",
+    ogImageType: "image/webp",
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    ogImageAlt:
+      "Bridge Response Officer supporting a merchant vessel bridge team during a high-risk transit",
     publicationStatus: "published",
   },
 

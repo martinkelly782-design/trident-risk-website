@@ -13,10 +13,16 @@ const { url, name, legalName, email, description, seo } = siteConfig;
 export const DEFAULT_OG_IMAGE = seo.ogImage;
 
 // Site-wide head defaults, applied when a route (or a future page) supplies none.
+// The default social image (/social-preview-v5.png) is a 1200x630 PNG, so the
+// image-type/dimension defaults describe it. A route may override these when it
+// supplies its own page-specific social image (see routeConfig serviceRoute).
 export const SEO_DEFAULTS = {
   title: seo.defaultTitle,
   description: seo.defaultDescription,
   image: DEFAULT_OG_IMAGE,
+  imageType: "image/png",
+  imageWidth: 1200,
+  imageHeight: 630,
   robots: "index, follow",
   ogType: "website",
   siteName: name,

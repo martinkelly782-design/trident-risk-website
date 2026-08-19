@@ -109,6 +109,13 @@ function serviceRoute(service) {
     description: service.seoDescription,
     // og:image — a service may override with its own page-specific social image.
     image: service.ogImage || service.image,
+    // Optional per-page social-image metadata. Only set when a service ships a
+    // dedicated ogImage whose type/dimensions/alt differ from the site default
+    // (a 1200x630 PNG). Undefined values fall back to SEO_DEFAULTS in getHead().
+    imageType: service.ogImageType,
+    imageWidth: service.ogImageWidth,
+    imageHeight: service.ogImageHeight,
+    imageAlt: service.ogImageAlt,
     robots: "index, follow",
     ogType: "website",
     breadcrumbs,
@@ -358,12 +365,22 @@ export function getHead(pathname) {
   const route = getRoute(pathname) || dynamicRoute(normalizePath(pathname));
   if (!route) return notFoundHead(pathname);
 
+  const image = absoluteUrl(route.image || DEFAULT_OG_IMAGE);
+
   return {
     path: route.path,
     title: route.title || SEO_DEFAULTS.title,
     description: route.description || SEO_DEFAULTS.description,
     canonical: absoluteUrl(route.path),
-    image: absoluteUrl(route.image || DEFAULT_OG_IMAGE),
+    image,
+    // og:image:secure_url mirrors og:image (the site is https-only), so social
+    // scrapers that require the secure variant resolve the same asset.
+    imageSecureUrl: image,
+    imageType: route.imageType || SEO_DEFAULTS.imageType,
+    imageWidth: route.imageWidth || SEO_DEFAULTS.imageWidth,
+    imageHeight: route.imageHeight || SEO_DEFAULTS.imageHeight,
+    // Only present when a route supplies it; no misleading site-wide default.
+    imageAlt: route.imageAlt,
     robots: route.robots || SEO_DEFAULTS.robots,
     ogType: route.ogType || SEO_DEFAULTS.ogType,
     breadcrumbs: route.breadcrumbs || [],

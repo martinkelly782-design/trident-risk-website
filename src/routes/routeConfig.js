@@ -107,7 +107,8 @@ function serviceRoute(service) {
     path,
     title: service.seoTitle,
     description: service.seoDescription,
-    image: service.image,
+    // og:image — a service may override with its own page-specific social image.
+    image: service.ogImage || service.image,
     robots: "index, follow",
     ogType: "website",
     breadcrumbs,

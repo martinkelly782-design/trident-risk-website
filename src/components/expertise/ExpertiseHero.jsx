@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ChevronRight } from "lucide-react";
 import { heroAssetFor } from "../../config/disciplineHeroAssets";
@@ -20,6 +20,16 @@ import { heroAssetFor } from "../../config/disciplineHeroAssets";
 function HeroImage({ discipline, objectPosition, eager, rounded, className }) {
   const asset = heroAssetFor(discipline.id);
   const [ready, setReady] = useState(false);
+  const imgRef = useRef(null);
+
+  // Cover the prerender/hydration race: a cached/eager image can finish loading
+  // before React attaches onLoad during hydration, so onLoad never fires and the
+  // image would stay hidden. Check completion on mount and reveal if already done.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) setReady(true);
+  }, [asset?.src]);
+
   return (
     <div className={className}>
       {/* Image-ready placeholder base (shown until the asset exists). */}
@@ -27,6 +37,7 @@ function HeroImage({ discipline, objectPosition, eager, rounded, className }) {
       <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(120%_120%_at_72%_18%,rgba(255,255,255,0.08),transparent_60%)]" />
       {asset && (
         <img
+          ref={imgRef}
           src={asset.src}
           alt={asset.alt}
           loading={eager ? "eager" : "lazy"}

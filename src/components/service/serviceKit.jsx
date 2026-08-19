@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowDown, ArrowUpRight, ChevronRight } from "lucide-react";
 import { servicesById } from "../../data/serviceIndex";
@@ -60,11 +60,23 @@ export function ServiceBreadcrumbs({ discipline, service, tone = "dark" }) {
 // shows the dark masthead and the image appears automatically once dropped in.
 export function ServiceHeroImage({ src, alt, objectPosition = "center", className = "" }) {
   const [loaded, setLoaded] = useState(false);
+  const imgRef = useRef(null);
+
+  // Cover the prerender/hydration race: with static HTML the eager image can
+  // finish loading before React attaches the onLoad handler during hydration, so
+  // onLoad never fires and the image would stay hidden. On mount, check whether
+  // the image has already completed loading and reveal it if so.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth > 0) setLoaded(true);
+  }, [src]);
+
   return (
     <div className={`relative overflow-hidden bg-image-dark ${className}`}>
       <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(120%_120%_at_70%_25%,rgba(255,255,255,0.05),transparent_60%)]" />
       {src && (
         <img
+          ref={imgRef}
           src={src}
           alt={alt || ""}
           loading="eager"

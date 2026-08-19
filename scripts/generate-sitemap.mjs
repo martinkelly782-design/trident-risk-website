@@ -12,33 +12,13 @@ import { writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
-import routes from "../src/routes/routeConfig.js";
 import siteConfig from "../src/data/site.js";
-import { publishedIntelligence } from "../src/data/intelligence.js";
-import insights from "../src/data/insights.js";
+import { indexableRoutes } from "./public-routes.mjs";
 
 const BASE = siteConfig.url.replace(/\/+$/, "");
 
-// Indexable static routes from the route table (drops /request → noindex).
-const staticPaths = routes
-  .filter((r) => (r.robots || "").includes("index") && !(r.robots || "").includes("noindex"))
-  .map((r) => r.path);
-
-// Published intelligence detail pages.
-const intelPaths = publishedIntelligence.map((r) => `/intelligence/${r.slug}`);
-
-// Article-bearing insight pages (bespoke Iran page is already a static route).
-const insightPaths = insights
-  .filter((i) => i.sections)
-  .map((i) => i.path || `/insights/${i.slug}`);
-
-// De-duplicated, ordered union.
-const seen = new Set();
-const paths = [...staticPaths, ...intelPaths, ...insightPaths].filter((p) => {
-  if (seen.has(p)) return false;
-  seen.add(p);
-  return true;
-});
+// Indexable public URLs (shared with the prerenderer — single source of truth).
+const paths = indexableRoutes();
 
 const body = paths
   .map((p) => `  <url>\n    <loc>${BASE}${p === "/" ? "/" : p}</loc>\n  </url>`)

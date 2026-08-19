@@ -1481,10 +1481,6 @@ export default function App() {
 
   const [requestedService, setRequestedService] = useState(null);
 
-  const activePillar = pillars.find(
-    (pillar) => pillar.id === window.location.pathname.replace("/", "")
-  );
-
   function openPage(pillarId, anchorId) {
 
     setRequestedService(null);

@@ -41,13 +41,10 @@ export default function InsightsIndex() {
       {lead && (
         <section className="bg-canvas">
           <div className="mx-auto max-w-[1400px] px-5 py-14 lg:px-8 lg:py-20">
-            <Link to={lead.path} className={`group grid gap-10 lg:items-center ${lead.image ? "lg:grid-cols-[1.3fr_1fr]" : ""}`}>
-              {lead.image && (
-                <div className="relative order-2 aspect-[16/10] overflow-hidden border border-hairline bg-image-dark lg:order-1">
-                  <img src={lead.image} alt="" aria-hidden="true" loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" style={{ filter: "grayscale(0.3) brightness(0.72) contrast(1.05)" }} />
-                </div>
-              )}
-              <div className={lead.image ? "order-1 lg:order-2" : ""}>
+            {/* Feature: text left (~57%), contextual image right (~43%). Text
+                comes first in the DOM so mobile stacks text then image below. */}
+            <Link to={lead.path} className={`group grid gap-8 lg:gap-12 ${lead.image ? "lg:grid-cols-[1.35fr_1fr] lg:items-stretch" : ""}`}>
+              <div className={lead.image ? "flex flex-col justify-center" : ""}>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-accent">
                   {lead.category} <span className="text-ink-muted">· {lead.dateLabel}</span>
                 </p>
@@ -60,6 +57,11 @@ export default function InsightsIndex() {
                   <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
                 </span>
               </div>
+              {lead.image && (
+                <div className="relative order-last aspect-[16/10] w-full overflow-hidden border border-hairline bg-image-dark lg:aspect-auto lg:min-h-[340px]">
+                  <img src={lead.image} alt={lead.imageAlt || ""} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]" style={{ filter: "grayscale(0.3) brightness(0.72) contrast(1.05)" }} />
+                </div>
+              )}
             </Link>
           </div>
         </section>

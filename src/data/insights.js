@@ -42,6 +42,20 @@ export const insights = [
     author: "Trident Risk & Advisory",
     expertise: ["Maritime Intelligence"],
     region: "Middle East / Strait of Hormuz",
+    // Editorial feature/hero image (index lead + article hero band): a clean crop
+    // of a commercial tanker in the Gulf near the Strait of Hormuz — no warship,
+    // patrol craft, weapon or text. Restrained maritime treatment applied in CSS.
+    image: "/insight-hormuz-transit-fees.webp",
+    imageAlt:
+      "A commercial oil and product tanker under way in the Gulf near the Strait of Hormuz",
+    // Dedicated 1200x630 social derivative from the same source image (not the
+    // generic Trident social image), with accurate type/dimensions/alt.
+    ogImage: "/insight-hormuz-transit-fees-og.webp",
+    ogImageType: "image/webp",
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    ogImageAlt:
+      "Commercial tanker in the Strait of Hormuz approaches — transit fees and sanctions exposure",
     report: "hormuz-fees",
     relatedServiceIds: [
       "ms-high-risk-area-transit-planning",

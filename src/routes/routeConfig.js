@@ -341,7 +341,14 @@ function dynamicRoute(pathname) {
       // SEO meta description may likewise differ from the on-page standfirst/deck
       // (same override pattern as metaTitle); falls back to the standfirst.
       description: record.metaDescription || record.standfirst,
-      image: record.image || DEFAULT_OG_IMAGE,
+      // og:image prefers a dedicated 1200x630 social derivative, then the on-page
+      // feature image, then the site default. Per-image type/dimensions/alt come
+      // from the record when it ships a dedicated social image.
+      image: record.ogImage || record.image || DEFAULT_OG_IMAGE,
+      imageType: record.ogImageType,
+      imageWidth: record.ogImageWidth,
+      imageHeight: record.ogImageHeight,
+      imageAlt: record.ogImageAlt || record.imageAlt,
       robots: "index, follow",
       ogType: "article",
       breadcrumbs,
@@ -351,7 +358,7 @@ function dynamicRoute(pathname) {
           title: record.title,
           description: record.standfirst,
           datePublished: record.publishedAt,
-          image: record.image,
+          image: record.image || record.ogImage,
           path,
         }),
       ],

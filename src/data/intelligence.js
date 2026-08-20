@@ -80,6 +80,12 @@ export const REPORTS = {
     date: "7 August 2026",
     region: "Middle East",
   },
+  "hormuz-fees": {
+    href: "/reports/trident-hormuz-transit-fees-sanctions-assessment-19-aug-2026.pdf",
+    label: "Strait of Hormuz Transit Fees & Sanctions Exposure",
+    date: "19 August 2026",
+    region: "Middle East",
+  },
 };
 
 // Returns the report descriptor with its stable id attached (used by the report

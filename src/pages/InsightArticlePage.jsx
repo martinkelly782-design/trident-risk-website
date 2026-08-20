@@ -49,7 +49,10 @@ export default function InsightArticlePage() {
     .map((s) => ({ title: s.title, summary: s.summary, path: servicePath(s) }))
     .filter((s) => s.path);
   const report = reportFor(item.report);
-  const downloadLabel = item.report === "red-sea" ? "Download full assessment" : "Download full report";
+  const downloadLabel =
+    item.report === "red-sea" || item.report === "hormuz-fees"
+      ? "Download full assessment"
+      : "Download full report";
 
   return (
     <main className="bg-canvas text-ink">

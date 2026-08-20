@@ -2,12 +2,13 @@
 // Distinct from Intelligence (timestamped situational items) and from Services.
 // Only genuine, owner-approved publications are listed — none invented.
 //
-// The library now holds five publications:
+// The library now holds six publications:
 //   1. Iran Maritime Legal Risk Briefing 2026  (existing; bespoke page/URL)
 //   2. Red Sea Maritime Threat Assessment       (generic article template)
 //   3. Merchant Shipping in the Russian Black Sea Region
 //   4. Wildfire Risk to European Cruise Operations
 //   5. Voluntary Reporting Area Overview
+//   6. Strait of Hormuz Transit Fees & Sanctions Exposure
 //
 // New records carry an `sections` article body and render through the generic
 // InsightArticlePage at /insights/:slug. The Iran record has no `sections`; it
@@ -23,6 +24,118 @@
 //   material (ref TRI-ADV-2026-0731-A), which is not for public distribution.
 
 export const insights = [
+  {
+    slug: "strait-of-hormuz-transit-fees-sanctions-exposure",
+    path: "/insights/strait-of-hormuz-transit-fees-sanctions-exposure",
+    category: "Maritime Intelligence",
+    title: "Strait of Hormuz Transit Fees & Sanctions Exposure",
+    // Browser/meta title (SEO). On-page H1 stays the editorial title above.
+    metaTitle: "Strait of Hormuz Transit Fees & Sanctions Exposure | Trident",
+    // On-page deck (masthead) and index-card line — the source subtitle.
+    standfirst:
+      "Operational and sanctions implications after expiry of the 60-day toll-free window.",
+    // SEO meta description (distinct from the deck; see routeConfig).
+    metaDescription:
+      "Assessment of the operational and sanctions implications of Iranian Strait of Hormuz transit fees following expiry of the 60-day toll-free window.",
+    dateLabel: "19 August 2026",
+    publishedAt: "2026-08-19T09:00:00Z",
+    author: "Trident Risk & Advisory",
+    expertise: ["Maritime Intelligence"],
+    region: "Middle East / Strait of Hormuz",
+    report: "hormuz-fees",
+    relatedServiceIds: [
+      "ms-high-risk-area-transit-planning",
+      "mi-sanctions-exposure-analysis",
+      "mi-vessel-affiliation-checks",
+    ],
+    keyJudgement:
+      "The expiry of the 60-day toll-free period has converted the Hormuz fee question from a future contingency into an immediate operational, sanctions and compliance problem for owners, charterers, managers, insurers and banks considering any payment or guarantee connected with passage.",
+    sections: [
+      {
+        heading: "Executive assessment",
+        paragraphs: [
+          "The 60-day period in which Iran undertook to facilitate commercial passage through the Strait of Hormuz without charge has expired without a final U.S.-Iran settlement. The operating environment has shifted from an ambiguous future-fee question to an immediate sanctions and compliance problem for owners, charterers, insurers, banks and managers considering any payment or guarantee connected with passage.",
+          "The June Islamabad Memorandum of Understanding provided for safe passage of commercial vessels at no charge for 60 days while a final agreement was negotiated. That window has now expired. Iran has moved to a more offensive posture and continues to assert control over passage, while shipping volumes remain sharply below pre-war levels.",
+          "Iranian reporting on 17 August stated that a tanker had been detained for failing to meet Iranian transit conditions, including payment of fees. Trident assesses the vessel was likely AMARA (IMO 9333280), a Liberian-flagged oil/chemical tanker managed from the UAE; the detention rationale has not been independently confirmed.",
+          "Key judgement. For U.S. persons, a payment to Iran or the IRGC for safe passage through Hormuz is not authorised absent an applicable OFAC authorisation. For non-U.S. persons, OFAC expressly warns of secondary-sanctions exposure. EU persons face a direct asset-freeze prohibition if funds are made available to the listed IRGCN Hormozgan Provincial Command or for its benefit.",
+        ],
+      },
+      {
+        heading: "What has changed operationally",
+        paragraphs: [
+          "On 17 June the Islamabad MoU committed Iran to facilitate safe passage of commercial vessels with no charge for 60 days. U.S. reporting described the period as toll-free and left open what would follow. The 60-day negotiation period has now expired without a final deal.",
+          "Traffic has slowed materially. Reuters reported only five commodity vessels transiting on 15 August and none on 16 August, compared with 31 the previous weekend. On 18 August Reuters reported that Chinese state shippers COSCO Shipping Energy Transportation and China Merchants Energy Shipping had stopped operations through Hormuz and Bab el-Mandeb since late July, using alternative logistics and ship-to-ship transfers.",
+          "The commercial choice is therefore no longer theoretical: operators may face a demand to comply with an Iranian transit mechanism, refuse and accept detention or security exposure, or divert.",
+        ],
+      },
+      {
+        heading: "U.S. sanctions — U.S. persons",
+        paragraphs: [
+          "OFAC FAQ 1249 is explicit: payments to, and guarantees from, the Government of Iran or the IRGC, directly or indirectly, for safe passage through the Strait of Hormuz are not authorised for U.S. persons, U.S. financial institutions, or U.S.-owned or -controlled foreign entities. OFAC also states that U.S. persons are prohibited from receiving safe-passage services from the Government of Iran even where no payment is made.",
+          "The May 2026 OFAC Hormuz toll alert states that the risk is payment-method neutral. Fiat currency, digital assets, offsets, informal swaps, in-kind consideration and nominally charitable donations may all create sanctions exposure where they are mechanisms for obtaining Iranian safe passage.",
+          "A U.S.-linked owner, charterer, manager, insurer, broker, bank or other U.S. person should therefore not treat a Hormuz transit fee as an ordinary port or navigation charge. The baseline is prohibition unless an applicable OFAC general or specific licence exists.",
+        ],
+      },
+      {
+        heading: "U.S. sanctions — non-U.S. persons",
+        paragraphs: [
+          "Non-U.S. persons are not subject to the same comprehensive primary prohibition merely because they are foreign. However, OFAC expressly warns that safe-passage payments create significant secondary-sanctions exposure. Foreign financial institutions and other non-U.S. persons may face sanctions consequences for certain dealings with designated or otherwise blocked persons, including the Government of Iran and the IRGC.",
+          "OFAC designated the Persian Gulf Strait Authority (PGSA) for support to the IRGC. Dealings with PGSA therefore carry sanctions risk. Executive Order 13902 and the Iranian Financial Sanctions Regulations also expose foreign persons and financial institutions in connection with certain significant transactions involving blocked Iranian actors or determined sectors.",
+          "OFAC assesses 'significance' using the totality of circumstances, including size, frequency, nature, management awareness, nexus to blocked persons, policy impact and deceptive practices. A small payment is not automatically safe, while indirect or disguised payment routes can increase risk.",
+        ],
+      },
+      {
+        heading: "European Union sanctions exposure",
+        paragraphs: [
+          "The EU position differs structurally from the U.S. regime: the EU does not impose a blanket U.S.-style embargo on all dealings with Iran. The critical question is whether funds or economic resources are made available, directly or indirectly, to a listed person or entity, or whether another EU restriction applies.",
+          "On 8 June 2026 the EU listed the IRGC Navy Hormozgan Provincial Command under the framework addressing Iranian actions undermining freedom of navigation. The listing reasons state that the Command screens vessels and determines which may transit, sometimes subject to payment of a toll.",
+          "Article 3(2) of Regulation (EU) 2023/1529 prohibits funds or economic resources from being made available, directly or indirectly, to or for the benefit of persons and entities listed in Annex III. An EU person or EU-incorporated company paying a toll to the Hormozgan Provincial Command, or through an intermediary where the funds are for its benefit, would therefore face a direct EU asset-freeze prohibition unless a competent authority authorises a relevant derogation.",
+          "It does not follow that every Iran-related payment is automatically prohibited under EU law. A payment to an unlisted entity requires separate analysis of the legal and beneficial recipient, intermediary, bank, purpose and any sectoral restrictions. The EU's specific description of the toll system as implemented by a listed IRGCN command materially raises the risk of indirect benefit.",
+        ],
+      },
+      {
+        heading: "Non-U.S. / non-EU operators",
+        paragraphs: [
+          "A UAE, Asian or other non-U.S./non-EU shipping company is not automatically bound by U.S. or EU primary sanctions merely because those regimes exist. But practical exposure remains: the transaction may involve U.S. dollar clearing, a U.S. or EU bank, insurer, P&I club, parent company, broker or listed counterparty. U.S. secondary sanctions can also target foreign persons without primary U.S. jurisdiction over the underlying transaction.",
+          "For shipowners, flag and place of incorporation are therefore insufficient. Ownership and control, payment currency, correspondent banks, insurers, charterparty parties and the identity of the Iranian recipient all matter.",
+        ],
+      },
+      {
+        heading: "Operational decision framework",
+        paragraphs: [
+          "Pay — potentially prohibited for U.S. persons; secondary-sanctions exposure for non-U.S. persons; and a direct EU prohibition where the beneficiary is a listed entity such as the IRGCN Hormozgan Provincial Command. It should not be treated as a routine disbursement.",
+          "Refuse or attempt passage — creates credible detention, harassment, denial-of-passage or kinetic-security exposure where Iran treats the vessel as unauthorised. The reported AMARA detention increases concern, although the stated basis remains unverified.",
+          "Divert or postpone — may reduce sanctions exposure but creates delay, deviation cost, and charterparty, cargo and insurance consequences.",
+          "Use an intermediary or alternative payment method — does not remove sanctions risk where the payment is indirectly for a blocked person or a safe-passage service. Concealment or deceptive routing can aggravate exposure.",
+        ],
+      },
+      {
+        heading: "Trident assessment",
+        paragraphs: [
+          "The expiry of the toll-free period materially increases both operational and compliance uncertainty. The central risk is the collision of two coercive systems: Iran may seek to make payment or authorisation a condition of passage, while U.S. and EU sanctions can make payment to the relevant Iranian actors unlawful or sanctionable.",
+          "For U.S. persons the position is the clearest: safe-passage payments to the Government of Iran or the IRGC are not authorised absent OFAC permission. For EU persons, the June listing of the IRGCN Hormozgan Provincial Command is critical because the EU itself identifies that command as implementing the toll-screening system. For non-U.S./non-EU operators, secondary-sanctions, banking and counterparty exposure can still be substantial.",
+          "Trident recommends that any demand for a Hormuz transit fee be treated as a sanctions event requiring recipient-level screening and legal review before payment, alongside a separate voyage-specific assessment of the operational consequences of refusal or diversion.",
+        ],
+      },
+      {
+        heading: "Sources and legal framework",
+        paragraphs: [
+          "Islamabad Memorandum of Understanding, 17 June 2026; Reuters reporting on the 14-point agreement and 60-day toll-free passage commitment.",
+          "U.S. Treasury / OFAC: FAQ 1249; OFAC Alert, Sanctions Risks of Iranian Demands for Strait of Hormuz Passage (1 May 2026); Iran sanctions FAQs on significant transactions.",
+          "European Union: Council Regulation (EU) 2023/1529, Article 3; Council Regulation (EU) 2026/1164; Council Implementing Regulation (EU) 2026/1225 listing the IRGCN Hormozgan Provincial Command.",
+          "Reuters, 16–19 August 2026: Hormuz traffic slowdown, Chinese state-shipping avoidance and current U.S.-Iran positions.",
+          "ClassNK vessel register: AMARA, IMO 9333280, Liberian flag, HSG Shipping Inc., Superfleet DMCC.",
+        ],
+      },
+      {
+        heading: "About this assessment",
+        paragraphs: [
+          "This publication is provided for general information and situational awareness and does not constitute legal, sanctions, insurance or financial advice. It is not a substitute for transaction-specific legal advice or a voyage-specific risk assessment.",
+        ],
+      },
+    ],
+  },
+
   {
     slug: "iran-maritime-legal-risk-briefing",
     path: "/iran-maritime-legal-risk-briefing",

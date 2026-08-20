@@ -6,7 +6,6 @@ import { expertiseContent } from "../../data/expertiseContent";
 import { expertiseVisuals } from "../../data/expertiseVisuals";
 import { email, emailHref } from "../../config/contact";
 import ExpertiseHero from "./ExpertiseHero";
-import ServicesSignpost from "./ServicesSignpost";
 import { AnalyticalFramework, SignatureVisual, MapPlaceholder } from "./ExpertiseVisuals";
 import TransitSupportSignpost from "../service/TransitSupportSignpost";
 
@@ -205,13 +204,9 @@ export default function ExpertisePage({ discipline, services }) {
   const v = expertiseVisuals[discipline.id] || {};
   if (!c) return null;
 
-  function scrollToId(id) {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
   return (
     <main className="bg-canvas text-ink">
-      <ExpertiseHero discipline={discipline} c={c} objectPosition={v.heroObjectPosition} onScrollTo={scrollToId} />
+      <ExpertiseHero discipline={discipline} c={c} objectPosition={v.heroObjectPosition} />
       <Thesis c={c} />
       <AnalyticalFramework {...c.framework} converge={v.converge} gold={c.gold} />
       <KeyThemes c={c} />
@@ -224,7 +219,6 @@ export default function ExpertisePage({ discipline, services }) {
       <Perspective c={c} />
       <CurrentIntelligence discipline={discipline} />
       <LatestInsights c={c} />
-      <ServicesSignpost discipline={discipline} count={services.length} gold={c.gold} />
       <Enquiries c={c} />
     </main>
   );

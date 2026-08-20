@@ -77,7 +77,7 @@ function Breadcrumbs({ name }) {
   );
 }
 
-export default function ExpertiseHero({ discipline, c, objectPosition, onScrollTo }) {
+export default function ExpertiseHero({ discipline, c, objectPosition }) {
   const primaryBg = c.gold ? "bg-gold hover:bg-[#a07a33]" : "bg-accent hover:bg-[#a83d26]";
   return (
     <section className="relative overflow-hidden bg-image-dark text-white">
@@ -107,9 +107,12 @@ export default function ExpertiseHero({ discipline, c, objectPosition, onScrollT
                 {c.hero.primaryCtaLabel}
                 <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
               </Link>
-              <button type="button" onClick={() => onScrollTo("services")} className="inline-flex items-center gap-3 border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white/70">
+              {/* Direct link to the pre-filtered Services catalogue for this area
+                  — one click, no intermediary scroll. Renders as a real anchor in
+                  the prerendered HTML. */}
+              <Link to={`/services?area=${discipline.slug}`} className="inline-flex items-center gap-3 border border-white/30 px-7 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:border-white/70">
                 Explore services
-              </button>
+              </Link>
             </div>
           </div>
         </div>

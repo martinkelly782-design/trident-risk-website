@@ -152,7 +152,7 @@ export const insights = [
       {
         heading: "Threat to a particular vessel",
         paragraphs: [
-          "Voyage orders, routeing decisions and port calls are assessed against the exposure of the specific vessel, not the region in the abstract. Two vessels ordered on similar voyages can face materially different risk depending on flag, ownership and management, recent port-call history and any apparent affiliation — the same considerations that drive [vessel affiliation checks](/maritime-security/vessel-affiliation-checks).",
+          "Voyage orders, routeing decisions and port calls are assessed against the exposure of the specific vessel, not the region in the abstract. Two vessels ordered on similar voyages can face materially different risk depending on flag, ownership and management, recent port-call history and any apparent affiliation — the same considerations that drive [vessel affiliation checks](/maritime-intelligence/vessel-affiliation-checks).",
           "A defensible opinion therefore reasons from the particular: how this vessel was likely to be perceived by the relevant threat actor, whether it matched a discernible targeting pattern, and how its direction and profile affected exposure on the ordered voyage. Whether that exposure crossed the contractual threshold of [real danger](/insights/what-is-real-danger-in-a-maritime-war-risk-dispute) is then for the tribunal.",
         ],
       },
@@ -362,7 +362,7 @@ export const insights = [
         heading: "Affiliation and targeting criteria",
         paragraphs: [
           "In the Red Sea, affiliation has repeatedly proven a stronger discriminator of exposure than vessel type. How a vessel and its associations are likely to be perceived — flag, ownership and management, recent trading pattern, and any historic or apparent links — can move its exposure far more than its cargo or class.",
-          "This is why [vessel affiliation checks](/maritime-security/vessel-affiliation-checks) are so material to the evidence. A vessel that matches a threat actor's declared or observed target set is exposed very differently from one that does not, even on the same water on the same day.",
+          "This is why [vessel affiliation checks](/maritime-intelligence/vessel-affiliation-checks) are so material to the evidence. A vessel that matches a threat actor's declared or observed target set is exposed very differently from one that does not, even on the same water on the same day.",
         ],
       },
       {
@@ -440,7 +440,7 @@ export const insights = [
         heading: "Position, activity, time and trade",
         paragraphs: [
           "Read together, the record points to a location-and-activity model of exposure. Where a vessel was, what it was doing, how long it was exposed and the trade it served were more informative than simplistic assumptions based on flag or ownership.",
-          "That is a more demanding basis for an opinion, but a sounder one. It reasons from the vessel's actual movements and posture within the threat geography, using the same vessel-specific discipline as [vessel affiliation checks](/maritime-security/vessel-affiliation-checks) and [independent expert opinion on the threat environment](/legal-evidence/expert-witness).",
+          "That is a more demanding basis for an opinion, but a sounder one. It reasons from the vessel's actual movements and posture within the threat geography, using the same vessel-specific discipline as [vessel affiliation checks](/maritime-intelligence/vessel-affiliation-checks) and [independent expert opinion on the threat environment](/legal-evidence/expert-witness).",
         ],
       },
       {
@@ -547,7 +547,7 @@ export const insights = [
     ogImageWidth: 1200,
     ogImageHeight: 630,
     ogImageAlt: "A commercial tanker in the Gulf near the Strait of Hormuz",
-    relatedServiceIds: ["le-expert-witness", "ms-high-risk-area-transit-planning", "mi-sanctions-exposure-analysis"],
+    relatedServiceIds: ["le-expert-witness", "ms-high-risk-area-transit-planning", "mi-vessel-affiliation-checks"],
     keyJudgement:
       "A demand for a Hormuz transit fee is a sanctions event before it is a commercial one. Pay, refuse and divert each carry distinct sanctions, detention, delay, charterparty and insurance consequences, and the analysis is recipient-specific.",
     sections: [
@@ -631,7 +631,6 @@ export const insights = [
     report: "hormuz-fees",
     relatedServiceIds: [
       "ms-high-risk-area-transit-planning",
-      "mi-sanctions-exposure-analysis",
       "mi-vessel-affiliation-checks",
     ],
     keyJudgement:

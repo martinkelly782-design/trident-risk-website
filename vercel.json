@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/maritime-security/vessel-affiliation-checks",
+      "destination": "/maritime-intelligence/vessel-affiliation-checks",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

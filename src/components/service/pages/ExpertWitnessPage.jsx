@@ -69,7 +69,19 @@ const NOT = [
 
 export default function ExpertWitnessPage({ service, discipline, onRequest }) {
   const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-  const iran = insightsById["iran-maritime-legal-risk-briefing"];
+  // Restrained related-analysis feed: the strongest supporting Insights from the
+  // maritime expert witness authority cluster (newest-first is applied for us by
+  // the order below). Kept to a handful — this is a service page, not a blog index.
+  const relatedAnalysis = [
+    "maritime-expert-witnesses-in-charterparty-war-risk-disputes",
+    "what-is-real-danger-in-a-maritime-war-risk-dispute",
+    "safe-port-war-risk-and-force-majeure-the-evidence-behind-maritime-disputes",
+    "how-a-maritime-security-expert-assesses-whether-a-voyage-was-dangerous",
+    "red-sea-war-risk-evidence-in-charterparty-disputes",
+    "strait-of-hormuz-war-risk-safe-passage-and-charterparty-disputes",
+  ]
+    .map((slug) => insightsById[slug])
+    .filter(Boolean);
 
   return (
     <main className="bg-canvas text-ink">
@@ -132,7 +144,7 @@ export default function ExpertWitnessPage({ service, discipline, onRequest }) {
         gold
       />
 
-      <RelatedIntelligence heading="Related analysis" analysis={[iran].filter(Boolean)} />
+      <RelatedIntelligence heading="Related analysis" analysis={relatedAnalysis} />
 
       <Faq
         heading="Maritime expert witness — common questions."

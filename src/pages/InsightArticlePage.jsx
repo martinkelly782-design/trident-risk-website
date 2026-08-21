@@ -24,6 +24,36 @@ function formatDate(iso) {
     : d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "UTC" });
 }
 
+// Minimal inline-link support inside article paragraphs. A paragraph string may
+// contain markdown-style links [label](url); internal URLs (starting with "/")
+// render as router <Link> (crawlable <a href> in the prerendered HTML), external
+// URLs as a new-tab anchor. Plain paragraphs (no link syntax) are unchanged.
+function renderRichText(text) {
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const nodes = [];
+  let last = 0;
+  let m;
+  let key = 0;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) nodes.push(text.slice(last, m.index));
+    const label = m[1];
+    const url = m[2];
+    const cls = "font-medium text-accent underline underline-offset-2 transition-colors hover:text-ink";
+    if (/^https?:\/\//i.test(url)) {
+      nodes.push(
+        <a key={key++} href={url} target="_blank" rel="noopener noreferrer" className={cls}>{label}</a>
+      );
+    } else {
+      nodes.push(
+        <Link key={key++} to={url} className={cls}>{label}</Link>
+      );
+    }
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
+
 export default function InsightArticlePage() {
   const { slug } = useParams();
   const item = getArticleInsightBySlug(slug);
@@ -122,7 +152,7 @@ export default function InsightArticlePage() {
                 </h2>
                 <div className="mt-5 space-y-5">
                   {s.paragraphs.map((p, j) => (
-                    <p key={j} className="text-[16px] leading-8 text-ink-soft">{p}</p>
+                    <p key={j} className="text-[16px] leading-8 text-ink-soft">{renderRichText(p)}</p>
                   ))}
                 </div>
               </div>

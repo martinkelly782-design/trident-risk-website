@@ -4,7 +4,7 @@ import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { getArticleInsightBySlug } from "../data/insights";
 import { publishedIntelligence, reportFor } from "../data/intelligence";
 import { servicesById } from "../data/serviceIndex";
-import { servicePath } from "../routes/routeConfig";
+import { servicePath, isServiceRouteLive } from "../routes/routeConfig";
 import { emailHref } from "../config/contact";
 import DownloadReport from "../components/system/DownloadReport";
 import { trackEvent } from "../lib/analytics";
@@ -73,11 +73,13 @@ export default function InsightArticlePage() {
 
   const expertise = Array.isArray(item.expertise) ? item.expertise : item.expertise ? [item.expertise] : [];
   const related = publishedIntelligence.filter((r) => r.relatedInsight === item.slug);
+  // Carry each related service's live-route status so a service without an
+  // implemented route renders an "Enquire" fallback rather than a link to a
+  // soft-404 — the same guard service pages use (isServiceRouteLive).
   const relatedServices = (item.relatedServiceIds || [])
     .map((id) => servicesById[id])
     .filter(Boolean)
-    .map((s) => ({ title: s.title, summary: s.summary, path: servicePath(s) }))
-    .filter((s) => s.path);
+    .map((s) => ({ id: s.id, title: s.title, summary: s.summary, path: servicePath(s), live: isServiceRouteLive(s) }));
   const report = reportFor(item.report);
   const downloadLabel =
     item.report === "red-sea" || item.report === "hormuz-fees"
@@ -212,22 +214,28 @@ export default function InsightArticlePage() {
               How Trident supports vessels on this route
             </h2>
             <div className="mt-6 grid gap-px bg-hairline sm:grid-cols-3">
-              {relatedServices.map((s) => (
-                <Link
-                  key={s.path}
-                  to={s.path}
-                  className="group flex flex-col bg-canvas p-6 transition-colors hover:bg-canvas-raised"
-                >
-                  <h3 className="font-display text-lg font-normal leading-snug text-ink transition-colors group-hover:text-accent">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 flex-1 text-[13px] leading-6 text-ink-soft">{s.summary}</p>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
-                    View service
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
-                  </span>
-                </Link>
-              ))}
+              {relatedServices.map((s) => {
+                const cardClass = "group flex flex-col bg-canvas p-6 transition-colors hover:bg-canvas-raised";
+                const inner = (
+                  <>
+                    <h3 className="font-display text-lg font-normal leading-snug text-ink transition-colors group-hover:text-accent">
+                      {s.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-[13px] leading-6 text-ink-soft">{s.summary}</p>
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent">
+                      {s.live ? "View service" : "Enquire"}
+                      <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.75} />
+                    </span>
+                  </>
+                );
+                // Live implemented route → link to the service; otherwise fall back
+                // to an enquiry email rather than link to a soft-404.
+                return s.live ? (
+                  <Link key={s.id} to={s.path} className={cardClass}>{inner}</Link>
+                ) : (
+                  <a key={s.id} href={emailHref} className={cardClass}>{inner}</a>
+                );
+              })}
             </div>
           </div>
         </section>
